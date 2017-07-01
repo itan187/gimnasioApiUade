@@ -1,0 +1,41 @@
+package models;
+
+import persistence.EmpleadoHorarioCompletoAbm;
+
+public class HorarioCompleto extends Profesor {
+	private float sueldoBasico;
+	
+	public HorarioCompleto(String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float sueldoBasico) {
+		super(nombre, documento, mail, telefono, domicilio, escalaSalarial);
+		this.sueldoBasico = sueldoBasico;
+		
+		EmpleadoHorarioCompletoAbm.getInstancia().insert(this);
+	}
+
+	public void setSueldoBasico(float sueldoBasico) {
+		this.sueldoBasico = sueldoBasico;
+	}
+
+	public float getSueldoBasico() {
+		return sueldoBasico;
+	}
+	
+	/**
+	 * getCalcularSueldo
+	 * 
+	 * 
+	 * 
+	 * @return
+	 */
+	public float getCalcularSueldo () {
+		return 0;
+	}
+	
+	public void eliminarEmpleado() {
+		EmpleadoHorarioCompletoAbm.getInstancia().delete(this);
+	}
+	public void actualizarEmpleado() {
+		EmpleadoHorarioCompletoAbm.getInstancia().update(this);
+	}
+	
+}

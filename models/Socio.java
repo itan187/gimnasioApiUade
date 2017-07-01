@@ -1,0 +1,135 @@
+package models;
+
+import java.util.Date;
+import java.util.Vector;
+
+import persistence.SocioAbm;
+
+public class Socio {
+	private int documento;
+	private String nombre;
+	private String domicilio;
+	private String telefono;
+	private String email;
+	private int abono;
+	private Vector<Inscripcion> inscripciones;
+	private Vector<CertificadoMedico> aptosMedicos;
+	private boolean estado;
+	
+	public Socio(int documento, String nombre, String domicilio, String telefono, String email, int abono,
+			Vector<Inscripcion> inscripciones, Vector<CertificadoMedico> aptosMedicos, boolean estado) {
+		super();
+		this.setDocumento(documento);
+		this.setNombre(nombre);
+		this.setDomicilio(domicilio);
+		this.setTelefono(telefono);
+		this.setEmail(email);
+		this.setAbono(abono);
+		this.setInscripciones(inscripciones);
+		this.setAptosMedicos(aptosMedicos);
+		this.setEstado(estado);
+		
+		SocioAbm.getInstancia().insert(this);
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public String getDomicilio() {
+		return domicilio;
+	}
+	public int getDocumento() {
+		return documento;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public int getAbono() {
+		return abono;
+	}
+	public boolean getEstado() {
+		return estado;
+	}
+	public Vector<Inscripcion> getInscripciones() {
+		return inscripciones;
+	}
+	public Vector<CertificadoMedico> getAptosMedicos() {
+		return aptosMedicos;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+	public void setDocumento(int documento) {
+		this.documento = documento;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setAbono(int abono) {
+		this.abono = abono;
+	}
+	public void setInscripciones(Vector<Inscripcion> inscripciones) {
+		this.inscripciones = inscripciones;
+	}
+	public void setAptosMedicos(Vector<CertificadoMedico> aptosMedicos) {
+		this.aptosMedicos = aptosMedicos;
+	}
+	public boolean isEstado() {
+		return estado;
+	}
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
+	/**
+	 * esSocio
+	 * 
+	 * Validamos que exista un socio en particular a través
+	 * del documento de identidad
+	 * 
+	 * @param documento
+	 * @return boolean
+	 */
+	public boolean esSocio(int documento) {
+		return (this.documento == documento);
+	}
+
+	/**
+	 * conAptoMedicoAlDia
+	 * 
+	 * Validamos que el Socio tenga el apto médico al día,
+	 * recorriendo todos sus certificados guardados, validando
+	 * que su estado esté en true y que su fecha de vencimiento
+	 * sea anterior al día de la fecha.
+	 * 
+	 * @return boolean
+	 */
+	public boolean conAptoMedioAlDia() {
+		Date hoy = new Date();
+		boolean retVal = false;
+
+		for (CertificadoMedico cm : aptosMedicos) {
+			if (cm.getEstado() && cm.getVencimiento().before(hoy)) {
+				retVal = true;
+			}
+		}
+		return retVal;
+	}
+
+	public void eliminarSocio() {
+		SocioAbm.getInstancia().delete(this);
+	}
+	public void actualizarSocio() {
+		SocioAbm.getInstancia().update(this);
+	}
+	
+}
