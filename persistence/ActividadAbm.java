@@ -1,15 +1,12 @@
 package persistence;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Vector;
 
 import models.Actividad;
+import models.Deporte;
 import models.HorarioCompleto;
 import models.Particular;
 import models.Profesor;
@@ -49,29 +46,24 @@ public class ActividadAbm extends ActividadPersistence {
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1,a.getNumeroActividad());
-			
-			
-			a.getHoraFin();
-			
-			int[][] horaI = a.getHoraInicio();
-			for (int i = 1; i <= 7; i++) {
-				/**
-				 * Validamos que en el día de la semana tenga horario 
-				 */
-				if (horaI[1][i]) {
-					
-				}
-			}
-			
-			/**
-			 * horaInicio[1][dia] = horaDeInicio.get(Calendar.HOUR);
-				horaInicio[2][dia] = horaDeInicio.get(Calendar.MINUTE);
-			 */
+			s.setInt(1, a.getNumeroActividad());
+			s.setInt(2, a.getDeporte().getCodigo());
+			s.setInt(3, a.getLunesInicio());
+			s.setInt(4, a.getLunesFin());
+			s.setInt(5, a.getMartesInicio());
+			s.setInt(6, a.getMartesFin());
+			s.setInt(7, a.getMiercolesInicio());
+			s.setInt(8, a.getMiercolesFin());
+			s.setInt(9, a.getJuevesInicio());
+			s.setInt(10, a.getJuevesFin());
+			s.setInt(11, a.getViernesInicio());
+			s.setInt(12, a.getViernesFin());
+			s.setInt(13, a.getSabadoInicio());
+			s.setInt(14, a.getSabadoFin());
+			s.setInt(15, a.getDomingoInicio());
+			s.setInt(16, a.getDomingoFin());
 			
 			s.execute();
-			
-			//private Vector<String> dias;
 			
 			/**
 			 * Guardando la vinculación entre la clase y los profesores
@@ -101,17 +93,43 @@ public class ActividadAbm extends ActividadPersistence {
 			Actividad a = (Actividad)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".Actividades " +
-					"set numeroClase = ?," +
-					"set horaInicio = ?," +
-					"set horaFin =?)"
+					"set numeroActividad = ?," +
+					"set deporte = ?," +
+					"set lunesInicio = ?," +
+					"set lunesFin = ?," +
+					"set martesInicio = ?," +
+					"set martesFin = ?," +
+					"set miercolesInicio = ?," +
+					"set miercolesFin = ?," +
+					"set juevesInicio = ?," +
+					"set juevesFin = ?," +
+					"set viernesInicio = ?," +
+					"set viernesFin = ?," +
+					"set sabadoInicio = ?," +
+					"set sabadoFin = ?," +
+					"set domingoInicio = ?," +
+					"set domingoFin = ?)"
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1,a.getNumeroActividad());
-			/*s.setDate(2,(Date) a.getHoraInicio());
-			s.setDate(3,(Date)  a.getHoraFin());*/
+			s.setInt(1, a.getNumeroActividad());
+			s.setInt(2, a.getDeporte().getCodigo());
+			s.setInt(3, a.getLunesInicio());
+			s.setInt(4, a.getLunesFin());
+			s.setInt(5, a.getMartesInicio());
+			s.setInt(6, a.getMartesFin());
+			s.setInt(7, a.getMiercolesInicio());
+			s.setInt(8, a.getMiercolesFin());
+			s.setInt(9, a.getJuevesInicio());
+			s.setInt(10, a.getJuevesFin());
+			s.setInt(11, a.getViernesInicio());
+			s.setInt(12, a.getViernesFin());
+			s.setInt(13, a.getSabadoInicio());
+			s.setInt(14, a.getSabadoFin());
+			s.setInt(15, a.getDomingoInicio());
+			s.setInt(16, a.getDomingoFin());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -130,11 +148,23 @@ public class ActividadAbm extends ActividadPersistence {
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
 				int num 			= result.getInt(1);
-				Date horaInicio 	= result.getDate(2);
-				Date horaFin 		= result.getDate(3);
+				int numeroDeporte	= result.getInt(2);
+				int lunesInicio		= result.getInt(3);
+				int lunesFin		= result.getInt(4);
+				int martesInicio	= result.getInt(5);
+				int martesFin		= result.getInt(6);
+				int miercolesInicio	= result.getInt(7);
+				int miercolesFin	= result.getInt(8);
+				int juevesInicio	= result.getInt(9);
+				int juevesFin		= result.getInt(10);
+				int viernesInicio	= result.getInt(11);
+				int viernesFin		= result.getInt(12);
+				int sabadoInicio	= result.getInt(13);
+				int sabadoFin		= result.getInt(14);
+				int domingoInicio	= result.getInt(15);
+				int domingoFin		= result.getInt(16);
 				
 				Vector<Profesor> profesores = null;
-				Vector<String> dias = null;
 				
 				PreparedStatement sp = con.prepareStatement("select * from " + PoolConnection.dbName + ".ActividadesProfesores where numeroActividad = ?");
 				s.setInt(1, numeroActividad);
@@ -174,7 +204,28 @@ public class ActividadAbm extends ActividadPersistence {
 					}
 					
 				}
-				//a = new Actividad(num, profesores, dias, horaInicio, horaFin);
+				
+				Deporte deporte = DeporteAbm.getInstancia().buscarDeporte(numeroDeporte);
+				
+				a = new Actividad(
+						num, 
+						deporte, 
+						profesores,
+						lunesInicio,
+						lunesFin,
+						martesInicio,
+						martesFin,
+						miercolesInicio,
+						miercolesFin,
+						juevesInicio,
+						juevesFin,
+						viernesInicio,
+						viernesFin,
+						sabadoInicio,
+						sabadoFin,
+						domingoInicio,
+						domingoFin
+					);
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);

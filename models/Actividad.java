@@ -9,6 +9,7 @@ import persistence.ActividadAbm;
 
 public class Actividad {
 	private int numeroActividad;
+	private Deporte				deporte;
 	private Vector<Profesor> 	profesores;
 	
 	private int					lunesInicio;
@@ -28,6 +29,7 @@ public class Actividad {
 	
 	public Actividad(
 			int numeroActividad, 
+			Deporte deporte,
 			Vector<Profesor> profesores, 
 			int lunesInicio, 
 			int LunesFin,
@@ -45,6 +47,7 @@ public class Actividad {
 			int domingoFin) {
 		super();
 		this.setNumeroActividad(numeroActividad);
+		this.setDeporte(deporte);
 		this.setProfesores(profesores);
 		this.setLunesInicio(lunesInicio);
 		this.setLunesFin(lunesFin);
@@ -64,6 +67,12 @@ public class Actividad {
 		ActividadAbm.getInstancia().insert(this);
 	}
 	
+	public Deporte getDeporte() {
+		return deporte;
+	}
+	public void setDeporte(Deporte deporte) {
+		this.deporte = deporte;
+	}
 	public int getLunesInicio() {
 		return lunesInicio;
 	}
