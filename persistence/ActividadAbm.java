@@ -48,20 +48,13 @@ public class ActividadAbm extends ActividadPersistence {
 			 */
 			s.setInt(1, a.getNumeroActividad());
 			s.setInt(2, a.getDeporte().getCodigo());
-			s.setInt(3, a.getLunesInicio());
-			s.setInt(4, a.getLunesFin());
-			s.setInt(5, a.getMartesInicio());
-			s.setInt(6, a.getMartesFin());
-			s.setInt(7, a.getMiercolesInicio());
-			s.setInt(8, a.getMiercolesFin());
-			s.setInt(9, a.getJuevesInicio());
-			s.setInt(10, a.getJuevesFin());
-			s.setInt(11, a.getViernesInicio());
-			s.setInt(12, a.getViernesFin());
-			s.setInt(13, a.getSabadoInicio());
-			s.setInt(14, a.getSabadoFin());
-			s.setInt(15, a.getDomingoInicio());
-			s.setInt(16, a.getDomingoFin());
+			s.setInt(3, a.getLunes());
+			s.setInt(4, a.getMartes());
+			s.setInt(5, a.getMiercoles());
+			s.setInt(6, a.getJueves());
+			s.setInt(7, a.getViernes());
+			s.setInt(8, a.getSabado());
+			s.setInt(9, a.getDomingo());
 			
 			s.execute();
 			
@@ -95,20 +88,13 @@ public class ActividadAbm extends ActividadPersistence {
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".Actividades " +
 					"set numeroActividad = ?," +
 					"set deporte = ?," +
-					"set lunesInicio = ?," +
-					"set lunesFin = ?," +
-					"set martesInicio = ?," +
-					"set martesFin = ?," +
-					"set miercolesInicio = ?," +
-					"set miercolesFin = ?," +
-					"set juevesInicio = ?," +
-					"set juevesFin = ?," +
-					"set viernesInicio = ?," +
-					"set viernesFin = ?," +
-					"set sabadoInicio = ?," +
-					"set sabadoFin = ?," +
-					"set domingoInicio = ?," +
-					"set domingoFin = ?)"
+					"set lunes = ?," +
+					"set martes = ?," +
+					"set miercoles = ?," +
+					"set jueves = ?," +
+					"set viernes = ?," +
+					"set sabado = ?," +
+					"set domingo = ?)"
 			);
 
 			/**
@@ -116,20 +102,13 @@ public class ActividadAbm extends ActividadPersistence {
 			 */
 			s.setInt(1, a.getNumeroActividad());
 			s.setInt(2, a.getDeporte().getCodigo());
-			s.setInt(3, a.getLunesInicio());
-			s.setInt(4, a.getLunesFin());
-			s.setInt(5, a.getMartesInicio());
-			s.setInt(6, a.getMartesFin());
-			s.setInt(7, a.getMiercolesInicio());
-			s.setInt(8, a.getMiercolesFin());
-			s.setInt(9, a.getJuevesInicio());
-			s.setInt(10, a.getJuevesFin());
-			s.setInt(11, a.getViernesInicio());
-			s.setInt(12, a.getViernesFin());
-			s.setInt(13, a.getSabadoInicio());
-			s.setInt(14, a.getSabadoFin());
-			s.setInt(15, a.getDomingoInicio());
-			s.setInt(16, a.getDomingoFin());
+			s.setInt(3, a.getLunes());
+			s.setInt(4, a.getMartes());
+			s.setInt(5, a.getMiercoles());
+			s.setInt(6, a.getJueves());
+			s.setInt(7, a.getViernes());
+			s.setInt(8, a.getSabado());
+			s.setInt(9, a.getDomingo());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -149,20 +128,13 @@ public class ActividadAbm extends ActividadPersistence {
 			while (result.next()) {
 				int num 			= result.getInt(1);
 				int numeroDeporte	= result.getInt(2);
-				int lunesInicio		= result.getInt(3);
-				int lunesFin		= result.getInt(4);
-				int martesInicio	= result.getInt(5);
-				int martesFin		= result.getInt(6);
-				int miercolesInicio	= result.getInt(7);
-				int miercolesFin	= result.getInt(8);
-				int juevesInicio	= result.getInt(9);
-				int juevesFin		= result.getInt(10);
-				int viernesInicio	= result.getInt(11);
-				int viernesFin		= result.getInt(12);
-				int sabadoInicio	= result.getInt(13);
-				int sabadoFin		= result.getInt(14);
-				int domingoInicio	= result.getInt(15);
-				int domingoFin		= result.getInt(16);
+				int lunes			= result.getInt(3);
+				int martes			= result.getInt(4);
+				int miercoles		= result.getInt(5);
+				int jueves			= result.getInt(6);
+				int viernes			= result.getInt(7);
+				int sabado			= result.getInt(8);
+				int domingo			= result.getInt(9);
 				
 				Vector<Profesor> profesores = null;
 				
@@ -211,20 +183,13 @@ public class ActividadAbm extends ActividadPersistence {
 						num, 
 						deporte, 
 						profesores,
-						lunesInicio,
-						lunesFin,
-						martesInicio,
-						martesFin,
-						miercolesInicio,
-						miercolesFin,
-						juevesInicio,
-						juevesFin,
-						viernesInicio,
-						viernesFin,
-						sabadoInicio,
-						sabadoFin,
-						domingoInicio,
-						domingoFin
+						lunes,
+						martes,
+						miercoles,
+						jueves,
+						viernes,
+						sabado,
+						domingo
 					);
 			}
 			

@@ -196,6 +196,7 @@ public class SocioController {
 
 					for (Actividad c : clases) {
 						/** Días que esta la clase **/
+						/**
 						Vector<String> dias = c.getDias();
 
 						// Recorremos para ver si algun día es el de hoy
@@ -208,7 +209,7 @@ public class SocioController {
 						if (habilitarIngreso) {
 							Date horaInicio = c.getHoraInicio();
 							Date horaFin = c.getHoraFin();
-						}
+						}**/
 					}
 				}
 			}

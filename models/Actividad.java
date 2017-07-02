@@ -12,57 +12,36 @@ public class Actividad {
 	private Deporte				deporte;
 	private Vector<Profesor> 	profesores;
 	
-	private int					lunesInicio;
-	private int					lunesFin;
-	private int					martesInicio;
-	private int					martesFin;
-	private int					miercolesInicio;
-	private int					miercolesFin;
-	private int					juevesInicio;
-	private int					juevesFin;
-	private int					viernesInicio;
-	private int					viernesFin;
-	private int					sabadoInicio;
-	private int					sabadoFin;
-	private int					domingoInicio;
-	private int					domingoFin;
+	private int					lunes;
+	private int					martes;
+	private int					miercoles;
+	private int					jueves;
+	private int					viernes;
+	private int					sabado;
+	private int					domingo;
 	
 	public Actividad(
 			int numeroActividad, 
 			Deporte deporte,
 			Vector<Profesor> profesores, 
-			int lunesInicio, 
-			int LunesFin,
-			int martesInicio, 
-			int martesFin, 
-			int miercolesInicio,
-			int miercolesFin,
-			int juevesInicio,
-			int juevesFin,
-			int viernesInicio,
-			int viernesFin,
-			int sabadoInicio,
-			int sabadoFin,
-			int domingoInicio,
-			int domingoFin) {
+			int lunes, 
+			int martes,  
+			int miercoles,
+			int jueves,
+			int viernes,
+			int sabado,
+			int domingo) {
 		super();
 		this.setNumeroActividad(numeroActividad);
 		this.setDeporte(deporte);
 		this.setProfesores(profesores);
-		this.setLunesInicio(lunesInicio);
-		this.setLunesFin(lunesFin);
-		this.setMartesInicio(martesInicio);
-		this.setMartesFin(martesFin);
-		this.setMiercolesInicio(miercolesInicio);
-		this.setMiercolesFin(miercolesFin);
-		this.setJuevesInicio(juevesInicio);
-		this.setJuevesFin(juevesFin);
-		this.setViernesInicio(viernesInicio);
-		this.setViernesFin(viernesFin);
-		this.setSabadoInicio(sabadoInicio);
-		this.setSabadoFin(sabadoFin);
-		this.setDomingoInicio(domingoInicio);
-		this.setDomingoFin(domingoFin);
+		this.setLunes(lunes);
+		this.setMartes(martes);
+		this.setMiercoles(miercoles);
+		this.setJueves(jueves);
+		this.setViernes(viernes);
+		this.setSabado(sabado);
+		this.setDomingo(domingo);
 		
 		ActividadAbm.getInstancia().insert(this);
 	}
@@ -73,89 +52,47 @@ public class Actividad {
 	public void setDeporte(Deporte deporte) {
 		this.deporte = deporte;
 	}
-	public int getLunesInicio() {
-		return lunesInicio;
+	public int getLunes() {
+		return lunes;
 	}
-	public void setLunesInicio(int lunesInicio) {
-		this.lunesInicio = lunesInicio;
+	public void setLunes(int lunes) {
+		this.lunes = lunes;
 	}
-	public int getLunesFin() {
-		return lunesFin;
+	public int getMartes() {
+		return martes;
 	}
-	public void setLunesFin(int lunesFin) {
-		this.lunesFin = lunesFin;
+	public void setMartes(int martes) {
+		this.martes = martes;
 	}
-	public int getMartesInicio() {
-		return martesInicio;
+	public int getMiercoles() {
+		return miercoles;
 	}
-	public void setMartesInicio(int martesInicio) {
-		this.martesInicio = martesInicio;
+	public void setMiercoles(int miercoles) {
+		this.miercoles = miercoles;
 	}
-	public int getMartesFin() {
-		return martesFin;
+	public int getJueves() {
+		return jueves;
 	}
-	public void setMartesFin(int martesFin) {
-		this.martesFin = martesFin;
+	public void setJueves(int jueves) {
+		this.jueves = jueves;
 	}
-	public int getMiercolesInicio() {
-		return miercolesInicio;
+	public int getViernes() {
+		return viernes;
 	}
-	public void setMiercolesInicio(int miercolesInicio) {
-		this.miercolesInicio = miercolesInicio;
+	public void setViernes(int viernes) {
+		this.viernes = viernes;
 	}
-	public int getMiercolesFin() {
-		return miercolesFin;
+	public int getSabado() {
+		return sabado;
 	}
-	public void setMiercolesFin(int miercolesFin) {
-		this.miercolesFin = miercolesFin;
+	public void setSabado(int sabado) {
+		this.sabado = sabado;
 	}
-	public int getJuevesInicio() {
-		return juevesInicio;
+	public int getDomingo() {
+		return domingo;
 	}
-	public void setJuevesInicio(int juevesInicio) {
-		this.juevesInicio = juevesInicio;
-	}
-	public int getJuevesFin() {
-		return juevesFin;
-	}
-	public void setJuevesFin(int juevesFin) {
-		this.juevesFin = juevesFin;
-	}
-	public int getViernesInicio() {
-		return viernesInicio;
-	}
-	public void setViernesInicio(int viernesInicio) {
-		this.viernesInicio = viernesInicio;
-	}
-	public int getViernesFin() {
-		return viernesFin;
-	}
-	public void setViernesFin(int viernesFin) {
-		this.viernesFin = viernesFin;
-	}
-	public int getSabadoInicio() {
-		return sabadoInicio;
-	}
-	public void setSabadoInicio(int sabadoInicio) {
-		this.sabadoInicio = sabadoInicio;
-	}
-	public int getSabadoFin() {
-		return sabadoFin;
-	}
-	public void setSabadoFin(int sabadoFin) {
-		this.sabadoFin = sabadoFin;
-	}
-	public int getDomingoInicio() {
-		return domingoInicio;
-	}
-	public void setDomingoInicio(int domingoInicio) {
-		this.domingoInicio = domingoInicio;
-	}
-	public int getDomingoFin() {
-		return domingoFin;
-	}
-	public void setDomingoFin(int domingoFin) {
-		this.domingoFin = domingoFin;
+	public void setDomingo(int domingo) {
+		this.domingo = domingo;
 	}
 	public int getNumeroActividad() {
 		return numeroActividad;
