@@ -88,6 +88,7 @@ CREATE TABLE Deporte (
 CREATE TABLE Actividad (
 	numeroActividad INTEGER PRIMARY KEY,
 	numeroDeporte INTEGER,
+	duracion INTEGER,
 	lunes INTEGER,
 	martes INTEGER,
 	miercoles INTEGER,

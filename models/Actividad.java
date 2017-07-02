@@ -11,7 +11,7 @@ public class Actividad {
 	private int numeroActividad;
 	private Deporte				deporte;
 	private Vector<Profesor> 	profesores;
-	
+	private int					duracion;
 	private int					lunes;
 	private int					martes;
 	private int					miercoles;
@@ -24,6 +24,7 @@ public class Actividad {
 			int numeroActividad, 
 			Deporte deporte,
 			Vector<Profesor> profesores, 
+			int duracion,
 			int lunes, 
 			int martes,  
 			int miercoles,
@@ -35,6 +36,7 @@ public class Actividad {
 		this.setNumeroActividad(numeroActividad);
 		this.setDeporte(deporte);
 		this.setProfesores(profesores);
+		this.setDuracion(duracion);
 		this.setLunes(lunes);
 		this.setMartes(martes);
 		this.setMiercoles(miercoles);
@@ -46,6 +48,14 @@ public class Actividad {
 		ActividadAbm.getInstancia().insert(this);
 	}
 	
+	public int getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
 	public Deporte getDeporte() {
 		return deporte;
 	}

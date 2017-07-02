@@ -48,13 +48,14 @@ public class ActividadAbm extends ActividadPersistence {
 			 */
 			s.setInt(1, a.getNumeroActividad());
 			s.setInt(2, a.getDeporte().getCodigo());
-			s.setInt(3, a.getLunes());
-			s.setInt(4, a.getMartes());
-			s.setInt(5, a.getMiercoles());
-			s.setInt(6, a.getJueves());
-			s.setInt(7, a.getViernes());
-			s.setInt(8, a.getSabado());
-			s.setInt(9, a.getDomingo());
+			s.setInt(3, a.getDuracion());
+			s.setInt(4, a.getLunes());
+			s.setInt(5, a.getMartes());
+			s.setInt(6, a.getMiercoles());
+			s.setInt(7, a.getJueves());
+			s.setInt(8, a.getViernes());
+			s.setInt(9, a.getSabado());
+			s.setInt(10, a.getDomingo());
 			
 			s.execute();
 			
@@ -88,6 +89,7 @@ public class ActividadAbm extends ActividadPersistence {
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".Actividad " +
 					"set numeroActividad = ?," +
 					"set deporte = ?," +
+					"set duracion = ?," +
 					"set lunes = ?," +
 					"set martes = ?," +
 					"set miercoles = ?," +
@@ -102,13 +104,14 @@ public class ActividadAbm extends ActividadPersistence {
 			 */
 			s.setInt(1, a.getNumeroActividad());
 			s.setInt(2, a.getDeporte().getCodigo());
-			s.setInt(3, a.getLunes());
-			s.setInt(4, a.getMartes());
-			s.setInt(5, a.getMiercoles());
-			s.setInt(6, a.getJueves());
-			s.setInt(7, a.getViernes());
-			s.setInt(8, a.getSabado());
-			s.setInt(9, a.getDomingo());
+			s.setInt(3, a.getDuracion());
+			s.setInt(4, a.getLunes());
+			s.setInt(5, a.getMartes());
+			s.setInt(6, a.getMiercoles());
+			s.setInt(7, a.getJueves());
+			s.setInt(8, a.getViernes());
+			s.setInt(9, a.getSabado());
+			s.setInt(10, a.getDomingo());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -128,13 +131,14 @@ public class ActividadAbm extends ActividadPersistence {
 			while (result.next()) {
 				int num 			= result.getInt(1);
 				int numeroDeporte	= result.getInt(2);
-				int lunes			= result.getInt(3);
-				int martes			= result.getInt(4);
-				int miercoles		= result.getInt(5);
-				int jueves			= result.getInt(6);
-				int viernes			= result.getInt(7);
-				int sabado			= result.getInt(8);
-				int domingo			= result.getInt(9);
+				int duracion		= result.getInt(3);
+				int lunes			= result.getInt(4);
+				int martes			= result.getInt(5);
+				int miercoles		= result.getInt(6);
+				int jueves			= result.getInt(7);
+				int viernes			= result.getInt(8);
+				int sabado			= result.getInt(9);
+				int domingo			= result.getInt(10);
 				
 				Vector<Profesor> profesores = null;
 				
@@ -182,6 +186,7 @@ public class ActividadAbm extends ActividadPersistence {
 						num, 
 						deporte, 
 						profesores,
+						duracion,
 						lunes,
 						martes,
 						miercoles,
