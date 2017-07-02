@@ -132,7 +132,7 @@ public class SocioAbm extends SocioPersistence {
 		try {
 			Socio a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Socio where codigo = ?");
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Socio where documento = ?");
 			s.setInt(1, documento);
 			ResultSet result = s.executeQuery();
 			
