@@ -56,7 +56,7 @@ public class SocioAbm extends SocioPersistence {
 			s.setString(4, 	a.getTelefono());
 			s.setString(5, 	a.getEmail());
 			s.setInt(6, 	a.getAbono());
-			s.setBoolean(7, a.getEstado());
+			s.setInt(7, 	(a.getEstado()) ? 1 : 0);
 			s.execute();
 			
 			/**
@@ -118,7 +118,7 @@ public class SocioAbm extends SocioPersistence {
 			s.setString(4, a.getTelefono());
 			s.setString(5, a.getEmail());
 			s.setInt(6, a.getAbono());
-			s.setBoolean(7, a.getEstado());
+			s.setInt(7, (a.getEstado()) ? 1 : 0);
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -143,7 +143,7 @@ public class SocioAbm extends SocioPersistence {
 				String telefono 	= result.getString(4);
 				String email	 	= result.getString(5);
 				int abono 			= result.getInt(6);
-				boolean estado 		= result.getBoolean(7);
+				boolean estado 		= (result.getInt(7) == 1) ? true : false;
 				
 				/**
 				 * Recorró buscando las inscripciones 

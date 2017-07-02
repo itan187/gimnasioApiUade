@@ -195,6 +195,7 @@ public class SocioController {
 						/** Días que esta la clase **/
 						int horaInicioActividad;
 						
+						/*
 						Calendar c = Calendar.getInstance();
 						switch (c.get(Calendar.DAY_OF_WEEK)) {
 						   case Calendar.MONDAY:
@@ -233,11 +234,12 @@ public class SocioController {
 							} else {
 								return false;
 							}
-						}
+						}*/
 					}
 				}
 			}
 		}
+		return false;
 	}
 	
 	/**
