@@ -28,7 +28,7 @@ public class ActividadAbm extends ActividadPersistence {
 		try {
 			Actividad a = (Actividad)d;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".Actividades where numeroClase = ?");
+			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".Actividad where numeroClase = ?");
 			s.setInt(1, a.getNumeroActividad());
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -42,7 +42,7 @@ public class ActividadAbm extends ActividadPersistence {
 		try {
 			Actividad a = (Actividad)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("insert into "+ PoolConnection.dbName + ".Actividades values (?,?,?)");
+			PreparedStatement s = con.prepareStatement("insert into "+ PoolConnection.dbName + ".Actividad values (?,?,?)");
 			/**
 			 * Agregando los campos
 			 */
@@ -62,7 +62,7 @@ public class ActividadAbm extends ActividadPersistence {
 			 * Guardando la vinculación entre la clase y los profesores
 			 */
 			for (Profesor p: a.getProfesores()) {
-				PreparedStatement sp = con.prepareStatement("insert into "+ PoolConnection.dbName + ".ActividadesProfesores values (?,?)");
+				PreparedStatement sp = con.prepareStatement("insert into "+ PoolConnection.dbName + ".ActividadProfesor values (?,?)");
 				sp.setInt(1, a.getNumeroActividad());
 				sp.setInt(2, p.getDocumento());
 				sp.execute();
@@ -85,7 +85,7 @@ public class ActividadAbm extends ActividadPersistence {
 		try {
 			Actividad a = (Actividad)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".Actividades " +
+			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".Actividad " +
 					"set numeroActividad = ?," +
 					"set deporte = ?," +
 					"set lunes = ?," +
@@ -122,7 +122,7 @@ public class ActividadAbm extends ActividadPersistence {
 		try {
 			Actividad a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Actividades where numeroActividad = ?");
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Actividad where numeroActividad = ?");
 			s.setInt(1, numeroActividad);
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
@@ -138,7 +138,7 @@ public class ActividadAbm extends ActividadPersistence {
 				
 				Vector<Profesor> profesores = null;
 				
-				PreparedStatement sp = con.prepareStatement("select * from " + PoolConnection.dbName + ".ActividadesProfesores where numeroActividad = ?");
+				PreparedStatement sp = con.prepareStatement("select * from " + PoolConnection.dbName + ".ActividadProfesores where numeroActividad = ?");
 				s.setInt(1, numeroActividad);
 				ResultSet res = sp.executeQuery();
 				
@@ -147,7 +147,7 @@ public class ActividadAbm extends ActividadPersistence {
 				 * buscando el empleado en horario completo o particular
 				 */
 				while (res.next()) {
-					int documento = res.getInt(1);
+					int documento = res.getInt(2);
 					
 					HorarioCompleto c = EmpleadoHorarioCompletoAbm.getInstancia().buscarEmpleado(documento);
 					Particular p = EmpleadoHorarioPartAbm.getInstancia().buscarEmpleado(documento);
@@ -174,7 +174,6 @@ public class ActividadAbm extends ActividadPersistence {
 						Particular prof = new Particular(nombre, documento, mail, telefono, domicilio, escalaSalarial, valorHora);
 						profesores.addElement(prof);
 					}
-					
 				}
 				
 				Deporte deporte = DeporteAbm.getInstancia().buscarDeporte(numeroDeporte);

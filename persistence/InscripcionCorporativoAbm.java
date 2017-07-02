@@ -114,7 +114,7 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 				
 				Vector<Actividad> clases = null;
 
-				PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".InscripcionClases where numero =" + numero);
+				PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".InscripcionActividades where numero =" + numero);
 				ResultSet res = x.executeQuery();
 				
 				/**

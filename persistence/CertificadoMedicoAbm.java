@@ -70,8 +70,8 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 			CertificadoMedico a = (CertificadoMedico)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".CertificadoMedico " +
-					"set numero = ?," +
-					"set fecha_creacion = ?," +
+					"set numAptoMedico = ?," +
+					"set fechaCreacion = ?," +
 					"set vencimiento =?," +
 					"set profesional =?," +
 					"set observaciones =?," +
@@ -96,7 +96,7 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 
 	}
 	
-	public CertificadoMedico buscarAbono (int numero) {
+	public CertificadoMedico buscarCertificado (int numero) {
 		try {
 			CertificadoMedico a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
@@ -104,12 +104,11 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 			s.setInt(1, numero);
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
-				//int numero 		= result.getInt(1);
-				Date fechaCreacion 	= result.getDate(2);
-				Date vencimiento 	= result.getDate(3);
-				String profesional 	= result.getString(4);
+				Date fechaCreacion 		= result.getDate(2);
+				Date vencimiento 		= result.getDate(3);
+				String profesional 		= result.getString(4);
 				String observaciones 	= result.getString(5);
-				boolean estado		= result.getBoolean(6);
+				boolean estado			= result.getBoolean(6);
 				
 				a = new CertificadoMedico(numero, fechaCreacion, vencimiento, profesional, observaciones, estado);
 			}

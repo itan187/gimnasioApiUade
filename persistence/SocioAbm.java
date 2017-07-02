@@ -199,7 +199,7 @@ public class SocioAbm extends SocioPersistence {
 				while (resu.next()) {
 					int aptoNumero = resu.getInt(2);
 					
-					CertificadoMedico cert = CertificadoMedicoAbm.getInstancia().buscarAbono(aptoNumero);
+					CertificadoMedico cert = CertificadoMedicoAbm.getInstancia().buscarCertificado(aptoNumero);
 					
 					if (cert != null) {
 						CertificadoMedico certificado = new CertificadoMedico(

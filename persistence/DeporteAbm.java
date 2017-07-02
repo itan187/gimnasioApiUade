@@ -12,7 +12,7 @@ public class DeporteAbm extends DeportePersistence {
 	private static DeporteAbm instancia;
 	
 	private DeporteAbm() {
-		this.nombreTabla = PoolConnection.dbName + ".Deportes";
+		this.nombreTabla = PoolConnection.dbName + ".Deporte";
 	}
 	
 	public static DeporteAbm getInstancia() {
