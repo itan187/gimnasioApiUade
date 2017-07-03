@@ -52,6 +52,7 @@ public class PoolConnection {
 			/**
 			 * Setting driver configuration
 			 */
+			
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String dbConnectString = jdbc + servidor; 
             Connection con = DriverManager.getConnection (dbConnectString, usuario, password);
