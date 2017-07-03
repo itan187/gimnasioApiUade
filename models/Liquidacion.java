@@ -3,19 +3,35 @@ package models;
 import java.util.Date;
 
 public class Liquidacion {
-	private Date fechaDeLiq;
-
+	private int anio;
+	private int mes;
 	
-	public Liquidacion(Date fechaDeLiq) {
+	public Liquidacion(int anio, int mes) {
 		super();
-		this.setFechaDeLiq(fechaDeLiq);
+		this.setAnio(anio);
+		this.setMes(mes);
 	}
-	public Date getFechaDeLiq() {
-		return fechaDeLiq;
+	public int getAnio() {
+		return anio;
 	}
-	public void setFechaDeLiq(Date fechaDeLiq) {
-		this.fechaDeLiq = fechaDeLiq;
+	public void setAnio(int anio) {
+		this.anio = anio;
 	}
-	
+	public int getMes() {
+		return mes;
+	}
+	public void setMes(int mes) {
+		this.mes = mes;
+	}
+	/**
+	 * Es Liquidacion
+	 * 
+	 * @param anio
+	 * @param mes
+	 * @return
+	 */
+	public boolean esLiquidacion (int anio, int mes) {
+		return (this.anio == anio && this.mes == mes);
+	}
 	
 }

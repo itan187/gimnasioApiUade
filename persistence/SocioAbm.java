@@ -132,7 +132,7 @@ public class SocioAbm extends SocioPersistence {
 		try {
 			Socio a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Socio where documento = ?");
+			PreparedStatement s = con.prepareStatement("select * from Socio where documento = ?");
 			s.setInt(1, documento);
 			ResultSet result = s.executeQuery();
 			
@@ -165,7 +165,6 @@ public class SocioAbm extends SocioPersistence {
 					
 					Normal i = InscripcionNormalAbm.getInstancia().buscarInscripcion(inscripcionNumero);
 					Corporativa in = InscripcionCorporativoAbm.getInstancia().buscarInscripcion(inscripcionNumero);
-					
 					
 					if (i != null) {
 						inscripcionEstado = i.getEstado();
@@ -218,6 +217,7 @@ public class SocioAbm extends SocioPersistence {
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
+			System.out.print("error");
 			return a;
 		} catch (Exception e) {
 			System.out.println();

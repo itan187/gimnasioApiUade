@@ -160,6 +160,7 @@ public class SocioModificacion extends javax.swing.JFrame {
 						Socio socio = sistema.buscarSocio(Integer.parseInt(fieldDocumentoBuscar.getText()));
 						
 						if (socio != null) {
+							
 							jLabelNombre.setVisible(true);
 							jLabelDomicilio.setVisible(true);
 							jLabelTelefono.setVisible(true);

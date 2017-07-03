@@ -61,6 +61,9 @@ public class Main extends JFrame {
 	private JMenuItem jMenuInscripcionCorpoAlta;
 	private JMenuItem jMenuInscripcionCorpoModificar;
 	
+	
+	private JMenu jMenuLiquidacion;
+	
 	private JMenu jMenuSalir;
 	
 	private SocioController socioController;
@@ -517,6 +520,22 @@ public class Main extends JFrame {
 				jMenuInscripciones.add(jMenuInscripcionCorpoModificar);
 				jMenuInscripcionCorpoModificar.setText("Modificar Corporativo");
 				jMenuInscripcionCorpoModificar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						InscripcionCorpoModificar modificarInscripcionCorpo = new InscripcionCorpoModificar(socioController);
+						modificarInscripcionCorpo.setVisible(true);
+						toFront();
+					}
+				});
+				
+				
+				/**************************************************************
+				 * 						LIQUIDACION
+				 **************************************************************/
+				jMenuLiquidacion = new JMenu();
+				jMenuLiquidacion.add(jMenuLiquidacion);
+				jMenuLiquidacion.setText("Liquidación");
+				jMenuLiquidacion.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
 						InscripcionCorpoModificar modificarInscripcionCorpo = new InscripcionCorpoModificar(socioController);

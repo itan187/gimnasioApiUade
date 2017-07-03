@@ -12,6 +12,7 @@ import models.Actividad;
 import models.Corporativa;
 import models.Ingreso;
 import models.Inscripcion;
+import models.Liquidacion;
 import models.Normal;
 import models.Socio;
 
@@ -26,6 +27,7 @@ public class SocioController {
 	public Vector<Normal> 			inscripcionesNormales;
 	public Vector<Corporativa> 		inscripcionesCorpo;
 	public Vector<Ingreso> 			ingresos;
+	public Vector<Liquidacion>		liquidaciones;
 	
 	private static SocioController instancia;
 
@@ -100,6 +102,27 @@ public class SocioController {
 	}
 	
 	/**
+	 * Buscar Liquidacion
+	 * 
+	 * Buscamos la liquidacion a través del ano y mes.
+	 * Si la búsqueda me devuelve null significa que no existe liquidacion
+	 * liquidacion.
+	 * 
+	 * @param anio
+	 * @param mes
+	 * @return Liquidacion
+	 */
+	public Liquidacion buscarLiquidacion (int anio, int mes) {
+		for (Liquidacion liq : liquidaciones) {
+			if (liq.esLiquidacion(anio, mes)) return liq;
+		}
+		Liquidacion liq = LiquidacionAbm.getInstancia().buscarLiquidacion(anio, mes);
+		if (liq != null) return liq;
+		
+		return null;
+	}
+	
+	/**
 	 * Abono al Día
 	 * 
 	 * Para saber si un abono esta al día, primero buscamos 
@@ -131,7 +154,7 @@ public class SocioController {
 		}
 		Socio s = SocioAbm.getInstancia().buscarSocio(documento);
 		if (s != null) return s;
-
+		
 		return null;
 	}
 	
