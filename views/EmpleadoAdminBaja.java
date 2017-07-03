@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controllers.RrhhController;
+import models.Administrativo;
 import models.Empleado;
 
 public class EmpleadoAdminBaja extends javax.swing.JFrame {
@@ -100,13 +101,13 @@ public class EmpleadoAdminBaja extends javax.swing.JFrame {
 				jLabelSueldo = new JLabel();
 				getContentPane().add(jLabelSueldo);
 				jLabelSueldo.setText("Sueldo:");
-				jLabelSueldo.setBounds(21, 162, 63, 28);
+				jLabelSueldo.setBounds(21, 202, 63, 28);
 				jLabelSueldo.setVisible(false);
 			}
 			{
 				fieldSueldo = new JTextField();
 				getContentPane().add(fieldSueldo);
-				fieldSueldo.setBounds(119, 162, 210, 28);
+				fieldSueldo.setBounds(119, 202, 210, 28);
 				fieldSueldo.setVisible(false);
 			}
 			/**
@@ -115,8 +116,8 @@ public class EmpleadoAdminBaja extends javax.swing.JFrame {
 			{
 				buttonBaja = new JButton();
 				getContentPane().add(buttonBaja);
-				buttonBaja.setText("Eliminar Deporte");
-				buttonBaja.setBounds(260, 217, 123, 28);
+				buttonBaja.setText("Eliminar Empleado");
+				buttonBaja.setBounds(119, 222, 123, 28);
 				buttonBaja.setVisible(false);
 				buttonBaja.addActionListener(new ActionListener()
 				{
@@ -149,7 +150,7 @@ public class EmpleadoAdminBaja extends javax.swing.JFrame {
 				buttonBuscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						
-						Empleado admin = sistema.buscarEmpleado(Integer.parseInt(fieldDocumentoBuscar.getText()));
+						Administrativo admin = sistema.buscarEmpleadoAdmin(Integer.parseInt(fieldDocumentoBuscar.getText()));
 						
 						if (admin != null) {
 							jLabelNombre.setVisible(true);
@@ -159,15 +160,24 @@ public class EmpleadoAdminBaja extends javax.swing.JFrame {
 							jLabelSueldo.setVisible(true);
 							
 							fieldNombre.setVisible(true);
-							fieldNombre.setEnabled(false);
+							fieldNombre.setEnabled(true);
+							fieldNombre.setText(admin.getNombre());
+							
 							fieldMail.setVisible(true);
-							fieldMail.setEnabled(false);
+							fieldMail.setEnabled(true);
+							fieldMail.setText(admin.getMail());
+							
 							fieldTelefono.setVisible(true);
-							fieldTelefono.setEnabled(false);
+							fieldTelefono.setEnabled(true);
+							fieldTelefono.setText(admin.getTelefono());
+							
 							fieldDomicilio.setVisible(true);
-							fieldDomicilio.setEnabled(false);
+							fieldDomicilio.setEnabled(true);
+							fieldDomicilio.setText(admin.getDomicilio());
+							
 							fieldSueldo.setVisible(true);
-							fieldSueldo.setEnabled(false);
+							fieldSueldo.setEnabled(true);
+							fieldSueldo.setText(String.valueOf(admin.getSueldo()));
 							
 							buttonBaja.setVisible(true);
 						}

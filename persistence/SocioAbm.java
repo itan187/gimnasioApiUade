@@ -55,7 +55,7 @@ public class SocioAbm extends SocioPersistence {
 			s.setString(3,	a.getDomicilio());
 			s.setString(4, 	a.getTelefono());
 			s.setString(5, 	a.getEmail());
-			s.setInt(6, 	a.getAbono());
+			s.setInt(6, 	1);
 			s.setInt(7, 	(a.getEstado()) ? 1 : 0);
 			s.execute();
 			
@@ -63,6 +63,7 @@ public class SocioAbm extends SocioPersistence {
 			 * Recorremos las inscripciones del socio y las vamos guardando en
 			 * SocioInscripciones
 			 */
+			/*
 			for (int i = 0; i < a.getInscripciones().size(); i++) {
 				PreparedStatement sx = con.prepareStatement("insert into "+ PoolConnection.dbName + ".SocioInscripcion values (?,?)");
 				
@@ -70,17 +71,19 @@ public class SocioAbm extends SocioPersistence {
 				sx.setInt(2, a.getInscripciones().elementAt(i).getNumero());
 				sx.execute();
 			}
+			*/
 			/**
 			 * Recorremos las aptos médicos del socio y las vamos guardando en
 			 * SocioAptosMedicos
 			 */
+			/*
 			for (int i = 0; i < a.getAptosMedicos().size(); i++) {
 				PreparedStatement sx = con.prepareStatement("insert into "+ PoolConnection.dbName + ".SocioAptosMedicos values (?,?)");
 				
 				sx.setInt(1, a.getDocumento());
 				sx.setInt(2, a.getAptosMedicos().elementAt(i).getNumAptoMedico());
 				sx.execute();
-			}
+			}*/
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		}

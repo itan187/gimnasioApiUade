@@ -20,6 +20,7 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
 import controllers.*;
+import models.Liquidacion;
 import views.*;
 
 public class Main extends JFrame {
@@ -538,8 +539,8 @@ public class Main extends JFrame {
 				jMenuLiquidacion.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-						InscripcionCorpoModificar modificarInscripcionCorpo = new InscripcionCorpoModificar(socioController);
-						modificarInscripcionCorpo.setVisible(true);
+						//Liquidacion efectuarLiquidacion = new InscripcionCorpoModificar(socioController);
+						//modificarInscripcionCorpo.setVisible(true);
 						toFront();
 					}
 				});

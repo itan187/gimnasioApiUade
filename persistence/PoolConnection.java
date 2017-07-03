@@ -52,10 +52,13 @@ public class PoolConnection {
 			/**
 			 * Setting driver configuration
 			 */
-			
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con = DriverManager.getConnection("jdbc:mysql://35.162.112.46:3306/gimnasio", "gym", "uade.gym");
+			/*
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String dbConnectString = jdbc + servidor; 
             Connection con = DriverManager.getConnection (dbConnectString, usuario, password);
+            */
             return con;
 		} catch (SQLException e) {
 			System.out.println("Mensaje Error: " + e.getMessage());

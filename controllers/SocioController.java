@@ -116,8 +116,8 @@ public class SocioController {
 		for (Liquidacion liq : liquidaciones) {
 			if (liq.esLiquidacion(anio, mes)) return liq;
 		}
-		Liquidacion liq = LiquidacionAbm.getInstancia().buscarLiquidacion(anio, mes);
-		if (liq != null) return liq;
+		//Liquidacion liq = LiquidacionAbm.getInstancia().buscarLiquidacion(anio, mes);
+		//if (liq != null) return liq;
 		
 		return null;
 	}
@@ -155,6 +155,7 @@ public class SocioController {
 		Socio s = SocioAbm.getInstancia().buscarSocio(documento);
 		if (s != null) return s;
 		
+		System.out.println(s);
 		return null;
 	}
 	

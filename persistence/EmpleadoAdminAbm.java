@@ -26,11 +26,12 @@ public class EmpleadoAdminAbm extends EmpleadoAdminPersistence {
 			Administrativo a = (Administrativo)d;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".EmpleadoAdministrativo where documento = ?");
+			System.out.println(a.getDocumento());
 			s.setInt(1, a.getDocumento());
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			System.out.println("NO funciona");
 		}
 		
 	}

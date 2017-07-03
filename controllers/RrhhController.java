@@ -59,6 +59,33 @@ public class RrhhController {
 		
 		return null;
 	}
+	public Administrativo buscarEmpleadoAdmin (int documento) {
+		
+		for (Administrativo a : empleadosAdmin) {
+			if (a.getDocumento() == documento) return a;
+		}
+		Administrativo a = EmpleadoAdminAbm.getInstancia().buscarEmpleado(documento);
+		if (a != null) return a;
+		return null;
+	}
+	public HorarioCompleto buscarEmpleadoFullTime (int documento) {
+		for (HorarioCompleto h : empleadosProfFull) {
+			if (h.getDocumento() == documento) return h;
+		}
+		HorarioCompleto h = EmpleadoHorarioCompletoAbm.getInstancia().buscarEmpleado(documento);
+		if (h != null)	return h;
+		return null;
+	}
+		
+	public Particular buscarEmpleadoPartTime (int documento) {
+		for (Particular par : empleadosProfPart) {
+			if (par.getDocumento() == documento) return par;
+		}
+		Particular par = EmpleadoHorarioPartAbm.getInstancia().buscarEmpleado(documento);
+		if (par != null) return par;
+		
+		return null;
+	}
 	
 	/**
 	 * Alta Empleado Administrativo
@@ -123,24 +150,40 @@ public class RrhhController {
 	 * @param documento
 	 */
 	public void bajaEmpleados (int documento) {
+
+		/**
+		 * Baja de Empleados administrativos
+		 */
 		for (Administrativo a : empleadosAdmin) {
 			if (a.getDocumento() == documento) {
 				empleadosAdmin.remove(a);
-				a.eliminarEmpleado();
 			}
 		}
+		Administrativo a = buscarEmpleadoAdmin(documento);
+		if (a != null) a.eliminarEmpleado();
+		
+		/**
+		 * Baja de Empleados full time
+		 */
 		for (HorarioCompleto h : empleadosProfFull) {
 			if (h.getDocumento() == documento) {
 				empleadosProfFull.remove(h);
-				h.eliminarEmpleado();
 			}
 		}
+		HorarioCompleto h = buscarEmpleadoFullTime(documento);
+		if (h != null) h.eliminarEmpleado();
+		
+		/**
+		 * Baja de Empleados part time
+		 */
 		for (Particular p : empleadosProfPart) {
 			if (p.getDocumento() == documento) {
 				empleadosProfPart.remove(p);
-				p.eliminarEmpleado();
 			}
 		}
+		Particular p = buscarEmpleadoPartTime(documento);
+		if (p != null) p.eliminarEmpleado();
+		
 	}
 	
 	/**

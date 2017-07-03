@@ -30,6 +30,8 @@ public class Administrativo extends Empleado {
 	}
 	
 	public void eliminarEmpleado() {
+		System.out.println(this);
+		System.out.println("Hola");
 		EmpleadoAdminAbm.getInstancia().delete(this);
 	}
 	public void actualizarEmpleado() {
