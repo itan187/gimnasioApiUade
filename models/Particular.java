@@ -4,10 +4,12 @@ import persistence.EmpleadoHorarioPartAbm;
 
 public class Particular extends Profesor {
 	private float valorHora;
+	private int horas;
 
-	public Particular(String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float valorHora) {
+	public Particular(String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float valorHora, int horas) {
 		super(nombre, documento, mail, telefono, domicilio, escalaSalarial);
 		this.valorHora = valorHora;
+		this.horas = horas;
 		EmpleadoHorarioPartAbm.getInstancia().insert(this);
 	}
 	
@@ -17,7 +19,12 @@ public class Particular extends Profesor {
 	public void setValorHora(float valorHora) {
 		this.valorHora = valorHora;
 	}
-	
+	public int getHoras() {
+		return horas;
+	}
+	public void setHoras(int horas) {
+		this.horas = horas;
+	}
 	/**
 	 * getCalcularSueldo
 	 * 

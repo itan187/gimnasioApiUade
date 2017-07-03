@@ -174,8 +174,9 @@ public class ActividadAbm extends ActividadPersistence {
 						String domicilio		= p.getDomicilio();
 						String escalaSalarial	= p.getEscalaSalarial();
 						float valorHora			= p.getValorHora();
+						int horas				= p.getHoras();
 						
-						Particular prof = new Particular(nombre, documento, mail, telefono, domicilio, escalaSalarial, valorHora);
+						Particular prof = new Particular(nombre, documento, mail, telefono, domicilio, escalaSalarial, valorHora, horas);
 						profesores.addElement(prof);
 					}
 				}

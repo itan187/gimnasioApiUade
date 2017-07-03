@@ -155,7 +155,6 @@ public class SocioController {
 		Socio s = SocioAbm.getInstancia().buscarSocio(documento);
 		if (s != null) return s;
 		
-		System.out.println(s);
 		return null;
 	}
 	

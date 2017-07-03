@@ -112,9 +112,10 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 				String telefono		= result.getString(4);
 				String domicilio	= result.getString(5);
 				String escala		= result.getString(6);
-				Float valor_hora		= result.getFloat(7);
+				Float valor_hora	= result.getFloat(7);
+				int horas			= result.getInt(8);
 				
-				a = new Particular(nombre, doc, mail, telefono, domicilio, escala, valor_hora);
+				a = new Particular(nombre, doc, mail, telefono, domicilio, escala, valor_hora, horas);
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);

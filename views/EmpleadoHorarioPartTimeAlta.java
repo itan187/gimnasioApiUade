@@ -21,6 +21,7 @@ public class EmpleadoHorarioPartTimeAlta extends javax.swing.JFrame {
 	private JLabel jLabelDomicilio;
 	private JLabel jLabelEscalaSalarial;
 	private JLabel jLabelValorHora;
+	private JLabel jLabelHoras;
 	
 	private JTextField fieldNombre;
 	private JTextField fieldDocumento;
@@ -29,6 +30,7 @@ public class EmpleadoHorarioPartTimeAlta extends javax.swing.JFrame {
 	private JTextField fieldDomicilio;
 	private JTextField fieldEscalaSalarial;
 	private JTextField fieldValorHora;
+	private JTextField fieldHoras;
 	
 	private JButton buttonAceptar;
 	
@@ -94,8 +96,15 @@ public class EmpleadoHorarioPartTimeAlta extends javax.swing.JFrame {
 				jLabelValorHora = new JLabel();
 				getContentPane().add(jLabelValorHora);
 				jLabelValorHora.setText("Valor Hora:");
-				jLabelValorHora.setBounds(21, 262, 180, 28);
+				jLabelValorHora.setBounds(21, 280, 180, 28);
 				jLabelValorHora.setVisible(true);
+			}
+			{
+				jLabelHoras = new JLabel();
+				getContentPane().add(jLabelHoras);
+				jLabelHoras.setText("Horas:");
+				jLabelHoras.setBounds(21, 320, 180, 28);
+				jLabelHoras.setVisible(true);
 			}
 			/**************************************************************
 			 *						FIELDS
@@ -137,6 +146,11 @@ public class EmpleadoHorarioPartTimeAlta extends javax.swing.JFrame {
 				fieldValorHora.setBounds(200, 262, 120, 28);
 			}
 			{
+				fieldHoras = new JTextField();
+				getContentPane().add(fieldHoras);
+				fieldHoras.setBounds(200, 302, 120, 28);
+			}
+			{
 				buttonAceptar = new JButton();
 				getContentPane().add(buttonAceptar);
 				buttonAceptar.setText("Aceptar");
@@ -146,7 +160,7 @@ public class EmpleadoHorarioPartTimeAlta extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						if (fieldNombre.getText().equals("") || fieldDocumento.getText().equals("") || fieldMail.getText().equals("") || fieldTelefono.getText().equals("") || fieldDomicilio.getText().equals("") || fieldEscalaSalarial.getText().equals("") || fieldValorHora.getText().equals("")) {
+						if (fieldNombre.getText().equals("") || fieldDocumento.getText().equals("") || fieldMail.getText().equals("") || fieldTelefono.getText().equals("") || fieldDomicilio.getText().equals("") || fieldEscalaSalarial.getText().equals("") || fieldValorHora.getText().equals("") || fieldHoras.getText().equals("")) {
 							String mensajeError = "¡Atención! Faltan completar campos y por ello no se puede agregar el profesor de tiempo completo.";
 						    JOptionPane.showMessageDialog(null, mensajeError);
 						} else {
@@ -157,7 +171,8 @@ public class EmpleadoHorarioPartTimeAlta extends javax.swing.JFrame {
 									fieldTelefono.getText(),
 									fieldDomicilio.getText(),
 									fieldEscalaSalarial.getText(),
-									Float.parseFloat(fieldValorHora.getText())
+									Float.parseFloat(fieldValorHora.getText()),
+									Integer.parseInt(fieldHoras.getText())
 								);
 						}
 						setVisible(false);

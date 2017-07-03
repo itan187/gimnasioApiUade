@@ -45,7 +45,7 @@ public class SocioAbm extends SocioPersistence {
 		try {
 			Socio a = (Socio)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("insert into " + PoolConnection.dbName + ".Socio values (?,?,?,?,?,?,?)");
+			PreparedStatement s = con.prepareStatement("insert into " + PoolConnection.dbName + ".Socio (documento, nombre, domicilio, telefono, mail, estado) values (?,?,?,?,?,?)");
 			
 			/**
 			 * Agregando los campos
@@ -55,8 +55,7 @@ public class SocioAbm extends SocioPersistence {
 			s.setString(3,	a.getDomicilio());
 			s.setString(4, 	a.getTelefono());
 			s.setString(5, 	a.getEmail());
-			s.setInt(6, 	1);
-			s.setInt(7, 	(a.getEstado()) ? 1 : 0);
+			s.setInt(6, 	(a.getEstado()) ? 1 : 0);
 			s.execute();
 			
 			/**
@@ -220,10 +219,9 @@ public class SocioAbm extends SocioPersistence {
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
-			System.out.print("error");
 			return a;
 		} catch (Exception e) {
-			System.out.println();
+			System.out.println("Error");
 		}
 		return null;
 	}

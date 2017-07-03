@@ -136,8 +136,8 @@ public class RrhhController {
 	 * @param domicilio
 	 * @param sueldo
 	 */
-	public void altaEmpleadoProfPartTime(String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float valorHora) {
-		Particular profPartTime = new Particular(nombre, documento, mail, telefono, domicilio, escalaSalarial, valorHora);
+	public void altaEmpleadoProfPartTime(String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float valorHora, int horas) {
+		Particular profPartTime = new Particular(nombre, documento, mail, telefono, domicilio, escalaSalarial, valorHora, horas);
 		empleadosProfPart.add(profPartTime);
 	}
 
