@@ -64,7 +64,7 @@ public class Utiles {
 		String[] split = clases.split(", ");
 		
 		for (int i = 0; i < split.length; i++) {
-			Actividad clase = ActividadController.buscarClase(Integer.parseInt(split[i]));
+			Actividad clase = ActividadController.buscarActividad(Integer.parseInt(split[i]));
 			if (clase != null) {
 				cl.add(clase);
 			}

@@ -60,7 +60,7 @@ public class ActividadController {
 	 * @param numero
 	 * @return Actividad
 	 */
-	public static Actividad buscarClase(int numero) {
+	public static Actividad buscarActividad(int numero) {
 		
 		for (Actividad c : actividades) {
 			if (c.esClase(numero)) {
@@ -101,8 +101,10 @@ public class ActividadController {
 	 */
 	public void bajaDeporte (int codigo) {
 		Deporte deporte = buscarDeporte(codigo);
-		deporte.eliminarDeporte();
-		deportes.remove(deporte);
+		if (deporte != null) {
+			deportes.remove(deporte);
+			deporte.eliminarDeporte();
+		}		
 	}
 	
 	/**
@@ -123,14 +125,13 @@ public class ActividadController {
 				if (d.getCodigo() == codigo) {
 					if (d.getTitulo() != titulo) 			d.setTitulo(titulo);
 					if (d.getDescripcion() != descripcion) 	d.setDescripcion(descripcion);
-					
-					/**
-					 * Modificamos el deporte en la base de datos
-					 */
-					d.actualizarDeporte();
 				}
 			}
 			
+			/**
+			 * Modificamos el deporte en la base de datos
+			 */
+			deporte.actualizarDeporte(codigo, titulo, descripcion);
 		}
 	}
 

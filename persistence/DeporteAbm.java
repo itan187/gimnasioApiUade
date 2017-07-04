@@ -3,18 +3,11 @@ package persistence;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Vector;
 
 import models.Deporte;
-import models.Socio;
 
 public class DeporteAbm extends DeportePersistence {
-	private String nombreTabla;
 	private static DeporteAbm instancia;
-	
-	private DeporteAbm() {
-		this.nombreTabla = PoolConnection.dbName + ".Deporte";
-	}
 	
 	public static DeporteAbm getInstancia() {
 		if (instancia == null) {
@@ -27,12 +20,12 @@ public class DeporteAbm extends DeportePersistence {
 		try {
 			Deporte a = (Deporte)d;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("delete from " + this.nombreTabla + " where codigo = ?");
+			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".Deporte where codigo = ?");
 			s.setLong(1, a.getCodigo());
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			System.out.println(e);
 		}
 		
 	}
@@ -59,17 +52,13 @@ public class DeporteAbm extends DeportePersistence {
 	
 	}
 
-	public Vector<Object> select(Object o) {
-		return null;
-	}
-
 	public void update(Object o) {
 		try {
 			Deporte a = (Deporte)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("update " + this.nombreTabla + " " +
-					"titulo = ?," +
-					"descripcion =?) where codigo = ?"
+			PreparedStatement s = con.prepareStatement("update "+ PoolConnection.dbName + ".Deporte " +
+					"set titulo = ?, " +
+					"descripcion =? where codigo = ?"
 			);
 
 			/**
@@ -91,21 +80,20 @@ public class DeporteAbm extends DeportePersistence {
 		try {
 			Deporte a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("select * from " + this.nombreTabla + " where codigo = ?");
+			PreparedStatement s = con.prepareStatement("select * from "+ PoolConnection.dbName + ".Deporte where codigo = ?");
 			s.setInt(1, codigo);
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
-				int cod 			= result.getInt(1);
 				String titulo 		= result.getString(2);
 				String descripcion 	= result.getString(3);
 				
-				a = new Deporte(cod, titulo, descripcion);
+				a = new Deporte(codigo, titulo, descripcion);
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println();
+			System.out.println(e);
 		}
 		return null;
 	}

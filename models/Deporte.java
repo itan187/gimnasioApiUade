@@ -50,7 +50,8 @@ public class Deporte {
 	public void eliminarDeporte() {
 		DeporteAbm.getInstancia().delete(this);
 	}
-	public void actualizarDeporte() {
-		DeporteAbm.getInstancia().update(this);
+	
+	public void actualizarDeporte(int codigo, String titulo, String descripcion) {
+		DeporteAbm.getInstancia().update(new Deporte(codigo, titulo, descripcion));
 	}
 }

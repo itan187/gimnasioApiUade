@@ -116,7 +116,7 @@ public class EmpleadoAdminBaja extends javax.swing.JFrame {
 			{
 				buttonBaja = new JButton();
 				getContentPane().add(buttonBaja);
-				buttonBaja.setText("Eliminar Empleado");
+				buttonBaja.setText("Eliminar");
 				buttonBaja.setBounds(119, 222, 123, 28);
 				buttonBaja.setVisible(false);
 				buttonBaja.addActionListener(new ActionListener()
@@ -134,7 +134,7 @@ public class EmpleadoAdminBaja extends javax.swing.JFrame {
 			{
 				jLabelSearch = new JLabel();
 				getContentPane().add(jLabelSearch);
-				jLabelSearch.setText("Ingrese el documento:");
+				jLabelSearch.setText("Ingrese el DNI:");
 				jLabelSearch.setBounds(21, 7, 98, 28);
 			}
 			{
@@ -157,27 +157,22 @@ public class EmpleadoAdminBaja extends javax.swing.JFrame {
 							jLabelMail.setVisible(true);
 							jLabelTelefono.setVisible(true);
 							jLabelDomicilio.setVisible(true);
-							jLabelSueldo.setVisible(true);
 							
 							fieldNombre.setVisible(true);
-							fieldNombre.setEnabled(true);
+							fieldNombre.setEnabled(false);
 							fieldNombre.setText(admin.getNombre());
 							
 							fieldMail.setVisible(true);
-							fieldMail.setEnabled(true);
+							fieldMail.setEnabled(false);
 							fieldMail.setText(admin.getMail());
 							
 							fieldTelefono.setVisible(true);
-							fieldTelefono.setEnabled(true);
+							fieldTelefono.setEnabled(false);
 							fieldTelefono.setText(admin.getTelefono());
 							
 							fieldDomicilio.setVisible(true);
-							fieldDomicilio.setEnabled(true);
+							fieldDomicilio.setEnabled(false);
 							fieldDomicilio.setText(admin.getDomicilio());
-							
-							fieldSueldo.setVisible(true);
-							fieldSueldo.setEnabled(true);
-							fieldSueldo.setText(String.valueOf(admin.getSueldo()));
 							
 							buttonBaja.setVisible(true);
 						}

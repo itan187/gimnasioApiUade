@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -15,7 +16,6 @@ public class DeporteBaja extends javax.swing.JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JLabel jLabelSearch;
-	private JLabel jLabelCodigo;
 	private JLabel jLabelTitulo;
 	private JLabel jLabelDescripcion;
 	
@@ -43,7 +43,7 @@ public class DeporteBaja extends javax.swing.JFrame {
 			{
 				jLabelTitulo = new JLabel();
 				getContentPane().add(jLabelTitulo);
-				jLabelTitulo.setText("Código:");
+				jLabelTitulo.setText("Título:");
 				jLabelTitulo.setBounds(21, 42, 63, 28);
 				jLabelTitulo.setVisible(false);
 			}
@@ -74,7 +74,7 @@ public class DeporteBaja extends javax.swing.JFrame {
 				buttonBaja = new JButton();
 				getContentPane().add(buttonBaja);
 				buttonBaja.setText("Eliminar Deporte");
-				buttonBaja.setBounds(260, 217, 123, 28);
+				buttonBaja.setBounds(230, 217, 150, 28);
 				buttonBaja.setVisible(false);
 				buttonBaja.addActionListener(new ActionListener()
 				{
@@ -92,8 +92,8 @@ public class DeporteBaja extends javax.swing.JFrame {
 			{
 				jLabelSearch = new JLabel();
 				getContentPane().add(jLabelSearch);
-				jLabelSearch.setText("Ingrese el código del deporte:");
-				jLabelSearch.setBounds(21, 7, 98, 28);
+				jLabelSearch.setText("Ingrese el código:");
+				jLabelSearch.setBounds(21, 7, 120, 28);
 			}
 			{
 				fieldCodigoBuscar = new JTextField();
@@ -111,16 +111,20 @@ public class DeporteBaja extends javax.swing.JFrame {
 						Deporte deporte = sistema.buscarDeporte(Integer.parseInt(fieldCodigoBuscar.getText()));
 						
 						if (deporte != null) {
-							jLabelCodigo.setVisible(true);
 							jLabelTitulo.setVisible(true);
 							jLabelDescripcion.setVisible(true);
 							
 							fieldTitulo.setVisible(true);
 							fieldTitulo.setEnabled(false);
+							fieldTitulo.setText(deporte.getTitulo());
 							fieldDescripcion.setVisible(true);
 							fieldDescripcion.setEnabled(false);
+							fieldDescripcion.setText(deporte.getDescripcion());
 							
 							buttonBaja.setVisible(true);
+						} else {
+							String mensajeError = "¡Atención! No se ha encontrado el deporte que usted esta buscando!";
+						    JOptionPane.showMessageDialog(null, mensajeError);
 						}
 					}
 				});

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -44,26 +45,26 @@ public class DeporteModificar extends javax.swing.JFrame {
 				jLabelTitulo = new JLabel();
 				getContentPane().add(jLabelTitulo);
 				jLabelTitulo.setText("Código:");
-				jLabelTitulo.setBounds(21, 42, 63, 28);
+				jLabelTitulo.setBounds(21, 40, 63, 28);
 				jLabelTitulo.setVisible(false);
 			}
 			{
 				fieldTitulo = new JTextField();
 				getContentPane().add(fieldTitulo);
-				fieldTitulo.setBounds(119, 42, 210, 28);
+				fieldTitulo.setBounds(119, 40, 210, 28);
 				fieldTitulo.setVisible(false);
 			}
 			{
 				jLabelDescripcion = new JLabel();
 				getContentPane().add(jLabelDescripcion);
-				jLabelDescripcion.setText("Domicilio:");
-				jLabelDescripcion.setBounds(21, 91, 63, 28);
+				jLabelDescripcion.setText("Descripción:");
+				jLabelDescripcion.setBounds(21, 80, 63, 28);
 				jLabelDescripcion.setVisible(false);
 			}
 			{
 				fieldDescripcion = new JTextField();
 				getContentPane().add(fieldDescripcion);
-				fieldDescripcion.setBounds(119, 91, 210, 28);
+				fieldDescripcion.setBounds(119, 80, 210, 28);
 				fieldDescripcion.setVisible(false);
 			}
 			
@@ -74,7 +75,7 @@ public class DeporteModificar extends javax.swing.JFrame {
 				buttonModificar = new JButton();
 				getContentPane().add(buttonModificar);
 				buttonModificar.setText("Modificar Deporte");
-				buttonModificar.setBounds(260, 217, 123, 28);
+				buttonModificar.setBounds(150, 217, 200, 28);
 				buttonModificar.setVisible(false);
 				buttonModificar.addActionListener(new ActionListener()
 				{
@@ -92,8 +93,8 @@ public class DeporteModificar extends javax.swing.JFrame {
 			{
 				jLabelSearch = new JLabel();
 				getContentPane().add(jLabelSearch);
-				jLabelSearch.setText("Ingrese el código del deporte:");
-				jLabelSearch.setBounds(21, 7, 98, 28);
+				jLabelSearch.setText("Ingrese el código:");
+				jLabelSearch.setBounds(21, 7, 150, 28);
 			}
 			{
 				fieldCodigoBuscar = new JTextField();
@@ -111,16 +112,20 @@ public class DeporteModificar extends javax.swing.JFrame {
 						Deporte deporte = sistema.buscarDeporte(Integer.parseInt(fieldCodigoBuscar.getText()));
 						
 						if (deporte != null) {
-							jLabelCodigo.setVisible(true);
 							jLabelTitulo.setVisible(true);
 							jLabelDescripcion.setVisible(true);
 							
 							fieldTitulo.setVisible(true);
-							fieldTitulo.setEnabled(false);
+							fieldTitulo.setEnabled(true);
+							fieldTitulo.setText(deporte.getTitulo());
 							fieldDescripcion.setVisible(true);
-							fieldDescripcion.setEnabled(false);
+							fieldDescripcion.setEnabled(true);
+							fieldDescripcion.setText(deporte.getDescripcion());
 							
 							buttonModificar.setVisible(true);
+						} else {
+							String mensajeError = "¡Atención! No se ha encontrado el deporte que usted esta buscando!";
+						    JOptionPane.showMessageDialog(null, mensajeError);
 						}
 					}
 				});
