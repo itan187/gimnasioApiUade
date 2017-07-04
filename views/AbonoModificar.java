@@ -61,7 +61,7 @@ public class AbonoModificar extends javax.swing.JFrame {
 			{
 				jLabelPrecio = new JLabel();
 				getContentPane().add(jLabelPrecio);
-				jLabelPrecio.setText("Domicilio:");
+				jLabelPrecio.setText("Precio:");
 				jLabelPrecio.setBounds(21, 91, 63, 28);
 				jLabelPrecio.setVisible(false);
 			}
@@ -72,10 +72,18 @@ public class AbonoModificar extends javax.swing.JFrame {
 				fieldPrecio.setVisible(false);
 			}
 			{
+				jLabelVigencia = new JLabel();
+				getContentPane().add(jLabelVigencia);
+				jLabelVigencia.setText("Vigencia:");
+				jLabelVigencia.setBounds(21, 160, 63, 28);
+				jLabelVigencia.setVisible(false);
+			}
+			{
 				DateFormat dateFormat = new SimpleDateFormat("Y-M-D");
 				fieldVigencia = new JFormattedTextField(dateFormat);
 				getContentPane().add(fieldVigencia);
 				fieldVigencia.setBounds(200, 160, 120, 28);
+				fieldVigencia.setVisible(false);
 			}
 			
 			/**
@@ -127,17 +135,22 @@ public class AbonoModificar extends javax.swing.JFrame {
 						Abono abono = sistema.buscarAbono(Integer.parseInt(fieldCodigoBuscar.getText()));
 						
 						if (abono != null) {
-							jLabelCodigo.setVisible(true);
+							jLabelSearch.setVisible(true);
 							jLabelNombre.setVisible(true);
 							jLabelPrecio.setVisible(true);
 							jLabelVigencia.setVisible(true);
 							
 							fieldNombre.setVisible(true);
-							fieldNombre.setEnabled(false);
+							fieldNombre.setEnabled(true);
+							fieldNombre.setText(abono.getNombre());
 							fieldPrecio.setVisible(true);
-							fieldPrecio.setEnabled(false);
+							fieldPrecio.setEnabled(true);
+							fieldPrecio.setText(String.valueOf(abono.getPrecio()));
+
+							DateFormat df = new SimpleDateFormat("Y-M-D");
 							fieldVigencia.setVisible(true);
-							fieldVigencia.setEnabled(false);
+							fieldVigencia.setEnabled(true);
+							fieldVigencia.setText(df.format(abono.getVigencia()));
 							
 							buttonModificar.setVisible(true);
 						}

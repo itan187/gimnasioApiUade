@@ -48,7 +48,7 @@ public class AbonoAbm extends AbonoPersistence {
 			s.setInt(1,a.getCodigo());
 			s.setString(2, a.getNombre());
 			s.setFloat(3,a.getPrecio());
-			s.setDate(4, (Date) a.getVigencia());
+			s.setDate(4, new java.sql.Date(a.getVigencia().getTime()));
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -79,7 +79,7 @@ public class AbonoAbm extends AbonoPersistence {
 			 */
 			s.setString(1,		a.getNombre());
 			s.setFloat(2, 		a.getPrecio());
-			s.setDate(3,(Date) 	a.getVigencia());
+			s.setDate(3, new java.sql.Date(a.getVigencia().getTime()));
 			s.execute();
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);

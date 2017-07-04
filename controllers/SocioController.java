@@ -61,7 +61,10 @@ public class SocioController {
 			if (a.esAbono(codigo)) return a;
 		}
 		Abono a = AbonoAbm.getInstancia().buscarAbono(codigo);
-		if (a != null) return a;
+		if (a != null) {
+			abonos.add(a);
+			return a;
+		}
 		
 		return null;
 	}
@@ -87,7 +90,10 @@ public class SocioController {
 			if (n.esInscripcion(numero)) return n;
 		}
 		Normal n = InscripcionNormalAbm.getInstancia().buscarInscripcion(numero);
-		if (n != null) return n;
+		if (n != null) {
+			inscripcionesNormales.add(n);
+			return n;
+		}
 		
 		/**
 		 * Buscamos en la Inscripción Corporativa 
@@ -96,7 +102,10 @@ public class SocioController {
 			if (c.esInscripcion(numero)) return c;
 		}
 		Corporativa c = InscripcionCorporativoAbm.getInstancia().buscarInscripcion(numero);
-		if (c != null) return c;
+		if (c != null) {
+			inscripcionesCorpo.add(c);
+			return c;
+		}
 		
 		return null;
 	}
@@ -117,7 +126,10 @@ public class SocioController {
 			if (liq.esLiquidacion(anio, mes)) return liq;
 		}
 		//Liquidacion liq = LiquidacionAbm.getInstancia().buscarLiquidacion(anio, mes);
-		//if (liq != null) return liq;
+//		if (liq != null) {
+//			liquidaciones.add(liq);
+//			return liq;
+//		}
 		
 		return null;
 	}
@@ -153,7 +165,10 @@ public class SocioController {
 			if (s.esSocio(documento)) return s;
 		}
 		Socio s = SocioAbm.getInstancia().buscarSocio(documento);
-		if (s != null) return s;
+		if (s != null) {
+			socios.add(s);
+			return s;
+		}
 		return null;
 	}
 	
@@ -396,13 +411,12 @@ public class SocioController {
 					if (a.getNombre() != nombre)		a.setNombre(nombre);
 					if (a.getPrecio() != precio)		a.setPrecio(precio);
 					if (a.getVigencia() != vigencia)	a.setVigencia(vigencia);
-					
-					/**
-					 * Actualizamos el abono en la base de datos
-					 */
-					a.actualizarAbono();
 				}
 			}
+			/**
+			 * Actualizamos el abono en la base de datos
+			 */
+			abono.actualizarAbono();
 			
 		}
 	}
