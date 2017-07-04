@@ -5,7 +5,7 @@ USE gimnasio;
 
 -- abono
 CREATE TABLE Abono (
-	codigo INTEGER PRIMARY KEY,
+	codigo INT PRIMARY KEY,
 	nombre VARCHAR(100),
 	precio DECIMAL(10,2),
 	vigencia DATE,
@@ -31,7 +31,7 @@ CREATE TABLE EmpleadoAdministrativo (
 	telefono VARCHAR(100),
 	domicilio VARCHAR(100),
 	escalaSalarial VARCHAR(100),
-	sueldo DECIMAL(10,2),
+	sueldo DECIMAL(10,2)
 );
 
 -- empleado horario completo
@@ -42,7 +42,7 @@ CREATE TABLE EmpleadoHorarioCompleto (
 	telefono VARCHAR(100),
 	domicilio VARCHAR(100),
 	escalaSalarial VARCHAR(100),
-	sueldoBasico DECIMAL(10,2),
+	sueldoBasico DECIMAL(10,2)
 );
 
 -- empleado part time
@@ -54,6 +54,7 @@ CREATE TABLE EmpleadoHorarioPartTime (
 	domicilio VARCHAR(100),
 	escalaSalarial VARCHAR(100),
 	valorHora DECIMAL(10,2),
+	horas INTEGER
 );
 
 -- socio inscripcion
@@ -81,7 +82,7 @@ CREATE TABLE InscripcionCorporativa (
 CREATE TABLE Deporte (
    codigo INTEGER PRIMARY KEY,
    titulo VARCHAR(100),
-   descripcion VARCHAR(255),
+   descripcion VARCHAR(255)
 );
 
 -- actividad
@@ -111,7 +112,7 @@ CREATE TABLE InscripcionActividades (
 CREATE TABLE ActividadProfesores (
 	numeroActividad INTEGER,
 	documento INTEGER,
-	CONSTRAINT fk_numeroActividadProfesor FOREIGN KEY (numeroActividad) REFERENCES Actividad(numeroActividad),
+	CONSTRAINT fk_numeroActividadProfesor FOREIGN KEY (numeroActividad) REFERENCES Actividad(numeroActividad)
 );
 
 -- certificado apto medico
@@ -123,13 +124,13 @@ CREATE TABLE CertificadoMedico (
 	profesional VARCHAR(100),
 	observaciones VARCHAR(100),
 	estado BIT DEFAULT 1,
-	CONSTRAINT fk_numeroSocioCertificado FOREIGN KEY (numSocio) REFERENCES Socio(documento),
+	CONSTRAINT fk_numeroSocioCertificado FOREIGN KEY (numSocio) REFERENCES Socio(documento)
 );
 
 -- liquidacion
-CREATE TABLE liquidacion (
+CREATE TABLE Liquidacion (
 	numeroLiquidacion INTEGER PRIMARY KEY,
 	numEmpleado INTEGER,
 	fecha DATE,
-	importe DECIMAL(10,2),
+	importe DECIMAL(10,2)
 )

@@ -24,7 +24,7 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 		try {
 			Particular a = (Particular)d;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".EmpleadoHorarioPart where documento = ?");
+			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".EmpleadoHorarioPartTime where documento = ?");
 			s.setInt(1, a.getDocumento());
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -38,23 +38,22 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 		try {
 			Particular a = (Particular)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("insert into " + PoolConnection.dbName + ".EmpleadoHorarioPart values (?,?,?,?,?,?,?)");
+			PreparedStatement s = con.prepareStatement("insert into " + PoolConnection.dbName + ".EmpleadoHorarioPartTime values (?,?,?,?,?,?,?,?)");
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1 ,a.getDocumento());
-			s.setString(2, a.getNombre());
-			s.setString(3, a.getMail());
-			s.setString(4, a.getTelefono());
-			s.setString(5, a.getDomicilio());
-			s.setString(6, a.getEscalaSalarial());
-			s.setFloat(7, a.getValorHora());
+			s.setInt(1,		a.getDocumento());
+			s.setString(2, 	a.getNombre());
+			s.setString(3, 	a.getMail());
+			s.setString(4, 	a.getTelefono());
+			s.setString(5, 	a.getDomicilio());
+			s.setString(6, 	a.getEscalaSalarial());
+			s.setFloat(7, 	a.getValorHora());
+			s.setInt(8,	 	a.getHoras());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	
@@ -64,39 +63,40 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 		try {
 			Particular a = (Particular)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".EmpleadoHorarioPart " +
+			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".EmpleadoHorarioPartTime " +
 					"set nombre = ?," +
 					"mail = ?," +
 					"telefono = ?," +
 					"domicilio = ?," +
 					"escalaSalarial = ?," +
-					"valorHora =? where documento = ?"
+					"valorHora = ?," +
+					"horas = ? where documento = ?"
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setString(1, a.getNombre());
-			s.setString(2, a.getMail());
-			s.setString(3, a.getTelefono());
-			s.setString(4, a.getDomicilio());
-			s.setString(5, a.getEscalaSalarial());
-			s.setFloat(6, a.getValorHora());
-			s.setInt(7 ,a.getDocumento());
+			s.setString(1, 	a.getNombre());
+			s.setString(2, 	a.getMail());
+			s.setString(3, 	a.getTelefono());
+			s.setString(4, 	a.getDomicilio());
+			s.setString(5,	a.getEscalaSalarial());
+			s.setFloat(6, 	a.getValorHora());
+			s.setFloat(7, 	a.getHoras());
+			s.setInt(8,		a.getDocumento());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	public Particular buscarEmpleado (int documento) {
 		try {
 			Particular a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".EmpleadoHorarioParticular where documento = ?");
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".EmpleadoHorarioPartTime where documento = ?");
 			s.setInt(1, documento);
 			ResultSet result = s.executeQuery();
 			while (result.next()) {

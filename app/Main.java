@@ -367,7 +367,7 @@ public class Main extends JFrame {
 				jMenuEmpleadoProfPartTimeModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-						EmpleadoHorarioCompletoModificar modificarEmpleadoProfPartTime = new EmpleadoHorarioCompletoModificar(rrhhController);
+						EmpleadoHorarioPartTimeModificar modificarEmpleadoProfPartTime = new EmpleadoHorarioPartTimeModificar(rrhhController);
 						modificarEmpleadoProfPartTime.setVisible(true);
 						toFront();
 					}

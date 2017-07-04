@@ -83,7 +83,6 @@ public class RrhhController {
 		}
 		Particular par = EmpleadoHorarioPartAbm.getInstancia().buscarEmpleado(documento);
 		if (par != null) return par;
-		
 		return null;
 	}
 	
