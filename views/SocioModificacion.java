@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -185,6 +186,9 @@ public class SocioModificacion extends javax.swing.JFrame {
 							fieldEstado.setText((socio.getEstado()) ? "Activo" : "Desactivo");
 							
 							buttonModificar.setVisible(true);
+						} else {
+							String mensajeError = "¡Atención! No se ha encontrado el socio que usted esta buscando!";
+						    JOptionPane.showMessageDialog(null, mensajeError);
 						}
 					}
 				});

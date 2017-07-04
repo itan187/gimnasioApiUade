@@ -10,7 +10,6 @@ import javax.swing.WindowConstants;
 
 import controllers.RrhhController;
 import models.Administrativo;
-import models.Empleado;
 
 public class EmpleadoAdminModificar extends javax.swing.JFrame {
 	

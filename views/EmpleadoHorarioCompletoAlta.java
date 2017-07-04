@@ -134,13 +134,13 @@ public class EmpleadoHorarioCompletoAlta extends javax.swing.JFrame {
 			{
 				fieldSueldo = new JTextField();
 				getContentPane().add(fieldSueldo);
-				fieldSueldo.setBounds(200, 300, 120, 28);
+				fieldSueldo.setBounds(200, 280, 120, 28);
 			}
 			{
 				buttonAceptar = new JButton();
 				getContentPane().add(buttonAceptar);
 				buttonAceptar.setText("Aceptar");
-				buttonAceptar.setBounds(220, 240, 123, 28);
+				buttonAceptar.setBounds(220, 320, 123, 28);
 				buttonAceptar.setVisible(true);
 				buttonAceptar.addActionListener(new ActionListener()
 				{
@@ -166,7 +166,7 @@ public class EmpleadoHorarioCompletoAlta extends javax.swing.JFrame {
 			}
 			
 			pack();
-			setSize(400, 300);
+			setSize(400, 380);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

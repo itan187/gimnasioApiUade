@@ -5,12 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controllers.RrhhController;
 import models.Administrativo;
-import models.Empleado;
 
 public class EmpleadoAdminBaja extends javax.swing.JFrame {
 	
@@ -175,6 +175,9 @@ public class EmpleadoAdminBaja extends javax.swing.JFrame {
 							fieldDomicilio.setText(admin.getDomicilio());
 							
 							buttonBaja.setVisible(true);
+						} else {
+							String mensajeError = "¡Atención! No se ha encontrado el empleado que usted esta buscando!";
+						    JOptionPane.showMessageDialog(null, mensajeError);
 						}
 					}
 				});

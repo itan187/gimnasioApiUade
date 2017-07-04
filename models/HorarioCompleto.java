@@ -35,8 +35,8 @@ public class HorarioCompleto extends Profesor {
 		EmpleadoHorarioCompletoAbm.getInstancia().delete(this);
 	}
 	public void actualizarEmpleado(String nombre, int documento, String mail, String telefono, String domicilio,
-			String escalaSalarial, float valor) {
-		EmpleadoHorarioCompletoAbm.getInstancia().update(new HorarioCompleto(nombre, documento, mail, telefono, domicilio, escalaSalarial, valor));
+			String escalaSalarial, float sueldoBasico) {
+		EmpleadoHorarioCompletoAbm.getInstancia().update(new HorarioCompleto(nombre, documento, mail, telefono, domicilio, escalaSalarial, sueldoBasico));
 	}
 	
 }

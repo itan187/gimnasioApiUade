@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controllers.RrhhController;
 import models.Empleado;
+import models.HorarioCompleto;
 
 public class EmpleadoHorarioCompletoModificar extends javax.swing.JFrame {
 	
@@ -20,7 +22,7 @@ public class EmpleadoHorarioCompletoModificar extends javax.swing.JFrame {
 	private JLabel jLabelTelefono;
 	private JLabel jLabelDomicilio;
 	private JLabel jLabelEscalaSalarial;
-	private JLabel jLabelValorHora;
+	private JLabel jLabelSueldoBasico;
 	
 	private JTextField fieldDocumentoBuscar;
 	private JTextField fieldNombre;
@@ -28,7 +30,7 @@ public class EmpleadoHorarioCompletoModificar extends javax.swing.JFrame {
 	private JTextField fieldTelefono;
 	private JTextField fieldDomicilio;
 	private JTextField fieldEscalaSalarial;
-	private JTextField FieldValorHora;
+	private JTextField fieldSueldoBasico;
 	
 	private JButton buttonBuscar;
 	private JButton buttonModificar;
@@ -104,7 +106,7 @@ public class EmpleadoHorarioCompletoModificar extends javax.swing.JFrame {
 				getContentPane().add(jLabelEscalaSalarial);
 				jLabelEscalaSalarial.setText("Escala Salarial:");
 				jLabelEscalaSalarial.setBounds(21, 202, 180, 28);
-				jLabelEscalaSalarial.setVisible(true);
+				jLabelEscalaSalarial.setVisible(false);
 			}
 			{
 				fieldEscalaSalarial = new JTextField();
@@ -113,17 +115,17 @@ public class EmpleadoHorarioCompletoModificar extends javax.swing.JFrame {
 				fieldEscalaSalarial.setVisible(false);
 			}
 			{
-				jLabelValorHora = new JLabel();
-				getContentPane().add(jLabelValorHora);
-				jLabelValorHora.setText("Valor Hora:");
-				jLabelValorHora.setBounds(21, 242, 63, 28);
-				jLabelValorHora.setVisible(false);
+				jLabelSueldoBasico = new JLabel();
+				getContentPane().add(jLabelSueldoBasico);
+				jLabelSueldoBasico.setText("Sueldo básico:");
+				jLabelSueldoBasico.setBounds(21, 242, 63, 28);
+				jLabelSueldoBasico.setVisible(false);
 			}
 			{
-				FieldValorHora = new JTextField();
-				getContentPane().add(FieldValorHora);
-				FieldValorHora.setBounds(119, 242, 210, 28);
-				FieldValorHora.setVisible(false);
+				fieldSueldoBasico = new JTextField();
+				getContentPane().add(fieldSueldoBasico);
+				fieldSueldoBasico.setBounds(119, 242, 210, 28);
+				fieldSueldoBasico.setVisible(false);
 			}
 			/**
 			 * Acción para modificar un empleado profesor part time
@@ -131,8 +133,8 @@ public class EmpleadoHorarioCompletoModificar extends javax.swing.JFrame {
 			{
 				buttonModificar = new JButton();
 				getContentPane().add(buttonModificar);
-				buttonModificar.setText("Modificar Empleado");
-				buttonModificar.setBounds(260, 217, 123, 28);
+				buttonModificar.setText("Modificar");
+				buttonModificar.setBounds(260, 282, 123, 28);
 				buttonModificar.setVisible(false);
 				buttonModificar.addActionListener(new ActionListener()
 				{
@@ -145,7 +147,7 @@ public class EmpleadoHorarioCompletoModificar extends javax.swing.JFrame {
 								fieldTelefono.getText(),
 								fieldDomicilio.getText(),
 								fieldEscalaSalarial.getText(),
-								Float.parseFloat(FieldValorHora.getText())
+								Float.parseFloat(fieldSueldoBasico.getText())
 							);
 						setVisible(false);
 					}
@@ -157,7 +159,7 @@ public class EmpleadoHorarioCompletoModificar extends javax.swing.JFrame {
 			{
 				jLabelSearch = new JLabel();
 				getContentPane().add(jLabelSearch);
-				jLabelSearch.setText("Ingrese el documento:");
+				jLabelSearch.setText("Ingrese el DNI:");
 				jLabelSearch.setBounds(21, 7, 98, 28);
 			}
 			{
@@ -173,7 +175,7 @@ public class EmpleadoHorarioCompletoModificar extends javax.swing.JFrame {
 				buttonBuscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						
-						Empleado admin = sistema.buscarEmpleado(Integer.parseInt(fieldDocumentoBuscar.getText()));
+						HorarioCompleto admin = sistema.buscarEmpleadoFullTime(Integer.parseInt(fieldDocumentoBuscar.getText()));
 						
 						if (admin != null) {
 							jLabelNombre.setVisible(true);
@@ -181,28 +183,37 @@ public class EmpleadoHorarioCompletoModificar extends javax.swing.JFrame {
 							jLabelTelefono.setVisible(true);
 							jLabelDomicilio.setVisible(true);
 							jLabelEscalaSalarial.setVisible(true);
-							jLabelValorHora.setVisible(true);
+							jLabelSueldoBasico.setVisible(true);
 							
 							fieldNombre.setVisible(true);
-							fieldNombre.setEnabled(false);
+							fieldNombre.setEnabled(true);
+							fieldNombre.setText(admin.getNombre());
 							fieldMail.setVisible(true);
-							fieldMail.setEnabled(false);
+							fieldMail.setEnabled(true);
+							fieldMail.setText(admin.getMail());
 							fieldTelefono.setVisible(true);
-							fieldTelefono.setEnabled(false);
+							fieldTelefono.setEnabled(true);
+							fieldTelefono.setText(admin.getTelefono());
 							fieldDomicilio.setVisible(true);
-							fieldDomicilio.setEnabled(false);
-							jLabelEscalaSalarial.setVisible(true);
-							jLabelEscalaSalarial.setEnabled(false);
-							FieldValorHora.setVisible(true);
-							FieldValorHora.setEnabled(false);
+							fieldDomicilio.setEnabled(true);
+							fieldDomicilio.setText(admin.getDomicilio());
+							fieldEscalaSalarial.setVisible(true);
+							fieldEscalaSalarial.setEnabled(true);
+							fieldEscalaSalarial.setText(admin.getEscalaSalarial());
+							fieldSueldoBasico.setVisible(true);
+							fieldSueldoBasico.setEnabled(true);
+							fieldSueldoBasico.setText(String.valueOf(admin.getSueldoBasico()));
 							
 							buttonModificar.setVisible(true);
+						} else {
+							String mensajeError = "¡Atención! No se ha encontrado el empleado que usted esta buscando!";
+						    JOptionPane.showMessageDialog(null, mensajeError);
 						}
 					}
 				});
 			}
 			pack();
-			setSize(400, 300);
+			setSize(400, 380);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

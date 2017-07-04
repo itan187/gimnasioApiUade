@@ -3,7 +3,6 @@ package persistence;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Vector;
 
 import models.Administrativo;
 
@@ -70,25 +69,25 @@ public class EmpleadoAdminAbm extends EmpleadoAdminPersistence {
 					"mail = ?," +
 					"telefono = ?," +
 					"domicilio = ?," +
-					"escala_salarial = ?," +
-					"sueldo =?) where documento = ?"
+					"escalaSalarial = ?," +
+					"sueldo = ? where documento = ?"
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setString(1, a.getNombre());
-			s.setString(2, a.getMail());
-			s.setString(3, a.getTelefono());
-			s.setString(4, a.getDomicilio());
-			s.setString(5, a.getEscalaSalarial());
-			s.setFloat(6, a.getSueldo());
-			s.setInt(7 ,a.getDocumento());
+			s.setString(1, 	a.getNombre());
+			s.setString(2, 	a.getMail());
+			s.setString(3, 	a.getTelefono());
+			s.setString(4, 	a.getDomicilio());
+			s.setString(5, 	a.getEscalaSalarial());
+			s.setFloat(6, 	a.getSueldo());
+			s.setInt(7 ,	a.getDocumento());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			System.out.println(e);
 		}
 
 	}

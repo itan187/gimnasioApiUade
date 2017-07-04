@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controllers.RrhhController;
 import models.Empleado;
+import models.HorarioCompleto;
 
 public class EmpleadoHorarioCompletoBaja extends javax.swing.JFrame {
 	
@@ -100,13 +102,13 @@ public class EmpleadoHorarioCompletoBaja extends javax.swing.JFrame {
 				jLabelSueldo = new JLabel();
 				getContentPane().add(jLabelSueldo);
 				jLabelSueldo.setText("Sueldo:");
-				jLabelSueldo.setBounds(21, 162, 63, 28);
+				jLabelSueldo.setBounds(21, 200, 63, 28);
 				jLabelSueldo.setVisible(false);
 			}
 			{
 				fieldSueldo = new JTextField();
 				getContentPane().add(fieldSueldo);
-				fieldSueldo.setBounds(119, 162, 210, 28);
+				fieldSueldo.setBounds(119, 200, 210, 28);
 				fieldSueldo.setVisible(false);
 			}
 			/**
@@ -115,8 +117,8 @@ public class EmpleadoHorarioCompletoBaja extends javax.swing.JFrame {
 			{
 				buttonBaja = new JButton();
 				getContentPane().add(buttonBaja);
-				buttonBaja.setText("Eliminar Deporte");
-				buttonBaja.setBounds(260, 217, 123, 28);
+				buttonBaja.setText("Eliminar");
+				buttonBaja.setBounds(260, 240, 123, 28);
 				buttonBaja.setVisible(false);
 				buttonBaja.addActionListener(new ActionListener()
 				{
@@ -133,7 +135,7 @@ public class EmpleadoHorarioCompletoBaja extends javax.swing.JFrame {
 			{
 				jLabelSearch = new JLabel();
 				getContentPane().add(jLabelSearch);
-				jLabelSearch.setText("Ingrese el documento:");
+				jLabelSearch.setText("Ingrese el DNI:");
 				jLabelSearch.setBounds(21, 7, 98, 28);
 			}
 			{
@@ -149,7 +151,7 @@ public class EmpleadoHorarioCompletoBaja extends javax.swing.JFrame {
 				buttonBuscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						
-						Empleado profFull = sistema.buscarEmpleado(Integer.parseInt(fieldDocumentoBuscar.getText()));
+						HorarioCompleto profFull = sistema.buscarEmpleadoFullTime(Integer.parseInt(fieldDocumentoBuscar.getText()));
 						
 						if (profFull != null) {
 							jLabelNombre.setVisible(true);
@@ -160,16 +162,24 @@ public class EmpleadoHorarioCompletoBaja extends javax.swing.JFrame {
 							
 							fieldNombre.setVisible(true);
 							fieldNombre.setEnabled(false);
+							fieldNombre.setText(profFull.getNombre());
 							fieldMail.setVisible(true);
 							fieldMail.setEnabled(false);
+							fieldMail.setText(profFull.getMail());
 							fieldTelefono.setVisible(true);
 							fieldTelefono.setEnabled(false);
+							fieldTelefono.setText(profFull.getTelefono());
 							fieldDomicilio.setVisible(true);
 							fieldDomicilio.setEnabled(false);
+							fieldDomicilio.setText(profFull.getDomicilio());
 							fieldSueldo.setVisible(true);
 							fieldSueldo.setEnabled(false);
+							fieldSueldo.setText(String.valueOf(profFull.getSueldoBasico()));
 							
 							buttonBaja.setVisible(true);
+						} else {
+							String mensajeError = "¡Atención! No se ha encontrado el empleado que usted esta buscando!";
+						    JOptionPane.showMessageDialog(null, mensajeError);
 						}
 					}
 				});
