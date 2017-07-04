@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controllers.RrhhController;
-import models.Empleado;
 import models.Particular;
 
 public class EmpleadoHorarioPartTimeModificar extends javax.swing.JFrame {
@@ -191,7 +190,7 @@ public class EmpleadoHorarioPartTimeModificar extends javax.swing.JFrame {
 					public void actionPerformed(ActionEvent evt) {
 						
 						Particular part = sistema.buscarEmpleadoPartTime(Integer.parseInt(fieldDocumentoBuscar.getText()));
-						System.out.println(part);
+						
 						if (part != null) {
 							jLabelNombre.setVisible(true);
 							jLabelMail.setVisible(true);
@@ -219,7 +218,7 @@ public class EmpleadoHorarioPartTimeModificar extends javax.swing.JFrame {
 							fieldValorHora.setVisible(true);
 							fieldValorHora.setEnabled(true);
 							fieldValorHora.setText(String.valueOf(part.getValorHora()));
-							fieldHoras.setVisible(false);
+							fieldHoras.setVisible(true);
 							fieldHoras.setEnabled(true);
 							fieldHoras.setText(String.valueOf(part.getHoras()));
 							

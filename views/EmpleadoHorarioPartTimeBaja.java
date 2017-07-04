@@ -5,11 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controllers.RrhhController;
-import models.Empleado;
+import models.Particular;
 
 public class EmpleadoHorarioPartTimeBaja extends javax.swing.JFrame {
 	
@@ -19,14 +20,12 @@ public class EmpleadoHorarioPartTimeBaja extends javax.swing.JFrame {
 	private JLabel jLabelMail;
 	private JLabel jLabelTelefono;
 	private JLabel jLabelDomicilio;
-	private JLabel jLabelValorHora;
 	
 	private JTextField fieldDocumentoBuscar;
 	private JTextField fieldNombre;
 	private JTextField fieldMail;
 	private JTextField fieldTelefono;
 	private JTextField fieldDomicilio;
-	private JTextField fieldValorHora;
 	
 	private JButton buttonBuscar;
 	private JButton buttonBaja;
@@ -96,26 +95,13 @@ public class EmpleadoHorarioPartTimeBaja extends javax.swing.JFrame {
 				fieldDomicilio.setBounds(119, 162, 210, 28);
 				fieldDomicilio.setVisible(false);
 			}
-			{
-				jLabelValorHora = new JLabel();
-				getContentPane().add(jLabelValorHora);
-				jLabelValorHora.setText("Valor Hora:");
-				jLabelValorHora.setBounds(21, 162, 63, 28);
-				jLabelValorHora.setVisible(false);
-			}
-			{
-				fieldValorHora = new JTextField();
-				getContentPane().add(fieldValorHora);
-				fieldValorHora.setBounds(119, 162, 210, 28);
-				fieldValorHora.setVisible(false);
-			}
 			/**
 			 * Acción para dar de baja a un empleado administrativo
 			 */
 			{
 				buttonBaja = new JButton();
 				getContentPane().add(buttonBaja);
-				buttonBaja.setText("Eliminar Deporte");
+				buttonBaja.setText("Eliminar");
 				buttonBaja.setBounds(260, 217, 123, 28);
 				buttonBaja.setVisible(false);
 				buttonBaja.addActionListener(new ActionListener()
@@ -133,7 +119,7 @@ public class EmpleadoHorarioPartTimeBaja extends javax.swing.JFrame {
 			{
 				jLabelSearch = new JLabel();
 				getContentPane().add(jLabelSearch);
-				jLabelSearch.setText("Ingrese el documento:");
+				jLabelSearch.setText("Ingrese el DNI:");
 				jLabelSearch.setBounds(21, 7, 98, 28);
 			}
 			{
@@ -149,27 +135,31 @@ public class EmpleadoHorarioPartTimeBaja extends javax.swing.JFrame {
 				buttonBuscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						
-						Empleado profPartTime = sistema.buscarEmpleado(Integer.parseInt(fieldDocumentoBuscar.getText()));
+						Particular part = sistema.buscarEmpleadoPartTime(Integer.parseInt(fieldDocumentoBuscar.getText()));
 						
-						if (profPartTime != null) {
+						if (part != null) {
 							jLabelNombre.setVisible(true);
 							jLabelMail.setVisible(true);
 							jLabelTelefono.setVisible(true);
 							jLabelDomicilio.setVisible(true);
-							jLabelValorHora.setVisible(true);
 							
 							fieldNombre.setVisible(true);
 							fieldNombre.setEnabled(false);
+							fieldNombre.setText(part.getNombre());
 							fieldMail.setVisible(true);
 							fieldMail.setEnabled(false);
+							fieldMail.setText(part.getMail());
 							fieldTelefono.setVisible(true);
 							fieldTelefono.setEnabled(false);
+							fieldTelefono.setText(part.getTelefono());
 							fieldDomicilio.setVisible(true);
 							fieldDomicilio.setEnabled(false);
-							fieldValorHora.setVisible(true);
-							fieldValorHora.setEnabled(false);
+							fieldDomicilio.setText(part.getTelefono());
 							
 							buttonBaja.setVisible(true);
+						} else {
+							String mensajeError = "¡Atención! No se ha encontrado el empleado que usted esta buscando!";
+						    JOptionPane.showMessageDialog(null, mensajeError);
 						}
 					}
 				});

@@ -70,7 +70,7 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 					"domicilio = ?," +
 					"escalaSalarial = ?," +
 					"valorHora = ?," +
-					"horas = ? where documento = ?"
+					"horas = ? where documento = " + a.getDocumento()
 			);
 
 			/**
@@ -83,7 +83,6 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 			s.setString(5,	a.getEscalaSalarial());
 			s.setFloat(6, 	a.getValorHora());
 			s.setFloat(7, 	a.getHoras());
-			s.setInt(8,		a.getDocumento());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);

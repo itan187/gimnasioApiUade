@@ -59,6 +59,13 @@ public class RrhhController {
 		
 		return null;
 	}
+	
+	/**
+	 * Buscar Empleado Administrativo
+	 * 
+	 * @param documento
+	 * @return Administrativo
+	 */
 	public Administrativo buscarEmpleadoAdmin (int documento) {
 		
 		for (Administrativo a : empleadosAdmin) {
@@ -68,6 +75,13 @@ public class RrhhController {
 		if (a != null) return a;
 		return null;
 	}
+	
+	/**
+	 * Buscar Empleado Full Time
+	 * 
+	 * @param documento
+	 * @return HorarioCompleto
+	 */
 	public HorarioCompleto buscarEmpleadoFullTime (int documento) {
 		for (HorarioCompleto h : empleadosProfFull) {
 			if (h.getDocumento() == documento) return h;
@@ -76,7 +90,13 @@ public class RrhhController {
 		if (h != null)	return h;
 		return null;
 	}
-		
+	
+	/**
+	 * Buscar Empleado Part Time
+	 * 
+	 * @param documento
+	 * @return Particular
+	 */
 	public Particular buscarEmpleadoPartTime (int documento) {
 		for (Particular par : empleadosProfPart) {
 			if (par.getDocumento() == documento) return par;
@@ -255,17 +275,17 @@ public class RrhhController {
 			h.actualizarEmpleado(nombre, documento, mail, telefono, domicilio, escalaSalarial, valor);
 		}
 		
-		Particular p = buscarEmpleadoPartTime(documento);
+		Particular part = buscarEmpleadoPartTime(documento);
 		
 		/**
 		 * Buscamos que exista el empleado
 		 */
-		if (p != null) {
+		if (part != null) {
 			/**
 			 * Recorremos los profesores part time en busca
 			 * del empleado y así modificar los valores
 			 */
-			for (Particular part : empleadosProfPart) {
+			for (Particular p : empleadosProfPart) {
 				if (p.getDocumento() == documento) {
 					if (p.getNombre() != nombre) 					p.setNombre(nombre);
 					if (p.getMail() != mail) 						p.setMail(mail);
@@ -275,7 +295,7 @@ public class RrhhController {
 					if (p.getValorHora() != valor) 					p.setValorHora(valor);
 				}
 			}
-			p.actualizarEmpleado(nombre, documento, mail, telefono, domicilio, escalaSalarial, valor);
+			part.actualizarEmpleado(nombre, documento, mail, telefono, domicilio, escalaSalarial, valor);
 			
 		}
 	}
