@@ -2,11 +2,10 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import controllers.SocioController;
 import models.Abono;
@@ -41,7 +40,7 @@ public class AbonoBaja extends javax.swing.JFrame {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			
+
 			{
 				jLabelNombre = new JLabel();
 				getContentPane().add(jLabelNombre);
@@ -58,7 +57,7 @@ public class AbonoBaja extends javax.swing.JFrame {
 			{
 				jLabelPrecio = new JLabel();
 				getContentPane().add(jLabelPrecio);
-				jLabelPrecio.setText("Domicilio:");
+				jLabelPrecio.setText("Precio:");
 				jLabelPrecio.setBounds(21, 91, 63, 28);
 				jLabelPrecio.setVisible(false);
 			}
@@ -72,13 +71,14 @@ public class AbonoBaja extends javax.swing.JFrame {
 				jLabelVigencia = new JLabel();
 				getContentPane().add(jLabelVigencia);
 				jLabelVigencia.setText("Vigencia:");
-				jLabelVigencia.setBounds(21, 140, 63, 28);
+				jLabelVigencia.setBounds(21, 160, 63, 28);
 				jLabelVigencia.setVisible(false);
 			}
 			{
-				fieldVigencia = new JTextField();
+				DateFormat dateFormat = new SimpleDateFormat("Y-M-D");
+				fieldVigencia = new JFormattedTextField(dateFormat);
 				getContentPane().add(fieldVigencia);
-				fieldVigencia.setBounds(119, 140, 210, 28);
+				fieldVigencia.setBounds(200, 160, 120, 28);
 				fieldVigencia.setVisible(false);
 			}
 			
@@ -88,7 +88,7 @@ public class AbonoBaja extends javax.swing.JFrame {
 			{
 				buttonBaja = new JButton();
 				getContentPane().add(buttonBaja);
-				buttonBaja.setText("Eliminar Deporte");
+				buttonBaja.setText("Eliminar Abono");
 				buttonBaja.setBounds(260, 217, 123, 28);
 				buttonBaja.setVisible(false);
 				buttonBaja.addActionListener(new ActionListener()
@@ -100,7 +100,7 @@ public class AbonoBaja extends javax.swing.JFrame {
 					}
 				});
 			}
-			
+
 			/**
 			 * Buscar un abono a través del código
 			 */
@@ -122,28 +122,33 @@ public class AbonoBaja extends javax.swing.JFrame {
 				buttonBuscar.setBounds(301, 7, 77, 28);
 				buttonBuscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						
+
 						Abono abono = sistema.buscarAbono(Integer.parseInt(fieldCodigoBuscar.getText()));
-						
+
 						if (abono != null) {
-							jLabelCodigo.setVisible(true);
+							jLabelSearch.setVisible(true);
 							jLabelNombre.setVisible(true);
 							jLabelPrecio.setVisible(true);
 							jLabelVigencia.setVisible(true);
-							
+
 							fieldNombre.setVisible(true);
 							fieldNombre.setEnabled(false);
+							fieldNombre.setText(abono.getNombre());
 							fieldPrecio.setVisible(true);
 							fieldPrecio.setEnabled(false);
+							fieldPrecio.setText(String.valueOf(abono.getPrecio()));
+
+							DateFormat df = new SimpleDateFormat("Y-M-D");
 							fieldVigencia.setVisible(true);
 							fieldVigencia.setEnabled(false);
-							
+							fieldVigencia.setText(df.format(abono.getVigencia()));
+
 							buttonBaja.setVisible(true);
 						}
 					}
 				});
 			}
-			
+
 			pack();
 			setSize(400, 300);
 		} catch (Exception e) {
