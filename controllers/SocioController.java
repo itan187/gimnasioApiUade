@@ -154,7 +154,6 @@ public class SocioController {
 		}
 		Socio s = SocioAbm.getInstancia().buscarSocio(documento);
 		if (s != null) return s;
-		
 		return null;
 	}
 	
@@ -279,7 +278,7 @@ public class SocioController {
 	 * @param documento
 	 */
 	public void altaSocio (String nombre, String domicilio, String telefono, String email, int documento) {
-		Socio s = new Socio(documento, nombre, domicilio, telefono, email, 0, null, null, true);
+		Socio s = new Socio(documento, nombre, domicilio, telefono, email, null, null, null, true);
 		socios.add(s);
 	}
 	
@@ -330,12 +329,12 @@ public class SocioController {
 					if (s.getEmail() != email)				s.setEmail(email);
 					if (s.getEstado() != estado)			s.setEstado(estado);
 					
-					/**
-					 * Actualizamos el socio en la base de datos
-					 */
-					s.actualizarSocio();
 				}
 			}
+			/**
+			 * Actualizamos el socio en la base de datos
+			 */
+			socio.actualizarSocio();
 		}
 	}
 	

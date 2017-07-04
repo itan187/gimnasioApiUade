@@ -6,17 +6,17 @@ import java.util.Vector;
 import persistence.SocioAbm;
 
 public class Socio {
-	private int documento;
-	private String nombre;
-	private String domicilio;
-	private String telefono;
-	private String email;
-	private int abono;
-	private Vector<Inscripcion> inscripciones;
-	private Vector<CertificadoMedico> aptosMedicos;
-	private boolean estado;
+	private int 						documento;
+	private String 						nombre;
+	private String 						domicilio;
+	private String 						telefono;
+	private String 						email;
+	private Abono 						abono;
+	private Vector<Inscripcion> 		inscripciones;
+	private Vector<CertificadoMedico> 	aptosMedicos;
+	private boolean 					estado;
 	
-	public Socio(int documento, String nombre, String domicilio, String telefono, String email, int abono,
+	public Socio(int documento, String nombre, String domicilio, String telefono, String email, Abono abono,
 			Vector<Inscripcion> inscripciones, Vector<CertificadoMedico> aptosMedicos, boolean estado) {
 		super();
 		this.setDocumento(documento);
@@ -47,7 +47,7 @@ public class Socio {
 	public String getEmail() {
 		return email;
 	}
-	public int getAbono() {
+	public Abono getAbono() {
 		return abono;
 	}
 	public boolean getEstado() {
@@ -74,7 +74,7 @@ public class Socio {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public void setAbono(int abono) {
+	public void setAbono(Abono abono) {
 		this.abono = abono;
 	}
 	public void setInscripciones(Vector<Inscripcion> inscripciones) {

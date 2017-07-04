@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import models.CertificadoMedico;
+import models.Abono;
 import models.Actividad;
 import models.Corporativa;
 import models.Inscripcion;
@@ -115,12 +116,12 @@ public class SocioAbm extends SocioPersistence {
 			 * Agregando los campos
 			 */
 			s.setInt(1,a.getDocumento());
-			s.setString(2, a.getNombre());
-			s.setString(3,a.getDomicilio());
-			s.setString(4, a.getTelefono());
-			s.setString(5, a.getEmail());
-			s.setInt(6, a.getAbono());
-			s.setInt(7, (a.getEstado()) ? 1 : 0);
+			s.setString(2, 	a.getNombre());
+			s.setString(3,	a.getDomicilio());
+			s.setString(4, 	a.getTelefono());
+			s.setString(5, 	a.getEmail());
+			s.setInt(6, 	a.getAbono().getCodigo());
+			s.setInt(7, 	(a.getEstado()) ? 1 : 0);
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -130,11 +131,18 @@ public class SocioAbm extends SocioPersistence {
 
 	}
 	
+	/**
+	 * Buscar socio 
+	 * 
+	 * @param documento
+	 * @return Socio
+	 */
 	public Socio buscarSocio (int documento) {
 		try {
 			Socio a = null;
+			
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("select * from Socio where documento = ?");
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Socio where documento = ?");
 			s.setInt(1, documento);
 			ResultSet result = s.executeQuery();
 			
@@ -191,8 +199,9 @@ public class SocioAbm extends SocioPersistence {
 				 * Recorró los Aptos Médicos
 				 * de Socio en SocioAptosMedicos
 				 */
-				PreparedStatement sap = con.prepareStatement("select * from " + PoolConnection.dbName + ".SocioAptosMedicos where documento = ?");
-				si.setInt(1, documento);
+				
+				PreparedStatement sap = con.prepareStatement("select * from " + PoolConnection.dbName + ".CertificadoMedico where numSocio = ? and estado = 1");
+				sap.setInt(1, documento);
 				ResultSet resu = sap.executeQuery();
 				
 				Vector<CertificadoMedico> aptosMedicos = null;
@@ -214,14 +223,15 @@ public class SocioAbm extends SocioPersistence {
 						aptosMedicos.add(certificado);
 					}
 				}
+				Abono ab = AbonoAbm.getInstancia().buscarAbono(abono);
 				
-				a = new Socio(doc, nombre, domicilio, telefono, email, abono, inscripciones, aptosMedicos, estado);
+				a = new Socio(doc, nombre, domicilio, telefono, email, ab, null, aptosMedicos, estado);
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println("Error");
+			System.out.println(e);
 		}
 		return null;
 	}

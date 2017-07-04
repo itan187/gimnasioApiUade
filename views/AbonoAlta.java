@@ -65,7 +65,7 @@ public class AbonoAlta extends javax.swing.JFrame {
 			{
 				jLabelPrecio = new JLabel();
 				getContentPane().add(jLabelPrecio);
-				jLabelPrecio.setText("Descripcion:");
+				jLabelPrecio.setText("Precio:");
 				jLabelPrecio.setBounds(21, 120, 180, 28);
 				jLabelPrecio.setVisible(true);
 			}

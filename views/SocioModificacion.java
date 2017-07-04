@@ -167,13 +167,17 @@ public class SocioModificacion extends javax.swing.JFrame {
 							jLabelEmail.setVisible(true);
 							
 							fieldNombre.setVisible(true);
-							fieldNombre.setEnabled(false);
+							fieldNombre.setEnabled(true);
+							fieldNombre.setText(socio.getNombre());
 							fieldDomicilio.setVisible(true);
-							fieldDomicilio.setEnabled(false);
+							fieldDomicilio.setEnabled(true);
+							fieldDomicilio.setText(socio.getDomicilio());
 							fieldTelefono.setVisible(true);
-							fieldTelefono.setEnabled(false);
+							fieldTelefono.setEnabled(true);
+							fieldTelefono.setText(socio.getTelefono());
 							fieldEmail.setVisible(true);
-							fieldEmail.setEnabled(false);
+							fieldEmail.setEnabled(true);
+							fieldEmail.setText(socio.getEmail());
 							
 							buttonModificar.setVisible(true);
 						}
