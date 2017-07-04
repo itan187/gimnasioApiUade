@@ -17,6 +17,7 @@ import models.Normal;
 import models.Socio;
 
 import persistence.AbonoAbm;
+import persistence.ActividadAbm;
 import persistence.InscripcionCorporativoAbm;
 import persistence.InscripcionNormalAbm;
 import persistence.SocioAbm;
@@ -435,6 +436,8 @@ public class SocioController {
 	 */
 	public void altaInscripcionNormal(int numero, boolean estado, int act) {
 		
+		Actividad actividad = ActividadAbm.getInstancia().buscarActividad(act);
+		//Normal n = new Normal(estado, numero, actividad);
 		//Vector<Actividad> cl = Utiles.convertStringToClases(act);
 		
 		/*Normal inscripcionNormal = new Normal(estado, numero, cl);
