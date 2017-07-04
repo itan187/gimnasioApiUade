@@ -27,7 +27,7 @@ public class AbonoAbm extends AbonoPersistence {
 		try {
 			Abono a = (Abono)d;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("delete from " + this.nombreTabla + " where codigo = ?");
+			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".Abono where codigo = ?");
 			s.setLong(1, a.getCodigo());
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -41,7 +41,7 @@ public class AbonoAbm extends AbonoPersistence {
 		try {
 			Abono a = (Abono)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("insert into "+ this.nombreTabla + " values (?,?,?,?)");
+			PreparedStatement s = con.prepareStatement("insert into " + PoolConnection.dbName + ".Abono values (?,?,?,?)");
 			/**
 			 * Agregando los campos
 			 */
@@ -68,22 +68,20 @@ public class AbonoAbm extends AbonoPersistence {
 		try {
 			Abono a = (Abono)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("update " + this.nombreTabla + " " +
-					"set codigo = ?," +
+			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".Abono " +
 					"set nombre = ?," +
-					"set precio =?," +
-					"set vigencia =?)"
+					"precio =?," +
+					"vigencia =? where codigo = " + a.getCodigo()
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1, a.getCodigo());
-			s.setString(2,a.getNombre());
-			s.setFloat(3, a.getPrecio());
-			s.setDate(4,(Date) a.getVigencia());
-			
+			s.setString(1,		a.getNombre());
+			s.setFloat(2, 		a.getPrecio());
+			s.setDate(3,(Date) 	a.getVigencia());
 			s.execute();
+			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,7 +93,7 @@ public class AbonoAbm extends AbonoPersistence {
 		try {
 			Abono a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("select * from " + this.nombreTabla + " where codigo = ?");
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Abono where codigo = ?");
 			s.setInt(1, codigo);
 			ResultSet result = s.executeQuery();
 			while (result.next()) {

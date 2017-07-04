@@ -2,12 +2,13 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -27,7 +28,8 @@ public class AbonoAlta extends javax.swing.JFrame {
 	private JTextField fieldCodigo;
 	private JTextField fieldNombre;
 	private JTextField fieldPrecio;
-	private JFormattedTextField fieldVigencia;
+	private JTextField fieldVigencia;
+	//private JFormattedTextField fieldVigencia;
 	
 	private JButton buttonAceptar;
 	
@@ -97,10 +99,40 @@ public class AbonoAlta extends javax.swing.JFrame {
 				fieldPrecio.setBounds(200, 122, 120, 28);
 			}
 			{
-				DateFormat dateFormat = new SimpleDateFormat("Y-M-D");
-				fieldVigencia = new JFormattedTextField(dateFormat);
+				fieldVigencia = new JTextField();
 				getContentPane().add(fieldVigencia);
 				fieldVigencia.setBounds(200, 160, 120, 28);
+				
+				
+				/*JDateChooser dc = new JDateChooser();
+				Date date = dc.getDate();
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				fieldVigencia.setText(dateFormat.format(date));
+				*/
+				
+				/*JDateChooser dc = new JDateChooser();
+				Date date = dc.getDate();
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				fieldVigencia.setText(dateFormat.format(date).toString());
+				getContentPane().add(fieldVigencia);
+				fieldVigencia.setBounds(200, 160, 120, 28);*/
+				
+				/*DateFormat dateFormat = new SimpleDateFormat("YYY-MM-DD");
+				fieldVigencia = new JFormattedTextField(dateFormat);
+				getContentPane().add(fieldVigencia);
+				fieldVigencia.setBounds(200, 160, 120, 28);*/
+				
+				/*
+				JDateChooser dc = new JDateChooser();
+				Date date = dc.getDate();
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				fieldVigencia.setText(dateFormat.format(date));
+				
+				String dateValue = resultset.getString(...); // What ever column
+				java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(dateValue);
+
+				jDateChooser.setDate(date);
+				*/
 			}
 			
 			{
@@ -117,12 +149,9 @@ public class AbonoAlta extends javax.swing.JFrame {
 							String mensajeError = "¡Atención! Faltan completar campos y por ello no se puede agregar el abono.";
 						    JOptionPane.showMessageDialog(null, mensajeError);
 						} else {
-							DateFormat df = new SimpleDateFormat("Y-M-D");
-							try {
-								sistema.altaAbono(Integer.parseInt(fieldCodigo.getText()), fieldNombre.getText(), Float.parseFloat(fieldPrecio.getText()), df.parse(fieldVigencia.getText()));
-							} catch (NumberFormatException | ParseException e) {
-								e.printStackTrace();
-							};
+							Date fVigencia = Date.valueOf(fieldVigencia.getText());
+							
+							sistema.altaAbono(Integer.parseInt(fieldCodigo.getText()), fieldNombre.getText(), Float.parseFloat(fieldPrecio.getText()), fVigencia);
 						}
 						setVisible(false);
 					}
