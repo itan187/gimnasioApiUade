@@ -32,7 +32,7 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}
@@ -63,7 +63,7 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 	
 	}
@@ -94,7 +94,7 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 
 	}
@@ -132,7 +132,7 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		return null;
 	}

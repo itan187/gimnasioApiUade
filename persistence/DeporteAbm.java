@@ -25,7 +25,7 @@ public class DeporteAbm extends DeportePersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		
 	}
@@ -47,7 +47,7 @@ public class DeporteAbm extends DeportePersistence {
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	
 	}
@@ -71,7 +71,7 @@ public class DeporteAbm extends DeportePersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 
 	}
@@ -93,7 +93,7 @@ public class DeporteAbm extends DeportePersistence {
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return null;
 	}

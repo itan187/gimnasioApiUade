@@ -34,7 +34,7 @@ public class PoolConnection {
 	private static PoolConnection pool;
 	
 	private PoolConnection() {
-		getConfiguration();
+//		getConfiguration();
 		for (int i= 0; i< cantCon; i++) {
 			connections.add(connect());
 		}
@@ -53,7 +53,7 @@ public class PoolConnection {
 			 * Setting driver configuration
 			 */
 			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con = DriverManager.getConnection("jdbc:mysql://35.162.112.46:3306/gimnasio", "gym", "uade.gym");
+			Connection con = DriverManager.getConnection("jdbc:mysql://35.162.112.46:3306/gimnasio?useSSL=false", "gym", "uade.gym");
 			/*
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String dbConnectString = jdbc + servidor; 

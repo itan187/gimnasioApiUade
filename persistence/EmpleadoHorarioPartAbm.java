@@ -30,7 +30,7 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}
@@ -56,7 +56,7 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 		}
 		catch (Exception e)
 		{
-			System.out.println();
+			e.printStackTrace();
 		}
 	
 	}
@@ -93,7 +93,7 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 
 	}
@@ -121,7 +121,7 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		return null;
 	}
