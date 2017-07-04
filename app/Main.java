@@ -539,8 +539,8 @@ public class Main extends JFrame {
 				jMenuLiquidacion.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-						//Liquidacion efectuarLiquidacion = new InscripcionCorpoModificar(socioController);
-						//modificarInscripcionCorpo.setVisible(true);
+						LiquidacionAlta efectuarLiquidacion = new LiquidacionAlta(rrhhController);
+						efectuarLiquidacion.setVisible(true);
 						toFront();
 					}
 				});

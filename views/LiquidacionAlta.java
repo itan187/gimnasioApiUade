@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import controllers.SocioController;
+import controllers.RrhhController;
 
 public class LiquidacionAlta extends javax.swing.JFrame {	
 	private static final long serialVersionUID = 1L;
@@ -26,9 +26,9 @@ public class LiquidacionAlta extends javax.swing.JFrame {
 	
 	private JButton buttonAceptar;
 	
-	private SocioController sistema;
+	private RrhhController sistema;
 
-	public LiquidacionAlta  (SocioController s) {
+	public LiquidacionAlta  (RrhhController s) {
 		super();
 		sistema = s;
 		initGui();
@@ -87,6 +87,9 @@ public class LiquidacionAlta extends javax.swing.JFrame {
 							String mensajeError = "¡Atención! Faltan completar campos y por ello no se puede agregar el abono.";
 						    JOptionPane.showMessageDialog(null, mensajeError);
 						} else {
+							if (sistema.buscarLiquidacion(Integer.parseInt(fieldAnio.getText()), Integer.parseInt(fieldMes.getText())) == null) {
+								//sistema.altaLiquidacion();
+							}
 							//sistema.altaAbono(Integer.parseInt(fieldCodigo.getText()), fieldNombre.getText(), Float.parseFloat(fieldPrecio.getText()), df.parse(fieldVigencia.getText()));
 						}
 						setVisible(false);

@@ -1,15 +1,18 @@
 package models;
 
 import java.util.Date;
+import java.util.Vector;
 
 public class Liquidacion {
-	private int anio;
-	private int mes;
+	private int 				anio;
+	private int 				mes;
+	private Vector<Empleado> 	empleados;
 	
-	public Liquidacion(int anio, int mes) {
+	public Liquidacion(int anio, int mes, Vector<Empleado> empleados) {
 		super();
 		this.setAnio(anio);
 		this.setMes(mes);
+		this.setEmpleados(empleados);
 	}
 	public int getAnio() {
 		return anio;
@@ -23,6 +26,13 @@ public class Liquidacion {
 	public void setMes(int mes) {
 		this.mes = mes;
 	}
+	public Vector<Empleado> getEmpleados() {
+		return empleados;
+	}
+	public void setEmpleados(Vector<Empleado> empleados) {
+		this.empleados = empleados;
+	}
+	
 	/**
 	 * Es Liquidacion
 	 * 

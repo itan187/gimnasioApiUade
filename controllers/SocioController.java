@@ -20,6 +20,7 @@ import persistence.AbonoAbm;
 import persistence.ActividadAbm;
 import persistence.InscripcionCorporativoAbm;
 import persistence.InscripcionNormalAbm;
+import persistence.LiquidacionAbm;
 import persistence.SocioAbm;
 
 public class SocioController {
@@ -107,30 +108,6 @@ public class SocioController {
 			inscripcionesCorpo.add(c);
 			return c;
 		}
-		
-		return null;
-	}
-	
-	/**
-	 * Buscar Liquidacion
-	 * 
-	 * Buscamos la liquidacion a través del ano y mes.
-	 * Si la búsqueda me devuelve null significa que no existe liquidacion
-	 * liquidacion.
-	 * 
-	 * @param anio
-	 * @param mes
-	 * @return Liquidacion
-	 */
-	public Liquidacion buscarLiquidacion (int anio, int mes) {
-		for (Liquidacion liq : liquidaciones) {
-			if (liq.esLiquidacion(anio, mes)) return liq;
-		}
-		//Liquidacion liq = LiquidacionAbm.getInstancia().buscarLiquidacion(anio, mes);
-//		if (liq != null) {
-//			liquidaciones.add(liq);
-//			return liq;
-//		}
 		
 		return null;
 	}

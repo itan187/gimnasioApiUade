@@ -5,15 +5,18 @@ import java.util.Vector;
 import models.Administrativo;
 import models.Empleado;
 import models.HorarioCompleto;
+import models.Liquidacion;
 import models.Particular;
 import persistence.EmpleadoAdminAbm;
 import persistence.EmpleadoHorarioCompletoAbm;
 import persistence.EmpleadoHorarioPartAbm;
+import persistence.LiquidacionAbm;
 
 public class RrhhController {
 	public Vector<Administrativo> 	empleadosAdmin;
 	public Vector<HorarioCompleto> 	empleadosProfFull;
 	public Vector<Particular> 		empleadosProfPart;
+	public Vector<Liquidacion>		liquidaciones;
 	
 	private static RrhhController instancia;
 
@@ -28,6 +31,7 @@ public class RrhhController {
 		this.empleadosAdmin 		= new Vector<Administrativo>();
 		this.empleadosProfFull 		= new Vector<HorarioCompleto>();
 		this.empleadosProfPart		= new Vector<Particular>();
+		this.liquidaciones			= new Vector<Liquidacion>();
 	}
 	
 	/**
@@ -301,5 +305,33 @@ public class RrhhController {
 			part.actualizarEmpleado(nombre, documento, mail, telefono, domicilio, escalaSalarial, valor);
 			
 		}
+	}
+	
+	/**
+	 * Buscar Liquidacion
+	 * 
+	 * Buscamos la liquidacion a través del ano y mes.
+	 * Si la búsqueda me devuelve null significa que no existe liquidacion
+	 * liquidacion.
+	 * 
+	 * @param anio
+	 * @param mes
+	 * @return Liquidacion
+	 */
+	public Liquidacion buscarLiquidacion (int anio, int mes) {
+		for (Liquidacion liq : liquidaciones) {
+			if (liq.esLiquidacion(anio, mes)) return liq;
+		}
+		Liquidacion liq = LiquidacionAbm.getInstancia().buscarLiquidacion(anio, mes);
+		if (liq != null) return liq;
+
+		return null;
+	}
+	
+	public void altaLiquidacion (int anio, int mes) {
+		
+		Liquidacion liq = new Liquidacion(anio, mes, null);
+		liquidaciones.add(liq);
+		
 	}
 }

@@ -131,7 +131,13 @@ CREATE TABLE CertificadoMedico (
 -- liquidacion
 CREATE TABLE Liquidacion (
 	numeroLiquidacion INTEGER PRIMARY KEY,
-	numEmpleado INTEGER,
-	fecha DATE,
-	importe DECIMAL(10,2)
+	anio INTEGER(4),
+	mes INTEGER(2),
 )
+
+CREATE TABLE LiquidacionEmpleado (
+	numLiquidacion INTEGER,
+	numEmpleado INTEGER,
+	importe DECIMAL(10,2)
+	CONSTRAINT fk_numLiquidacion FOREIGN KEY (numLiquidacion) REFERENCES Liquidacion(numeroLiquidacion)
+);
