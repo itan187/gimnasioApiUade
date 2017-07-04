@@ -28,8 +28,9 @@ public class Main extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JMenuBar jMenuBar;
-	
+
 	private JMenu jMenuSocios;
+	private JMenuItem jMenuSocioIngreso;
 	private JMenuItem jMenuSocioAlta;
 	private JMenuItem jMenuSocioBaja;
 	private JMenuItem jMenuSocioModificar;
@@ -94,9 +95,10 @@ public class Main extends JFrame {
 				
 				/**************************************************************
 				 * 						SOCIOS
-				 * 1) Alta
-				 * 2) Baja
-				 * 3) Modificar
+				 * 1) Validar Ingreso
+				 * 2) Alta
+				 * 3) Baja
+				 * 4) Modificar
 				 **************************************************************/
 				jMenuSocios = new JMenu();
 				jMenuBar.add(jMenuSocios);
@@ -108,9 +110,27 @@ public class Main extends JFrame {
 						{
 						}
 					});
-				
+
+
 				/**
-				 * 1) Alta de socio
+				 * 1) Validar Ingreso
+				 **/
+				jMenuSocioIngreso = new JMenuItem();
+				jMenuSocios.add(jMenuSocioIngreso);
+				jMenuSocioIngreso.setText("Ingreso");
+				jMenuSocioIngreso.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt)
+					{
+						if (socioController != null) {
+							SocioIngreso ingresoDeSocio= new SocioIngreso(socioController);
+							ingresoDeSocio.setVisible(true);
+							toFront();
+						}
+					}
+				});
+
+				/**
+				 * 2) Alta de socio
 				 **/
 				jMenuSocioAlta = new JMenuItem();
 				jMenuSocios.add(jMenuSocioAlta);
@@ -127,7 +147,7 @@ public class Main extends JFrame {
 				});
 				
 				/**
-				 * 2) Baja de socio
+				 * 3) Baja de socio
 				 */
 				jMenuSocioBaja = new JMenuItem();
 				jMenuSocios.add(jMenuSocioBaja);
@@ -141,7 +161,7 @@ public class Main extends JFrame {
 					}
 				});
 				/**
-				 * 2) Modificar socio
+				 * 4) Modificar socio
 				 */
 				jMenuSocioModificar = new JMenuItem();
 				jMenuSocios.add(jMenuSocioModificar);

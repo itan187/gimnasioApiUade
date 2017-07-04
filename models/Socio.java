@@ -118,13 +118,25 @@ public class Socio {
 	public boolean conAptoMedioAlDia() {
 		Date hoy = new Date();
 		boolean retVal = false;
-
+		
 		for (CertificadoMedico cm : aptosMedicos) {
 			if (cm.getEstado() && cm.getVencimiento().before(hoy)) {
 				retVal = true;
 			}
 		}
 		return retVal;
+	}
+
+	/**
+	 * conAbonoAlDia
+	 *
+	 * Validamos que el Socio tenga el abono al día, validando
+	 * que su fecha de vencimiento sea anterior al día de la fecha.
+	 *
+	 * @return boolean
+	 */
+	public boolean conAbonoAlDia() {
+		return (this.abono != null && this.abono.abonoVigente());
 	}
 
 	public void eliminarSocio() {
