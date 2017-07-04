@@ -17,7 +17,6 @@ public class Abono {
 		this.setPrecio(precio);
 		this.setVigencia(vigencia);
 		
-		AbonoAbm.getInstancia().insert(this);
 	}
 	
 	public int getCodigo() {
@@ -83,4 +82,7 @@ public class Abono {
 		AbonoAbm.getInstancia().update(this);
 	}
 
+    public void insert() {
+		AbonoAbm.getInstancia().insert(this);
+    }
 }

@@ -10,9 +10,11 @@ public class Particular extends Profesor {
 		super(nombre, documento, mail, telefono, domicilio, escalaSalarial);
 		this.valorHora = valorHora;
 		this.horas = horas;
+	}
+
+	public void insert() {
 		EmpleadoHorarioPartAbm.getInstancia().insert(this);
 	}
-	
 	public float getValorHora() {
 		return valorHora;
 	}

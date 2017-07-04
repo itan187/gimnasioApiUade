@@ -279,6 +279,7 @@ public class SocioController {
 	 */
 	public void altaSocio (String nombre, String domicilio, String telefono, String email, int documento) {
 		Socio s = new Socio(documento, nombre, domicilio, telefono, email, null, null, null, true);
+		s.insert();
 		socios.add(s);
 	}
 	
@@ -352,6 +353,7 @@ public class SocioController {
 	 */
 	public void altaAbono (int codigo, String nombre, float precio, Date vigencia) {
 		Abono ab = new Abono(codigo, nombre, precio, vigencia);
+		ab.insert();
 		abonos.add(ab);
 	}
 
@@ -422,6 +424,7 @@ public class SocioController {
 		Vector<Actividad> cl = Utiles.convertStringToClases(clases);
 		
 		Normal inscripcionNormal = new Normal(estado, numero, cl);
+		inscripcionNormal.insert();
 		inscripcionesNormales.add(inscripcionNormal);
 	}
 
@@ -444,6 +447,7 @@ public class SocioController {
 		Vector<Actividad> cl = Utiles.convertStringToClases(clases);
 		
 		Corporativa inscripcionCorpo = new Corporativa(estado, numero, cl, empresa, vigencia);
+		inscripcionCorpo.insert();
 		inscripcionesCorpo.add(inscripcionCorpo);
 	}
 

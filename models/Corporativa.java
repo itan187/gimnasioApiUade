@@ -13,10 +13,11 @@ public class Corporativa extends Inscripcion {
 		super(estado, numero, clases);
 		this.setEmpresa(empresa);
 		this.setVigencia(vigencia);
-		
+	}
+
+	public void insert() {
 		InscripcionCorporativoAbm.getInstancia().insert(this);
 	}
-	
 	public String getEmpresa() {
 		return empresa;
 	}

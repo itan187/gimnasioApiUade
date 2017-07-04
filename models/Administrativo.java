@@ -8,6 +8,9 @@ public class Administrativo extends Empleado {
 	public Administrativo(String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float sueldo) {
 		super(nombre, documento, mail, telefono, domicilio, escalaSalarial);
 		this.setSueldo(sueldo);
+	}
+
+	public void insert() {
 		EmpleadoAdminAbm.getInstancia().insert(this);
 	}
 

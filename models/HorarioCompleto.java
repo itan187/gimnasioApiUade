@@ -8,7 +8,9 @@ public class HorarioCompleto extends Profesor {
 	public HorarioCompleto(String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float sueldoBasico) {
 		super(nombre, documento, mail, telefono, domicilio, escalaSalarial);
 		this.sueldoBasico = sueldoBasico;
-		
+	}
+
+	public void insert() {
 		EmpleadoHorarioCompletoAbm.getInstancia().insert(this);
 	}
 

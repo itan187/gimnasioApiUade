@@ -28,10 +28,12 @@ public class Socio {
 		this.setInscripciones(inscripciones);
 		this.setAptosMedicos(aptosMedicos);
 		this.setEstado(estado);
-		
+	}
+
+	public void insert() {
 		SocioAbm.getInstancia().insert(this);
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}

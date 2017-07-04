@@ -88,6 +88,7 @@ public class ActividadController {
 	 */
 	public void altaDeporte (int codigo, String titulo, String descripcion) {
 		Deporte d = new Deporte(codigo, titulo, descripcion);
+		d.insert();
 		deportes.add(d);
 	}
 	

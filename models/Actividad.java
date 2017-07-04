@@ -44,8 +44,6 @@ public class Actividad {
 		this.setViernes(viernes);
 		this.setSabado(sabado);
 		this.setDomingo(domingo);
-		
-		ActividadAbm.getInstancia().insert(this);
 	}
 	
 	public int getDuracion() {

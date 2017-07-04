@@ -12,9 +12,10 @@ public class Deporte {
 		this.codigo = codigo;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
-		
+	}
+
+	public void insert(){
 		DeporteAbm.getInstancia().insert(this);
-		
 	}
 	public int getCodigo() {
 		return codigo;
