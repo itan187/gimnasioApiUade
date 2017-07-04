@@ -3,7 +3,6 @@ package persistence;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Vector;
 
 import models.Particular;
 
@@ -30,7 +29,7 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}
@@ -56,13 +55,9 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 		}
 		catch (Exception e)
 		{
-			System.out.println();
+			e.printStackTrace();
 		}
 	
-	}
-
-	public Vector<Object> select(Object o) {
-		return null;
 	}
 
 	public void update(Object o) {
@@ -70,30 +65,29 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 			Particular a = (Particular)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".EmpleadoHorarioPart " +
-					"set documento = ?," +
 					"set nombre = ?," +
-					"set mail = ?," +
-					"set telefono = ?," +
-					"set domicilio = ?," +
-					"set escala_salarial = ?," +
-					"set valor_hora =?)"
+					"mail = ?," +
+					"telefono = ?," +
+					"domicilio = ?," +
+					"escalaSalarial = ?," +
+					"valorHora =? where documento = ?"
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1 ,a.getDocumento());
-			s.setString(2, a.getNombre());
-			s.setString(3, a.getMail());
-			s.setString(4, a.getTelefono());
-			s.setString(5, a.getDomicilio());
-			s.setString(6, a.getEscalaSalarial());
-			s.setFloat(7, a.getValorHora());
+			s.setString(1, a.getNombre());
+			s.setString(2, a.getMail());
+			s.setString(3, a.getTelefono());
+			s.setString(4, a.getDomicilio());
+			s.setString(5, a.getEscalaSalarial());
+			s.setFloat(6, a.getValorHora());
+			s.setInt(7 ,a.getDocumento());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 
 	}
@@ -121,7 +115,7 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		return null;
 	}

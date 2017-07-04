@@ -55,7 +55,7 @@ public class EmpleadoAdminAbm extends EmpleadoAdminPersistence {
 		}
 		catch (Exception e)
 		{
-			System.out.println();
+			e.printStackTrace();
 		}
 	
 	}
@@ -87,7 +87,11 @@ public class EmpleadoAdminAbm extends EmpleadoAdminPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
+<<<<<<< HEAD
 			System.out.println(e);
+=======
+			e.printStackTrace();
+>>>>>>> de07b36606f7940053f744e119e7591f715870d6
 		}
 
 	}
@@ -114,7 +118,7 @@ public class EmpleadoAdminAbm extends EmpleadoAdminPersistence {
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return null;
 	}

@@ -30,7 +30,7 @@ public class EmpleadoHorarioCompletoAbm extends EmpleadoHorarioCompletoPersisten
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}
@@ -56,7 +56,7 @@ public class EmpleadoHorarioCompletoAbm extends EmpleadoHorarioCompletoPersisten
 		}
 		catch (Exception e)
 		{
-			System.out.println();
+			e.printStackTrace();
 		}
 	
 	}
@@ -89,7 +89,7 @@ public class EmpleadoHorarioCompletoAbm extends EmpleadoHorarioCompletoPersisten
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 	}
@@ -115,7 +115,7 @@ public class EmpleadoHorarioCompletoAbm extends EmpleadoHorarioCompletoPersisten
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return null;
 	}

@@ -31,7 +31,7 @@ public class HorarioAbm extends HorarioPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}
@@ -50,7 +50,7 @@ public class HorarioAbm extends HorarioPersistence {
 		}
 		catch (Exception e)
 		{
-			System.out.println();
+			e.printStackTrace();
 		}
 	
 	}
@@ -74,7 +74,7 @@ public class HorarioAbm extends HorarioPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 
 	}
@@ -99,7 +99,7 @@ public class HorarioAbm extends HorarioPersistence {
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return numeroHorario;
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		return 0;
 	}

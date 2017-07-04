@@ -16,7 +16,6 @@ public class DeporteModificar extends javax.swing.JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JLabel jLabelSearch;
-	private JLabel jLabelCodigo;
 	private JLabel jLabelTitulo;
 	private JLabel jLabelDescripcion;
 	

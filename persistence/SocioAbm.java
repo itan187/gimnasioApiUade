@@ -7,12 +7,10 @@ import java.util.Date;
 import java.util.Vector;
 
 import models.CertificadoMedico;
-import models.Abono;
 import models.Actividad;
 import models.Corporativa;
 import models.Inscripcion;
 import models.Normal;
-//import models.CertificadoMedico;
 import models.Socio;
 
 public class SocioAbm extends SocioPersistence {
@@ -37,7 +35,7 @@ public class SocioAbm extends SocioPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}
@@ -89,7 +87,7 @@ public class SocioAbm extends SocioPersistence {
 		}
 		catch (Exception e)
 		{
-			System.out.println();
+			e.printStackTrace();
 		}
 	
 	}
@@ -124,7 +122,7 @@ public class SocioAbm extends SocioPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 	}
@@ -226,7 +224,7 @@ public class SocioAbm extends SocioPersistence {
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return null;
 	}

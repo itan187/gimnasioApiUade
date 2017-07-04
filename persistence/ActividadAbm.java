@@ -33,7 +33,7 @@ public class ActividadAbm extends ActividadPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}
@@ -73,7 +73,7 @@ public class ActividadAbm extends ActividadPersistence {
 		}
 		catch (Exception e)
 		{
-			System.out.println();
+			e.printStackTrace();
 		}
 	
 	}
@@ -116,7 +116,7 @@ public class ActividadAbm extends ActividadPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 
 	}
@@ -201,7 +201,7 @@ public class ActividadAbm extends ActividadPersistence {
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		return null;
 	}

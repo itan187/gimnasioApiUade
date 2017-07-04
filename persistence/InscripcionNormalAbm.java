@@ -31,7 +31,7 @@ public class InscripcionNormalAbm extends InscripcionNormalPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}
@@ -61,7 +61,7 @@ public class InscripcionNormalAbm extends InscripcionNormalPersistence {
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 	
 	}
@@ -88,7 +88,7 @@ public class InscripcionNormalAbm extends InscripcionNormalPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 
 	}
@@ -124,7 +124,7 @@ public class InscripcionNormalAbm extends InscripcionNormalPersistence {
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		return null;
 	}

@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controllers.RrhhController;
-import models.Empleado;
 import models.HorarioCompleto;
 
 public class EmpleadoHorarioCompletoBaja extends javax.swing.JFrame {

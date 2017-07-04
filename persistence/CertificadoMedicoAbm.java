@@ -31,7 +31,7 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		
 	}
@@ -56,7 +56,7 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 		}
 		catch (Exception e)
 		{
-			System.out.println();
+			e.printStackTrace();
 		}
 	
 	}
@@ -91,7 +91,7 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 
 	}
@@ -116,7 +116,7 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println();
+			e.printStackTrace();
 		}
 		return null;
 	}
