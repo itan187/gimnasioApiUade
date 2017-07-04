@@ -6,5 +6,5 @@ public abstract class InscripcionNormalPersistence {
 	public abstract void insert (Object o);
 	public abstract void update (Object o);
 	public abstract void delete (Object d);
-	public abstract Vector<Object> select (Object o);
+	public abstract Vector<String> listado ();
 }

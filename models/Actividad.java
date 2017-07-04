@@ -11,6 +11,7 @@ public class Actividad {
 	private int numeroActividad;
 	private Deporte				deporte;
 	private Vector<Profesor> 	profesores;
+	private String				description;
 	private int					duracion;
 	private int					lunes;
 	private int					martes;
@@ -23,7 +24,8 @@ public class Actividad {
 	public Actividad(
 			int numeroActividad, 
 			Deporte deporte,
-			Vector<Profesor> profesores, 
+			Vector<Profesor> profesores,
+			String descripcion,
 			int duracion,
 			int lunes, 
 			int martes,  
@@ -36,6 +38,7 @@ public class Actividad {
 		this.setNumeroActividad(numeroActividad);
 		this.setDeporte(deporte);
 		this.setProfesores(profesores);
+		this.setDescription(descripcion);
 		this.setDuracion(duracion);
 		this.setLunes(lunes);
 		this.setMartes(martes);
@@ -46,6 +49,14 @@ public class Actividad {
 		this.setDomingo(domingo);
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public int getDuracion() {
 		return duracion;
 	}

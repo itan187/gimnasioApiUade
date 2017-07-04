@@ -121,8 +121,8 @@ public class RrhhController {
 	 */
 	public void altaEmpleadoAdmin (String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float sueldo) {
 		Administrativo admin = new Administrativo(nombre, documento, mail, telefono, domicilio, escalaSalarial, sueldo);
-		admin.insert();
 		empleadosAdmin.add(admin);
+		admin.insert();
 	}
 
 	/**
@@ -140,8 +140,8 @@ public class RrhhController {
 	 */
 	public void altaEmpleadoProfFull (String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float sueldo) {
 		HorarioCompleto profFulltime = new HorarioCompleto(nombre, documento, mail, telefono, domicilio, escalaSalarial, sueldo);
-		profFulltime.insert();
 		empleadosProfFull.add(profFulltime);
+		profFulltime.insert();
 	}
 
 	/**
@@ -159,8 +159,8 @@ public class RrhhController {
 	 */
 	public void altaEmpleadoProfPartTime(String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float valorHora, int horas) {
 		Particular profPartTime = new Particular(nombre, documento, mail, telefono, domicilio, escalaSalarial, valorHora, horas);
-		profPartTime.insert();
 		empleadosProfPart.add(profPartTime);
+		profPartTime.insert();
 	}
 
 	/**

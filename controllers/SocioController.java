@@ -431,15 +431,15 @@ public class SocioController {
 	 * 
 	 * @param numero
 	 * @param estado
-	 * @param clases
+	 * @param act
 	 */
-	public void altaInscripcionNormal(int numero, boolean estado, String clases) {
+	public void altaInscripcionNormal(int numero, boolean estado, int act) {
 		
-		Vector<Actividad> cl = Utiles.convertStringToClases(clases);
+		//Vector<Actividad> cl = Utiles.convertStringToClases(act);
 		
-		Normal inscripcionNormal = new Normal(estado, numero, cl);
+		/*Normal inscripcionNormal = new Normal(estado, numero, cl);
 		inscripcionesNormales.add(inscripcionNormal);
-		inscripcionNormal.insert();
+		inscripcionNormal.insert();*/
 	}
 
 	/**

@@ -12,9 +12,6 @@ public class Particular extends Profesor {
 		this.horas = horas;
 	}
 
-	public void insert() {
-		EmpleadoHorarioPartAbm.getInstancia().insert(this);
-	}
 	public float getValorHora() {
 		return valorHora;
 	}
@@ -37,6 +34,9 @@ public class Particular extends Profesor {
 		return 0;
 	}
 	
+	public void insert() {
+		EmpleadoHorarioPartAbm.getInstancia().insert(this);
+	}
 	public void eliminarEmpleado() {
 		EmpleadoHorarioPartAbm.getInstancia().delete(this);
 	}

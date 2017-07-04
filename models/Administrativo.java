@@ -9,11 +9,7 @@ public class Administrativo extends Empleado {
 		super(nombre, documento, mail, telefono, domicilio, escalaSalarial);
 		this.setSueldo(sueldo);
 	}
-
-	public void insert() {
-		EmpleadoAdminAbm.getInstancia().insert(this);
-	}
-
+	
 	public float getSueldo() {
 		return sueldo;
 	}
@@ -32,6 +28,9 @@ public class Administrativo extends Empleado {
 		return 0;
 	}
 	
+	public void insert() {
+		EmpleadoAdminAbm.getInstancia().insert(this);
+	}
 	public void eliminarEmpleado() {
 		EmpleadoAdminAbm.getInstancia().delete(this);
 	}

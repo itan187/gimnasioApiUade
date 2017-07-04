@@ -2,14 +2,20 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.BitSet;
+import java.util.Vector;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controllers.SocioController;
+import persistence.InscripcionNormalAbm;
 
 public class InscripcionNormalAlta extends javax.swing.JFrame {
 
@@ -19,10 +25,13 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 	private JLabel jLabelClases;
 	
 	private JTextField fieldNumero;
-	private JTextField fieldEstado;
+	private JComboBox<String> fieldEstado;
+	private JComboBox<String> listAct;
 	private JTextField fieldClases;
 	
 	private JButton buttonAceptar;
+	
+	Vector<String> listActividades;
 	
 	private SocioController sistema;
 
@@ -59,7 +68,7 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 			{
 				jLabelClases = new JLabel();
 				getContentPane().add(jLabelClases);
-				jLabelClases.setText("Clases:");
+				jLabelClases.setText("Actividad:");
 				jLabelClases.setBounds(21, 120, 180, 28);
 				jLabelClases.setVisible(true);
 			}
@@ -74,14 +83,20 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 				fieldNumero.setVisible(true);
 			}
 			{
-				fieldEstado = new JTextField();
+				ComboBoxModel<String> estadoModel = new DefaultComboBoxModel<String>(new String[] {"Activo", "Desactivo"});
+				fieldEstado = new JComboBox<String>();
 				getContentPane().add(fieldEstado);
+				fieldEstado.setModel(estadoModel);
 				fieldEstado.setBounds(200, 80, 120, 28);
 			}
 			{
-				fieldClases = new JTextField();
-				getContentPane().add(fieldClases);
-				fieldClases.setBounds(200, 122, 120, 28);
+				listActividades = InscripcionNormalAbm.getInstancia().listado();
+				System.out.println(listActividades);
+				ComboBoxModel<String> listActModel = new DefaultComboBoxModel<String>(listActividades);
+				listAct = new JComboBox<String>();
+				getContentPane().add(listAct);
+				listAct.setModel(listActModel);
+				listAct.setBounds(200, 122, 120, 28);
 			}
 			{
 				buttonAceptar = new JButton();
@@ -93,11 +108,20 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						if (fieldNumero.getText().equals("") || fieldEstado.getText().equals("") || fieldClases.getText().equals("")) {
+						String fEstado = (String)fieldEstado.getSelectedItem();
+						int act = listAct.getSelectedIndex();
+						act++;
+						if (fieldNumero.getText().equals("") || fEstado.equals("")) {
 							String mensajeError = "¡Atención! Faltan completar campos y por ello no se puede agregar la inscripción.";
 						    JOptionPane.showMessageDialog(null, mensajeError);
 						} else {
-							sistema.altaInscripcionNormal(Integer.parseInt(fieldNumero.getText()), Boolean.parseBoolean(fieldEstado.getText()), fieldClases.getText());
+							boolean e;
+							if (fEstado.equals("Activo")) {
+								e = true;
+							} else {
+								e = false;
+							}
+							sistema.altaInscripcionNormal(Integer.parseInt(fieldNumero.getText()), e, act);
 						}
 						setVisible(false);
 					}

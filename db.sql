@@ -89,6 +89,7 @@ CREATE TABLE Deporte (
 CREATE TABLE Actividad (
 	numeroActividad INTEGER PRIMARY KEY,
 	numeroDeporte INTEGER,
+	descripcion VARCHAR(100),
 	duracion INTEGER,
 	lunes INTEGER,
 	martes INTEGER,
@@ -103,7 +104,7 @@ CREATE TABLE Actividad (
 
 -- inscripcion actividades
 CREATE TABLE InscripcionActividades (
-	numero INTEGER,
+	numeroInscripcion INTEGER,
 	numeroActividad INTEGER,
 	CONSTRAINT fk_numeroActividad FOREIGN KEY (numeroActividad) REFERENCES Actividad(numeroActividad)
 );

@@ -6,8 +6,8 @@ import persistence.InscripcionNormalAbm;
 
 public class Normal extends Inscripcion {
 
-	public Normal(boolean estado, int numero, Vector<Actividad> clases) {
-		super(estado, numero, clases);
+	public Normal(boolean estado, int numero, Vector<Actividad> actividades) {
+		super(estado, numero, actividades);
 	}
 	public void insert() {
 		InscripcionNormalAbm.getInstancia().insert(this);

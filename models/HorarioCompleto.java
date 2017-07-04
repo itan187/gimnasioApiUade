@@ -10,10 +10,6 @@ public class HorarioCompleto extends Profesor {
 		this.sueldoBasico = sueldoBasico;
 	}
 
-	public void insert() {
-		EmpleadoHorarioCompletoAbm.getInstancia().insert(this);
-	}
-
 	public void setSueldoBasico(float sueldoBasico) {
 		this.sueldoBasico = sueldoBasico;
 	}
@@ -33,6 +29,9 @@ public class HorarioCompleto extends Profesor {
 		return 0;
 	}
 	
+	public void insert() {
+		EmpleadoHorarioCompletoAbm.getInstancia().insert(this);
+	}
 	public void eliminarEmpleado() {
 		EmpleadoHorarioCompletoAbm.getInstancia().delete(this);
 	}
