@@ -116,7 +116,7 @@ public class SocioModificacion extends javax.swing.JFrame {
 				buttonModificar = new JButton();
 				getContentPane().add(buttonModificar);
 				buttonModificar.setText("Modificar Socio");
-				buttonModificar.setBounds(260, 217, 123, 28);
+				buttonModificar.setBounds(260, 280, 123, 28);
 				buttonModificar.setVisible(false);
 				buttonModificar.addActionListener(new ActionListener()
 				{
@@ -128,7 +128,7 @@ public class SocioModificacion extends javax.swing.JFrame {
 								fieldTelefono.getText(), 
 								fieldEmail.getText(), 
 								Integer.parseInt(fieldDocumentoBuscar.getText()),
-								Boolean.parseBoolean(fieldEstado.getText())
+								((fieldEstado.getText().equals("Activo") ? true : false))
 						);
 						setVisible(false);
 					}
@@ -165,6 +165,7 @@ public class SocioModificacion extends javax.swing.JFrame {
 							jLabelDomicilio.setVisible(true);
 							jLabelTelefono.setVisible(true);
 							jLabelEmail.setVisible(true);
+							jLabelEstado.setVisible(true);
 							
 							fieldNombre.setVisible(true);
 							fieldNombre.setEnabled(true);
@@ -179,13 +180,17 @@ public class SocioModificacion extends javax.swing.JFrame {
 							fieldEmail.setEnabled(true);
 							fieldEmail.setText(socio.getEmail());
 							
+							fieldEstado.setVisible(true);
+							fieldEstado.setEnabled(true);
+							fieldEstado.setText((socio.getEstado()) ? "Activo" : "Desactivo");
+							
 							buttonModificar.setVisible(true);
 						}
 					}
 				});
 			}
 			pack();
-			setSize(400, 300);
+			setSize(400, 400);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

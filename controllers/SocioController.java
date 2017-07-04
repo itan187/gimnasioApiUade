@@ -311,6 +311,7 @@ public class SocioController {
 	 */
 	public void modificarSocio(String nombre, String domicilio, String telefono, String email, int documento, boolean estado) {
 		Socio socio = buscarSocio(documento);
+		
 		if (socio != null) {
 			
 			/**
@@ -328,13 +329,12 @@ public class SocioController {
 					if (s.getTelefono() != telefono)		s.setTelefono(telefono);
 					if (s.getEmail() != email)				s.setEmail(email);
 					if (s.getEstado() != estado)			s.setEstado(estado);
-					
 				}
 			}
 			/**
 			 * Actualizamos el socio en la base de datos
 			 */
-			socio.actualizarSocio();
+			socio.actualizarSocio(documento, nombre, domicilio, telefono, email, estado);
 		}
 	}
 	

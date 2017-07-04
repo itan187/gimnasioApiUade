@@ -128,8 +128,9 @@ public class Socio {
 	public void eliminarSocio() {
 		SocioAbm.getInstancia().delete(this);
 	}
-	public void actualizarSocio() {
-		SocioAbm.getInstancia().update(this);
+	public void actualizarSocio(int documento, String nombre, String domicilio, String telefono, String email, boolean estado) {
+		Socio s = new Socio(documento, nombre, domicilio, telefono, email, abono, inscripciones, aptosMedicos, estado);
+		SocioAbm.getInstancia().update(s);
 	}
 	
 }

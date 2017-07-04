@@ -177,7 +177,7 @@ public class Main extends JFrame {
 				jMenuDeporteAlta = new JMenuItem();
 				jMenuDeportes.add(jMenuDeporteAlta);
 				jMenuDeporteAlta.setText("Alta");
-				jMenuSocioAlta.addActionListener(new ActionListener() {
+				jMenuDeporteAlta.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
 						if (actividadController != null) {

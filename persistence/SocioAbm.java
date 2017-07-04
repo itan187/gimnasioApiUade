@@ -103,30 +103,28 @@ public class SocioAbm extends SocioPersistence {
 			Socio a = (Socio)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".Socio " +
-					"set documento = ?," +
-					"set nombre = ?," +
-					"set domicilio = ?," +
-					"set telefono = ?," +
-					"set email = ?," +
-					"set abono = ?," +
-					"set estado = ?)"
+					"set nombre = ?, " +
+					"domicilio = ?, " +
+					"telefono = ?, " +
+					"mail = ?, " +
+					//"set abono = ?," +
+					"estado = ? where documento = " + a.getDocumento()
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1,a.getDocumento());
-			s.setString(2, 	a.getNombre());
-			s.setString(3,	a.getDomicilio());
-			s.setString(4, 	a.getTelefono());
-			s.setString(5, 	a.getEmail());
-			s.setInt(6, 	a.getAbono().getCodigo());
-			s.setInt(7, 	(a.getEstado()) ? 1 : 0);
+			s.setString(1, 	a.getNombre());
+			s.setString(2,	a.getDomicilio());
+			s.setString(3, 	a.getTelefono());
+			s.setString(4, 	a.getEmail());
+			//s.setInt(5, 	(a.getAbono() != null) ? a.getAbono().getCodigo() : null);
+			s.setInt(5, 	(a.getEstado()) ? 1 : 0);
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println();
+			System.out.println(e);
 		}
 
 	}
@@ -159,7 +157,6 @@ public class SocioAbm extends SocioPersistence {
 				 * Recorró buscando las inscripciones 
 				 * de un Socio en SocioInscripcion
 				 */
-				
 				PreparedStatement si = con.prepareStatement("select * from " + PoolConnection.dbName + ".SocioInscripcion where documento = ?");
 				si.setInt(1, documento);
 				ResultSet res = si.executeQuery();
@@ -194,12 +191,10 @@ public class SocioAbm extends SocioPersistence {
 					}
 					
 				}
-				
 				/**
 				 * Recorró los Aptos Médicos
 				 * de Socio en SocioAptosMedicos
 				 */
-				
 				PreparedStatement sap = con.prepareStatement("select * from " + PoolConnection.dbName + ".CertificadoMedico where numSocio = ? and estado = 1");
 				sap.setInt(1, documento);
 				ResultSet resu = sap.executeQuery();
@@ -223,9 +218,9 @@ public class SocioAbm extends SocioPersistence {
 						aptosMedicos.add(certificado);
 					}
 				}
-				Abono ab = AbonoAbm.getInstancia().buscarAbono(abono);
+				//Abono ab = AbonoAbm.getInstancia().buscarAbono(abono);
 				
-				a = new Socio(doc, nombre, domicilio, telefono, email, ab, null, aptosMedicos, estado);
+				a = new Socio(doc, nombre, domicilio, telefono, email, null, null, null, estado);
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);

@@ -19,12 +19,14 @@ public class SocioBaja extends javax.swing.JFrame {
 	private JLabel jLabelDomicilio;
 	private JLabel jLabelTelefono;
 	private JLabel jLabelEmail;
+	private JLabel jLabelEstado;
 	
 	private JTextField fieldDocumentoBuscar;
 	private JTextField fieldNombre;
 	private JTextField fieldDomicilio;
 	private JTextField fieldTelefono;
 	private JTextField fieldEmail;
+	private JTextField fieldEstado;
 	
 	private JButton buttonBuscar;
 	private JButton buttonBaja;
@@ -46,53 +48,66 @@ public class SocioBaja extends javax.swing.JFrame {
 				jLabelNombre = new JLabel();
 				getContentPane().add(jLabelNombre);
 				jLabelNombre.setText("Nombre:");
-				jLabelNombre.setBounds(21, 42, 63, 28);
+				jLabelNombre.setBounds(21, 40, 63, 28);
 				jLabelNombre.setVisible(false);
 			}
 			{
 				fieldNombre = new JTextField();
 				getContentPane().add(fieldNombre);
-				fieldNombre.setBounds(119, 42, 210, 28);
+				fieldNombre.setBounds(119, 40, 210, 28);
 				fieldNombre.setVisible(false);
 			}
 			{
 				jLabelDomicilio = new JLabel();
 				getContentPane().add(jLabelDomicilio);
 				jLabelDomicilio.setText("Domicilio:");
-				jLabelDomicilio.setBounds(21, 91, 63, 28);
+				jLabelDomicilio.setBounds(21, 80, 63, 28);
 				jLabelDomicilio.setVisible(false);
 			}
 			{
 				fieldDomicilio = new JTextField();
 				getContentPane().add(fieldDomicilio);
-				fieldDomicilio.setBounds(119, 91, 210, 28);
+				fieldDomicilio.setBounds(119, 80, 210, 28);
 				fieldDomicilio.setVisible(false);
 			}
 			{
 				jLabelTelefono = new JLabel();
 				getContentPane().add(jLabelTelefono);
 				jLabelTelefono.setText("Teléfono:");
-				jLabelTelefono.setBounds(21, 42, 63, 28);
+				jLabelTelefono.setBounds(21, 120, 63, 28);
 				jLabelTelefono.setVisible(false);
 			}
 			{
 				fieldTelefono = new JTextField();
 				getContentPane().add(fieldTelefono);
-				fieldTelefono.setBounds(119, 140, 210, 28);
+				fieldTelefono.setBounds(119, 120, 210, 28);
 				fieldTelefono.setVisible(false);
 			}
 			{
 				jLabelEmail = new JLabel();
 				getContentPane().add(jLabelEmail);
 				jLabelEmail.setText("E-mail:");
-				jLabelEmail.setBounds(21, 42, 63, 28);
+				jLabelEmail.setBounds(21, 160, 63, 28);
 				jLabelEmail.setVisible(false);
 			}
 			{
 				fieldEmail = new JTextField();
 				getContentPane().add(fieldEmail);
-				fieldEmail.setBounds(119, 189, 210, 28);
+				fieldEmail.setBounds(119, 160, 210, 28);
 				fieldEmail.setVisible(false);
+			}
+			{
+				jLabelEstado = new JLabel();
+				getContentPane().add(jLabelEstado);
+				jLabelEstado.setText("Estado:");
+				jLabelEstado.setBounds(21, 200, 63, 28);
+				jLabelEstado.setVisible(false);
+			}
+			{
+				fieldEstado = new JTextField();
+				getContentPane().add(fieldEstado);
+				fieldEstado.setBounds(119, 200, 210, 28);
+				fieldEstado.setVisible(false);
 			}
 			
 			/**
@@ -102,7 +117,7 @@ public class SocioBaja extends javax.swing.JFrame {
 				buttonBaja = new JButton();
 				getContentPane().add(buttonBaja);
 				buttonBaja.setText("Eliminar Socio");
-				buttonBaja.setBounds(260, 217, 123, 28);
+				buttonBaja.setBounds(260, 240, 123, 28);
 				buttonBaja.setVisible(false);
 				buttonBaja.addActionListener(new ActionListener()
 				{
@@ -120,7 +135,7 @@ public class SocioBaja extends javax.swing.JFrame {
 			{
 				jLabelSearch = new JLabel();
 				getContentPane().add(jLabelSearch);
-				jLabelSearch.setText("Ingrese el número de documento:");
+				jLabelSearch.setText("Ingrese el DNI:");
 				jLabelSearch.setBounds(21, 7, 98, 28);
 			}
 			{
@@ -143,15 +158,24 @@ public class SocioBaja extends javax.swing.JFrame {
 							jLabelDomicilio.setVisible(true);
 							jLabelTelefono.setVisible(true);
 							jLabelEmail.setVisible(true);
+							jLabelEstado.setVisible(true);
 							
 							fieldNombre.setVisible(true);
 							fieldNombre.setEnabled(false);
+							fieldNombre.setText(socio.getNombre());
 							fieldDomicilio.setVisible(true);
 							fieldDomicilio.setEnabled(false);
+							fieldDomicilio.setText(socio.getDomicilio());
 							fieldTelefono.setVisible(true);
 							fieldTelefono.setEnabled(false);
+							fieldTelefono.setText(socio.getTelefono());
 							fieldEmail.setVisible(true);
 							fieldEmail.setEnabled(false);
+							fieldEmail.setText(socio.getEmail());
+							
+							fieldEstado.setVisible(true);
+							fieldEstado.setEnabled(false);
+							fieldEstado.setText((socio.getEstado()) ? "Activo" : "Desactivo");
 							
 							buttonBaja.setVisible(true);
 						}

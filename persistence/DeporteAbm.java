@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import models.Deporte;
+import models.Socio;
 
 public class DeporteAbm extends DeportePersistence {
 	private String nombreTabla;
@@ -40,20 +41,20 @@ public class DeporteAbm extends DeportePersistence {
 		try {
 			Deporte a = (Deporte)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("insert into "+ this.nombreTabla + " values (?,?,?)");
+			PreparedStatement s = con.prepareStatement("insert into "+ PoolConnection.dbName + ".Deporte values (?,?,?)");
+			
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1,a.getCodigo());
-			s.setString(2, a.getTitulo());
-			s.setString(3,a.getDescripcion());
-			
+			s.setInt(1,		a.getCodigo());
+			s.setString(2, 	a.getTitulo());
+			s.setString(3,	a.getDescripcion());
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		}
 		catch (Exception e)
 		{
-			System.out.println();
+			System.out.println(e);
 		}
 	
 	}
@@ -67,17 +68,16 @@ public class DeporteAbm extends DeportePersistence {
 			Deporte a = (Deporte)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("update " + this.nombreTabla + " " +
-					"set codigo = ?," +
-					"set titulo = ?," +
-					"set descripcion =?)"
+					"titulo = ?," +
+					"descripcion =?) where codigo = ?"
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1,a.getCodigo());
-			s.setString(2, a.getTitulo());
-			s.setString(3,a.getDescripcion());
+			s.setString(1, 	a.getTitulo());
+			s.setString(2,	a.getDescripcion());
+			s.setInt(3,		a.getCodigo());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
