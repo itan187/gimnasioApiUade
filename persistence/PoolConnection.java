@@ -35,6 +35,7 @@ public class PoolConnection {
 	
 	private PoolConnection() {
 //		getConfiguration();
+		PoolConnection.dbName = "gimnasio";
 		for (int i= 0; i< cantCon; i++) {
 			connections.add(connect());
 		}
