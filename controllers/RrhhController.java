@@ -203,7 +203,7 @@ public class RrhhController {
 	 * @param valor (sueldo | sueldoBasico | valorHora)
 	 */
 	public void modificarEmpleado (String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float valor) {
-		Empleado e = buscarEmpleado(documento);
+		Administrativo e = buscarEmpleadoAdmin(documento);
 		
 		/**
 		 * Buscamos que exista el empleado
@@ -221,13 +221,21 @@ public class RrhhController {
 					if (a.getDomicilio() != domicilio) 				a.setDomicilio(domicilio);
 					if (a.getEscalaSalarial() != escalaSalarial) 	a.setEscalaSalarial(escalaSalarial);
 					if (a.getSueldo() != valor) 					a.setSueldo(valor);
-					
-					a.actualizarEmpleado();
-					
-					break;
 				}
 			}
-			
+			/**
+			 * Actualizamos los campos en la base de datos
+			 */
+			e.actualizarEmpleado(nombre, documento, mail, telefono, domicilio, escalaSalarial, valor);
+		}
+		
+		HorarioCompleto h = buscarEmpleadoFullTime(documento);
+		
+		/**
+		 * Buscamos que exista el empleado
+		 */
+		if (h != null) {
+		
 			/**
 			 * Recorremos los profesores full time en busca
 			 * del empleado y así modificar los valores
@@ -240,17 +248,25 @@ public class RrhhController {
 					if (c.getDomicilio() != domicilio) 				c.setDomicilio(domicilio);
 					if (c.getEscalaSalarial() != escalaSalarial) 	c.setEscalaSalarial(escalaSalarial);
 					if (c.getSueldoBasico() != valor) 				c.setSueldoBasico(valor);
-					
-					c.actualizarEmpleado();
-					break;
 				}
 			}
-			
+			/**
+			 * Actualizamos los campos en la base de datos
+			 */
+			h.actualizarEmpleado(nombre, documento, mail, telefono, domicilio, escalaSalarial, valor);
+		}
+		
+		Particular p = buscarEmpleadoPartTime(documento);
+		
+		/**
+		 * Buscamos que exista el empleado
+		 */
+		if (p != null) {
 			/**
 			 * Recorremos los profesores part time en busca
 			 * del empleado y así modificar los valores
 			 */
-			for (Particular p : empleadosProfPart) {
+			for (Particular part : empleadosProfPart) {
 				if (p.getDocumento() == documento) {
 					if (p.getNombre() != nombre) 					p.setNombre(nombre);
 					if (p.getMail() != mail) 						p.setMail(mail);
@@ -258,11 +274,9 @@ public class RrhhController {
 					if (p.getDomicilio() != domicilio) 				p.setDomicilio(domicilio);
 					if (p.getEscalaSalarial() != escalaSalarial) 	p.setEscalaSalarial(escalaSalarial);
 					if (p.getValorHora() != valor) 					p.setValorHora(valor);
-					
-					p.actualizarEmpleado();
-					break;
 				}
 			}
+			p.actualizarEmpleado(nombre, documento, mail, telefono, domicilio, escalaSalarial, valor);
 			
 		}
 	}

@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controllers.RrhhController;
+import models.Administrativo;
 import models.Empleado;
 
 public class EmpleadoAdminModificar extends javax.swing.JFrame {
@@ -104,7 +105,7 @@ public class EmpleadoAdminModificar extends javax.swing.JFrame {
 				getContentPane().add(jLabelEscalaSalarial);
 				jLabelEscalaSalarial.setText("Escala Salarial:");
 				jLabelEscalaSalarial.setBounds(21, 202, 180, 28);
-				jLabelEscalaSalarial.setVisible(true);
+				jLabelEscalaSalarial.setVisible(false);
 			}
 			{
 				fieldEscalaSalarial = new JTextField();
@@ -131,8 +132,8 @@ public class EmpleadoAdminModificar extends javax.swing.JFrame {
 			{
 				buttonModificar = new JButton();
 				getContentPane().add(buttonModificar);
-				buttonModificar.setText("Modificar Empleado");
-				buttonModificar.setBounds(260, 217, 123, 28);
+				buttonModificar.setText("Modificar");
+				buttonModificar.setBounds(260, 280, 123, 28);
 				buttonModificar.setVisible(false);
 				buttonModificar.addActionListener(new ActionListener()
 				{
@@ -157,7 +158,7 @@ public class EmpleadoAdminModificar extends javax.swing.JFrame {
 			{
 				jLabelSearch = new JLabel();
 				getContentPane().add(jLabelSearch);
-				jLabelSearch.setText("Ingrese el documento:");
+				jLabelSearch.setText("Ingrese el DNI:");
 				jLabelSearch.setBounds(21, 7, 98, 28);
 			}
 			{
@@ -173,7 +174,7 @@ public class EmpleadoAdminModificar extends javax.swing.JFrame {
 				buttonBuscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						
-						Empleado admin = sistema.buscarEmpleado(Integer.parseInt(fieldDocumentoBuscar.getText()));
+						Administrativo admin = sistema.buscarEmpleadoAdmin(Integer.parseInt(fieldDocumentoBuscar.getText()));
 						
 						if (admin != null) {
 							jLabelNombre.setVisible(true);
@@ -184,17 +185,23 @@ public class EmpleadoAdminModificar extends javax.swing.JFrame {
 							jLabelSueldo.setVisible(true);
 							
 							fieldNombre.setVisible(true);
-							fieldNombre.setEnabled(false);
+							fieldNombre.setEnabled(true);
+							fieldNombre.setText(admin.getNombre());
 							fieldMail.setVisible(true);
-							fieldMail.setEnabled(false);
+							fieldMail.setEnabled(true);
+							fieldMail.setText(admin.getMail());
 							fieldTelefono.setVisible(true);
-							fieldTelefono.setEnabled(false);
+							fieldTelefono.setEnabled(true);
+							fieldTelefono.setText(admin.getTelefono());
 							fieldDomicilio.setVisible(true);
-							fieldDomicilio.setEnabled(false);
-							jLabelEscalaSalarial.setVisible(true);
-							jLabelEscalaSalarial.setEnabled(false);
+							fieldDomicilio.setEnabled(true);
+							fieldDomicilio.setText(admin.getDomicilio());
+							fieldEscalaSalarial.setVisible(true);
+							fieldEscalaSalarial.setEnabled(true);
+							fieldEscalaSalarial.setText(admin.getEscalaSalarial());
 							fieldSueldo.setVisible(true);
-							fieldSueldo.setEnabled(false);
+							fieldSueldo.setEnabled(true);
+							fieldSueldo.setText(String.valueOf(admin.getSueldo()));
 							
 							buttonModificar.setVisible(true);
 						}
@@ -202,7 +209,7 @@ public class EmpleadoAdminModificar extends javax.swing.JFrame {
 				});
 			}
 			pack();
-			setSize(400, 300);
+			setSize(400, 350);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

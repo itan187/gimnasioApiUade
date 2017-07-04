@@ -30,7 +30,7 @@ public class EmpleadoAdminAbm extends EmpleadoAdminPersistence {
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
-			System.out.println("No funciona");
+			System.out.println(e);
 		}
 		
 	}
@@ -61,34 +61,29 @@ public class EmpleadoAdminAbm extends EmpleadoAdminPersistence {
 	
 	}
 
-	public Vector<Object> select(Object o) {
-		return null;
-	}
-
 	public void update(Object o) {
 		try {
 			Administrativo a = (Administrativo)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".EmpleadoAdministrativo " +
-					"set documento = ?," +
 					"set nombre = ?," +
-					"set mail = ?," +
-					"set telefono = ?," +
-					"set domicilio = ?," +
-					"set escala_salarial = ?," +
-					"set sueldo =?)"
+					"mail = ?," +
+					"telefono = ?," +
+					"domicilio = ?," +
+					"escala_salarial = ?," +
+					"sueldo =?) where documento = ?"
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1 ,a.getDocumento());
-			s.setString(2, a.getNombre());
-			s.setString(3, a.getMail());
-			s.setString(4, a.getTelefono());
-			s.setString(5, a.getDomicilio());
-			s.setString(6, a.getEscalaSalarial());
-			s.setFloat(7, a.getSueldo());
+			s.setString(1, a.getNombre());
+			s.setString(2, a.getMail());
+			s.setString(3, a.getTelefono());
+			s.setString(4, a.getDomicilio());
+			s.setString(5, a.getEscalaSalarial());
+			s.setFloat(6, a.getSueldo());
+			s.setInt(7 ,a.getDocumento());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -120,7 +115,7 @@ public class EmpleadoAdminAbm extends EmpleadoAdminPersistence {
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
-			System.out.println();
+			System.out.println(e);
 		}
 		return null;
 	}

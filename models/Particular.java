@@ -38,7 +38,7 @@ public class Particular extends Profesor {
 	public void eliminarEmpleado() {
 		EmpleadoHorarioPartAbm.getInstancia().delete(this);
 	}
-	public void actualizarEmpleado() {
-		EmpleadoHorarioPartAbm.getInstancia().update(this);
+	public void actualizarEmpleado(String nombre, int documento, String mail, String telefono, String domicilio, String escalaSalarial, float valor) {
+		EmpleadoHorarioPartAbm.getInstancia().update(new Particular(nombre, documento, mail, telefono, domicilio, escalaSalarial, valor, documento));
 	}
 }
