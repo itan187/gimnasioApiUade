@@ -217,8 +217,8 @@ public class SocioAbm extends SocioPersistence {
 					}
 				}
 				//Abono ab = AbonoAbm.getInstancia().buscarAbono(abono);
-				
-				a = new Socio(doc, nombre, domicilio, telefono, email, null, null, null, estado);
+
+				a = new Socio(doc, nombre, domicilio, telefono, email, null, new Vector<Inscripcion>(	), new Vector<CertificadoMedico>(), estado);
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);

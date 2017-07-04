@@ -7,14 +7,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import app.Utiles;
-import models.Abono;
-import models.Actividad;
-import models.Corporativa;
-import models.Ingreso;
-import models.Inscripcion;
-import models.Liquidacion;
-import models.Normal;
-import models.Socio;
+import models.*;
 
 import persistence.AbonoAbm;
 import persistence.ActividadAbm;
@@ -192,8 +185,7 @@ public class SocioController {
 	public boolean habilitadoParaIngresar (int documento) {
 
 		Socio socio = buscarSocio(documento);
-		
-		if (socio != null) {
+		if (socio != null && socio.conAptoMedioAlDia() && socio.conAbonoAlDia()) {
 			Vector<Inscripcion> inscripciones = socio.getInscripciones();
 			
 			/**
@@ -208,9 +200,9 @@ public class SocioController {
 
 					for (Actividad a : actividades) {
 						/** Días que esta la clase **/
-						int horaInicioActividad;
+						int horaInicioActividad = -1;
 						
-						/*
+
 						Calendar c = Calendar.getInstance();
 						switch (c.get(Calendar.DAY_OF_WEEK)) {
 						   case Calendar.MONDAY:
@@ -240,16 +232,13 @@ public class SocioController {
 							return false;
 						} else {
 							DateFormat horaDelMomento = new SimpleDateFormat("HHmm");
-							
+							int horaDelMomentoInt = Integer.parseInt(horaDelMomento.toString());
+
 							int horaActAnt = horaInicioActividad - 15;
 							int horaActDesp = horaInicioActividad + 15;
 							
-							if ((horaActAnt < horaDelMomento) && (horaActDesp > horaDelMomento)) {
-								return true;
-							} else {
-								return false;
-							}
-						}*/
+							return ((horaActAnt < horaDelMomentoInt) && (horaActDesp > horaDelMomentoInt));
+						}
 					}
 				}
 			}
@@ -271,7 +260,7 @@ public class SocioController {
 	 * @param documento
 	 */
 	public void altaSocio (String nombre, String domicilio, String telefono, String email, int documento) {
-		Socio s = new Socio(documento, nombre, domicilio, telefono, email, null, null, null, true);
+		Socio s = new Socio(documento, nombre, domicilio, telefono, email, null, new Vector<Inscripcion>(), new Vector<CertificadoMedico>(), true);
 		s.insert();
 		socios.add(s);
 	}
