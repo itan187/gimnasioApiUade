@@ -438,8 +438,8 @@ public class SocioController {
 		Vector<Actividad> cl = Utiles.convertStringToClases(clases);
 		
 		Normal inscripcionNormal = new Normal(estado, numero, cl);
-		inscripcionNormal.insert();
 		inscripcionesNormales.add(inscripcionNormal);
+		inscripcionNormal.insert();
 	}
 
 	/**
