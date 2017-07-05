@@ -330,10 +330,11 @@ public class RrhhController {
 	 * @param anio
 	 * @param mes
 	 */
-	public void altaLiquidacion (int anio, int mes) {
+	public void altaLiquidacion (int numero, int anio, int mes) {
 		
-		Liquidacion liq = new Liquidacion(anio, mes);
+		Liquidacion liq = new Liquidacion(numero, anio, mes);
 		liquidaciones.add(liq);
+		liq.insert();
 		
 	}
 }

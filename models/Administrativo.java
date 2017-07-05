@@ -20,12 +20,10 @@ public class Administrativo extends Empleado {
 	/**
 	 * getCalcularSueldo
 	 * 
-	 * 
-	 * 
-	 * @return
+	 * @return float
 	 */
 	public float getCalcularSueldo () {
-		return 0;
+		return this.sueldo;
 	}
 	
 	public void insert() {

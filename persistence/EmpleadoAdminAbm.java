@@ -3,6 +3,7 @@ package persistence;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 import models.Administrativo;
 
@@ -90,6 +91,31 @@ public class EmpleadoAdminAbm extends EmpleadoAdminPersistence {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public Vector<Administrativo> select() {
+		Vector<Administrativo> admin = new Vector<Administrativo>();
+		try {
+			Connection con = PoolConnection.getPoolConnection().getConnection();
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".EmpleadoAdministrativo");
+			ResultSet result = s.executeQuery();
+			while (result.next()) {
+				int documento			= result.getInt(1);
+				String nombre 			= result.getString(2);
+				String mail				= result.getString(3);
+				String telefono			= result.getString(4);
+				String domicilio		= result.getString(5);
+				String escalaSalarial	= result.getString(6);
+				Float sueldo			= result.getFloat(7);
+				
+				admin.add(new Administrativo(nombre, documento, mail, telefono, domicilio, escalaSalarial, sueldo));
+			}
+			PoolConnection.getPoolConnection().realeaseConnection(con);
+			return admin;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public Administrativo buscarEmpleado (int documento) {

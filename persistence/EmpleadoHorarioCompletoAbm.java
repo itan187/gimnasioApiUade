@@ -119,5 +119,30 @@ public class EmpleadoHorarioCompletoAbm extends EmpleadoHorarioCompletoPersisten
 		}
 		return null;
 	}
+	
+	public Vector<HorarioCompleto> select() {
+		Vector<HorarioCompleto> full = new Vector<HorarioCompleto>();
+		try {
+			Connection con = PoolConnection.getPoolConnection().getConnection();
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".EmpleadoHorarioCompleto");
+			ResultSet result = s.executeQuery();
+			while (result.next()) {
+				int documento			= result.getInt(1);
+				String nombre 			= result.getString(2);
+				String mail				= result.getString(3);
+				String telefono			= result.getString(4);
+				String domicilio		= result.getString(5);
+				String escalaSalarial	= result.getString(6);
+				Float sueldo			= result.getFloat(7);
+				
+				full.add(new HorarioCompleto(nombre, documento, mail, telefono, domicilio, escalaSalarial, sueldo));
+			}
+			PoolConnection.getPoolConnection().realeaseConnection(con);
+			return full;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

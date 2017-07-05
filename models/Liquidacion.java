@@ -3,13 +3,21 @@ package models;
 import persistence.LiquidacionAbm;
 
 public class Liquidacion {
+	private int					numero;
 	private int 				anio;
 	private int 				mes;
 	
-	public Liquidacion(int anio, int mes) {
+	public Liquidacion(int numero, int anio, int mes) {
 		super();
+		this.setNumero(numero);
 		this.setAnio(anio);
 		this.setMes(mes);
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 	public int getAnio() {
 		return anio;
