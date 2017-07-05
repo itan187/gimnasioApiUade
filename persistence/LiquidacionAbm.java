@@ -43,28 +43,31 @@ public class LiquidacionAbm extends LiquidacionPersistence {
 			Vector<Administrativo> admin = EmpleadoAdminAbm.getInstancia().select();
 			
 			for (Administrativo ad : admin) {
-				PreparedStatement ss = con.prepareStatement("insert into " + PoolConnection.dbName + ".LiquidacionEmpleado values (?,?,?)");
-				ss.setInt(1, 		a.getNumero());
-				ss.setInt(2, 		ad.getDocumento());
-				ss.setFloat(3, 		ad.getCalcularSueldo());
+				PreparedStatement sad = con.prepareStatement("insert into " + PoolConnection.dbName + ".LiquidacionEmpleado values (?,?,?)");
+				sad.setInt(1, 		a.getNumero());
+				sad.setInt(2, 		ad.getDocumento());
+				sad.setFloat(3, 	ad.getCalcularSueldo());
+				sad.execute();
 			}
 			
 			Vector<HorarioCompleto> full = EmpleadoHorarioCompletoAbm.getInstancia().select();
 			
 			for (HorarioCompleto f : full) {
-				PreparedStatement ss = con.prepareStatement("insert into " + PoolConnection.dbName + ".LiquidacionEmpleado values (?,?,?)");
-				ss.setInt(1, 		a.getNumero());
-				ss.setInt(2, 		f.getDocumento());
-				ss.setFloat(3, 		f.getCalcularSueldo());
+				PreparedStatement sf = con.prepareStatement("insert into " + PoolConnection.dbName + ".LiquidacionEmpleado values (?,?,?)");
+				sf.setInt(1, 		a.getNumero());
+				sf.setInt(2, 		f.getDocumento());
+				sf.setFloat(3, 		f.getCalcularSueldo());
+				sf.execute();
 			}
 			
 			Vector<Particular> part = EmpleadoHorarioPartAbm.getInstancia().select();
 			
 			for (Particular p : part) {
-				PreparedStatement ss = con.prepareStatement("insert into " + PoolConnection.dbName + ".LiquidacionEmpleado values (?,?,?)");
-				ss.setInt(1, 		a.getNumero());
-				ss.setInt(2, 		p.getDocumento());
-				ss.setFloat(3, 		p.getCalcularSueldo());
+				PreparedStatement sp = con.prepareStatement("insert into " + PoolConnection.dbName + ".LiquidacionEmpleado values (?,?,?)");
+				sp.setInt(1, 		a.getNumero());
+				sp.setInt(2, 		p.getDocumento());
+				sp.setFloat(3, 		p.getCalcularSueldo());
+				sp.execute();
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
