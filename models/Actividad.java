@@ -10,13 +10,8 @@ public class Actividad {
 	private Vector<Profesor> 	profesores;
 	private String				description;
 	private int					duracion;
-	private int					lunes;
-	private int					martes;
-	private int					miercoles;
-	private int					jueves;
-	private int					viernes;
-	private int					sabado;
-	private int					domingo;
+	private int					dia;
+	private int					horaDeInicio;
 	
 	public Actividad(
 			int numeroActividad, 
@@ -32,32 +27,23 @@ public class Actividad {
 		this.setProfesores(profesores);
 		this.setDescription(descripcion);
 		this.setDuracion(duracion);
-		
-		switch (dia) {
-			case 1:
-				this.setLunes(horaDeInicio);
-				break;
-			case 2:
-				this.setMartes(horaDeInicio);
-				break;
-			case 3:
-				this.setMiercoles(horaDeInicio);
-				break;
-			case 4:
-				this.setJueves(horaDeInicio);
-				break;
-			case 5:
-				this.setViernes(horaDeInicio);
-				break;
-			case 6:
-				this.setSabado(horaDeInicio);
-				break;
-			case 7:
-				this.setDomingo(horaDeInicio);
-				break;
-		}
+		this.setDia(dia);
+		this.setHoraDeInicio(horaDeInicio);
 	}
 	
+	public int getDia() {
+		return dia;
+	}
+	public void setDia(int dia) {
+		this.dia = dia;
+	}
+	public int getHoraDeInicio() {
+		return horaDeInicio;
+	}
+	public void setHoraDeInicio(int horaDeInicio) {
+		this.horaDeInicio = horaDeInicio;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -76,48 +62,7 @@ public class Actividad {
 	public void setDeporte(Deporte deporte) {
 		this.deporte = deporte;
 	}
-	public int getLunes() {
-		return lunes;
-	}
-	public void setLunes(int lunes) {
-		this.lunes = lunes;
-	}
-	public int getMartes() {
-		return martes;
-	}
-	public void setMartes(int martes) {
-		this.martes = martes;
-	}
-	public int getMiercoles() {
-		return miercoles;
-	}
-	public void setMiercoles(int miercoles) {
-		this.miercoles = miercoles;
-	}
-	public int getJueves() {
-		return jueves;
-	}
-	public void setJueves(int jueves) {
-		this.jueves = jueves;
-	}
-	public int getViernes() {
-		return viernes;
-	}
-	public void setViernes(int viernes) {
-		this.viernes = viernes;
-	}
-	public int getSabado() {
-		return sabado;
-	}
-	public void setSabado(int sabado) {
-		this.sabado = sabado;
-	}
-	public int getDomingo() {
-		return domingo;
-	}
-	public void setDomingo(int domingo) {
-		this.domingo = domingo;
-	}
+	
 	public int getNumeroActividad() {
 		return numeroActividad;
 	}

@@ -3,6 +3,7 @@ package views;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.BitSet;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
@@ -98,7 +99,6 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 			}
 			{
 				listActividades = InscripcionNormalAbm.getInstancia().listado();
-				System.out.println(listActividades);
 				ComboBoxModel<String> listActModel = new DefaultComboBoxModel<String>(listActividades);
 				listAct = new JList<String>();
 				getContentPane().add(listAct);
@@ -121,9 +121,15 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 					public void actionPerformed(ActionEvent evt) 
 					{
 						String fEstado = (String)fieldEstado.getSelectedItem();
-						String act = listAct.getSelectedValue();
-						System.out.println(act);
-						int act2 = 0;//para que no pinche!
+						List<String> fActividad = listAct.getSelectedValuesList();
+						
+						Vector<Integer> idActividad = new Vector<Integer>();
+						
+						for (String f: fActividad) {
+							String[] division = f.split(" - ");
+							idActividad.add(Integer.parseInt(division[0]));
+						}
+						
 						if (fieldNumero.getText().equals("") || fEstado.equals("")) {
 							String mensajeError = "¡Atención! Faltan completar campos y por ello no se puede agregar la inscripción.";
 						    JOptionPane.showMessageDialog(null, mensajeError);
@@ -134,7 +140,7 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 							} else {
 								e = false;
 							}
-							sistema.altaInscripcionNormal(Integer.parseInt(fieldNumero.getText()), e, act2);
+							sistema.altaInscripcionNormal(Integer.parseInt(fieldNumero.getText()), e, idActividad);
 						}
 						setVisible(false);
 					}

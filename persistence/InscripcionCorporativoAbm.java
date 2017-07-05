@@ -54,10 +54,10 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 			/**
 			 * Guardando las clases de la inscripción
 			 */
-			for (int i = 0; i < a.getClases().size(); i++) {
+			for (int i = 0; i < a.getActividades().size(); i++) {
 				PreparedStatement x = con.prepareStatement("insert into " + PoolConnection.dbName + ".InscripcionActividades values (?,?)");
 				x.setInt(1, a.getNumero());
-				x.setInt(2, a.getClases().elementAt(i).getNumeroActividad());
+				x.setInt(2, a.getActividades().elementAt(i).getNumeroActividad());
 				x.execute();
 			}
 			

@@ -195,7 +195,7 @@ public class SocioController {
 				/** Si la inscripción esta activa **/
 
 				if (i.getEstado()) {
-					Vector<Actividad> actividades = i.getClases();
+					Vector<Actividad> actividades = i.getActividades();
 					/** Recorremos las clases de dicha inscripcion **/
 
 					for (Actividad a : actividades) {
@@ -204,6 +204,7 @@ public class SocioController {
 						
 
 						Calendar c = Calendar.getInstance();
+						/*
 						switch (c.get(Calendar.DAY_OF_WEEK)) {
 						   case Calendar.MONDAY:
 							   horaInicioActividad = a.getLunes();
@@ -226,7 +227,7 @@ public class SocioController {
 						   case Calendar.SUNDAY:
 							   horaInicioActividad = a.getDomingo();
 							   break;
-						}
+						}*/
 						
 						if (horaInicioActividad <= 0) {
 							return false;
@@ -400,15 +401,17 @@ public class SocioController {
 	 * @param estado
 	 * @param act
 	 */
-	public void altaInscripcionNormal(int numero, boolean estado, int act) {
+	public void altaInscripcionNormal(int numero, boolean estado, Vector<Integer> a) {
 		
-		Actividad actividad = ActividadAbm.getInstancia().buscarActividad(act);
-		//Normal n = new Normal(estado, numero, actividad);
-		//Vector<Actividad> cl = Utiles.convertStringToClases(act);
+		Vector<Actividad> actividadesDelSocio = new Vector<Actividad>();
+		for (int act: a) {
+			Actividad actividad = ActividadAbm.getInstancia().buscarActividad(act);
+			actividadesDelSocio.add(actividad);
+		}
 		
-		/*Normal inscripcionNormal = new Normal(estado, numero, cl);
-		inscripcionesNormales.add(inscripcionNormal);
-		inscripcionNormal.insert();*/
+		Normal n = new Normal(estado, numero, actividadesDelSocio);
+		inscripcionesNormales.add(n);
+		n.insert();
 	}
 
 	/**
@@ -468,9 +471,9 @@ public class SocioController {
 	 * @param estado
 	 * @param clases
 	 */
-	public void modificarInscripcionNormal(int numero, boolean estado, String clases) {
+	public void modificarInscripcionNormal(int numero, boolean estado, Vector<Actividad> act) {
 
-		Inscripcion inscripcion = buscarInscripcion (numero);
+		Normal inscripcion = InscripcionNormalAbm.getInstancia().buscarInscripcion(numero);
 		
 		if (inscripcion != null) {
 			/**
@@ -479,16 +482,14 @@ public class SocioController {
 			 */
 			for (Normal n : inscripcionesNormales) {
 				if (n.getNumero() == numero) {
-					Vector<Actividad> cl = Utiles.convertStringToClases(clases);
-					if (n.getEstado() != estado)		n.setEstado(estado);
-					if (n.getClases() != cl)			n.setClases(cl);
-					
-					/**
-					 * Actualizamos la inscripción normal
-					 */
-					n.actualizarInscripcion();
+					if (n.getEstado() != estado)			n.setEstado(estado);
+					if (n.getActividades() != act)			n.setActividades(act);
 				}
 			}
+			/**
+			 * Actualizamos la inscripción normal
+			 */
+			inscripcion.actualizarInscripcion(new Normal(estado, numero, act));
 		}
 	}
 	
@@ -517,10 +518,10 @@ public class SocioController {
 					
 					Vector<Actividad> cl = Utiles.convertStringToClases(clases);
 					
-					if (c.getEstado() != estado) 		c.setEstado(estado);
-					if (c.getClases() != cl) 			c.setClases(cl);
-					if (c.getEmpresa() != empresa)		c.setEmpresa(empresa);
-					if (c.getVigencia() != vigencia)	c.setVigencia(vigencia);
+					if (c.getEstado() != estado) 			c.setEstado(estado);
+					if (c.getActividades() != cl) 			c.setActividades(cl);
+					if (c.getEmpresa() != empresa)			c.setEmpresa(empresa);
+					if (c.getVigencia() != vigencia)		c.setVigencia(vigencia);
 					
 					/**
 					 * Actualizamos la inscripción corporativa

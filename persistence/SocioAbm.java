@@ -159,12 +159,12 @@ public class SocioAbm extends SocioPersistence {
 				si.setInt(1, documento);
 				ResultSet res = si.executeQuery();
 				
-				Vector<Inscripcion> inscripciones = null;
+				Vector<Inscripcion> inscripciones = new Vector<Inscripcion>();
 				
 				while (res.next()) {
 					int inscripcionNumero 	= res.getInt(2);
 					boolean inscripcionEstado;
-					Vector<Actividad> inscripcionClases;
+					Vector<Actividad> inscripcionClases = new Vector<Actividad>();
 					String inscripcionEmpresa;
 					Date inscripcionVigencia;
 					
@@ -173,14 +173,14 @@ public class SocioAbm extends SocioPersistence {
 					
 					if (i != null) {
 						inscripcionEstado = i.getEstado();
-						inscripcionClases = i.getClases();
+						inscripcionClases = i.getActividades();
 						
 						Normal inscripcion = new Normal(inscripcionEstado, inscripcionNumero, inscripcionClases);
 						inscripciones.add(inscripcion);
 						
 					} else if (in != null) {
 						inscripcionEstado = in.getEstado();
-						inscripcionClases = in.getClases();
+						inscripcionClases = in.getActividades();
 						inscripcionEmpresa = in.getEmpresa();
 						inscripcionVigencia = in.getVigencia();
 						
@@ -197,7 +197,7 @@ public class SocioAbm extends SocioPersistence {
 				sap.setInt(1, documento);
 				ResultSet resu = sap.executeQuery();
 				
-				Vector<CertificadoMedico> aptosMedicos = null;
+				Vector<CertificadoMedico> aptosMedicos = new Vector<CertificadoMedico>();
 				
 				while (resu.next()) {
 					int aptoNumero = resu.getInt(2);

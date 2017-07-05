@@ -15,7 +15,7 @@ public class Normal extends Inscripcion {
 	public void eliminarInscripcion() {
 		InscripcionNormalAbm.getInstancia().delete(this);
 	}
-	public void actualizarInscripcion() {
+	public void actualizarInscripcion(Normal o) {
 		InscripcionNormalAbm.getInstancia().update(this);
 	}
 

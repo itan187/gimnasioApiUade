@@ -77,11 +77,11 @@ public class InscripcionNormalModificar extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						sistema.modificarInscripcionNormal(
+						/*sistema.modificarInscripcionNormal(
 								Integer.parseInt(fieldNumeroBuscar.getText()), 
 								Boolean.parseBoolean(fieldEstado.getText()), 
 								fieldClases.getText()
-						);
+						);*/
 						setVisible(false);
 					}
 				});

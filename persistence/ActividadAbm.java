@@ -48,15 +48,11 @@ public class ActividadAbm extends ActividadPersistence {
 			 * Agregando los campos
 			 */
 			s.setInt(1, 	a.getNumeroActividad());
-			s.setInt(2, 	a.getDeporte().getCodigo());
-			s.setInt(3, 	a.getDuracion());
-			s.setInt(4, 	a.getLunes());
-			s.setInt(5, 	a.getMartes());
-			s.setInt(6, 	a.getMiercoles());
-			s.setInt(7, 	a.getJueves());
-			s.setInt(8, 	a.getViernes());
-			s.setInt(9, 	a.getSabado());
-			s.setInt(10, 	a.getDomingo());
+			s.setString(2, 	a.getDescription());
+			s.setInt(3, 	a.getDeporte().getCodigo());
+			s.setInt(4, 	a.getDuracion());
+			s.setInt(5, 	a.getDia());
+			s.setInt(6, 	a.getHoraDeInicio());
 			
 			s.execute();
 			
@@ -88,32 +84,22 @@ public class ActividadAbm extends ActividadPersistence {
 			Actividad a = (Actividad)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".Actividad " +
-					"set deporte = ?," +
-					"description = ?," +
+					"set description = ?," +
+					"deporte = ?," +
 					"duracion = ?," +
-					"lunes = ?," +
-					"martes = ?," +
-					"miercoles = ?," +
-					"jueves = ?," +
-					"viernes = ?," +
-					"sabado = ?," +
-					"domingo = ? where numeroActividad = ?"
+					"dia = ?," +
+					"horario = ? where numeroActividad = ?"
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1, 	a.getDeporte().getCodigo());
-			s.setString(2, 	a.getDescription());
+			s.setString(1, 	a.getDescription());
+			s.setInt(2, 	a.getDeporte().getCodigo());
 			s.setInt(3,		a.getDuracion());
-			s.setInt(4, 	a.getLunes());
-			s.setInt(5, 	a.getMartes());
-			s.setInt(6, 	a.getMiercoles());
-			s.setInt(7, 	a.getJueves());
-			s.setInt(8, 	a.getViernes());
-			s.setInt(9, 	a.getSabado());
-			s.setInt(10, 	a.getDomingo());
-			s.setInt(11, 	a.getNumeroActividad());
+			s.setInt(4, 	a.getDia());
+			s.setInt(5, 	a.getHoraDeInicio());
+			s.setInt(6, 	a.getNumeroActividad());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -130,23 +116,19 @@ public class ActividadAbm extends ActividadPersistence {
 			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Actividad where numeroActividad = ?");
 			s.setInt(1, numeroActividad);
 			ResultSet result = s.executeQuery();
+			
 			while (result.next()) {
-				int num 			= result.getInt(1);
-				int numeroDeporte	= result.getInt(2);
-				String descripcion	= result.getString(3);
-				int duracion		= result.getInt(4);
-				int lunes			= result.getInt(5);
-				int martes			= result.getInt(6);
-				int miercoles		= result.getInt(7);
-				int jueves			= result.getInt(8);
-				int viernes			= result.getInt(9);
-				int sabado			= result.getInt(10);
-				int domingo			= result.getInt(11);
 				
-				Vector<Profesor> profesores = null;
+				String descripcion	= result.getString(2);
+				int numeroDeporte	= result.getInt(3);
+				int duracion		= result.getInt(4);
+				int dia				= result.getInt(5);
+				int horarioInicio	= result.getInt(6);
+				
+				Vector<Profesor> profesores = new Vector<Profesor>();
 				
 				PreparedStatement sp = con.prepareStatement("select * from " + PoolConnection.dbName + ".ActividadProfesores where numeroActividad = ?");
-				s.setInt(1, numeroActividad);
+				sp.setInt(1, numeroActividad);
 				ResultSet res = sp.executeQuery();
 				
 				/**
@@ -156,8 +138,8 @@ public class ActividadAbm extends ActividadPersistence {
 				while (res.next()) {
 					int documento = res.getInt(2);
 					
-					HorarioCompleto c = EmpleadoHorarioCompletoAbm.getInstancia().buscarEmpleado(documento);
-					Particular p = EmpleadoHorarioPartAbm.getInstancia().buscarEmpleado(documento);
+					HorarioCompleto c 	= EmpleadoHorarioCompletoAbm.getInstancia().buscarEmpleado(documento);
+					Particular p 		= EmpleadoHorarioPartAbm.getInstancia().buscarEmpleado(documento);
 					
 					if (c != null) {
 						String nombre			= c.getNombre();
@@ -186,20 +168,15 @@ public class ActividadAbm extends ActividadPersistence {
 				
 				Deporte deporte = DeporteAbm.getInstancia().buscarDeporte(numeroDeporte);
 				
-				/*a = new Actividad(
-						num, 
+				a = new Actividad(
+						numeroActividad, 
 						deporte, 
 						profesores,
 						descripcion,
 						duracion,
-						lunes,
-						martes,
-						miercoles,
-						jueves,
-						viernes,
-						sabado,
-						domingo
-					);*/
+						dia,
+						horarioInicio
+					);
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);

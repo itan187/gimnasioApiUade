@@ -52,10 +52,10 @@ public class InscripcionNormalAbm extends InscripcionNormalPersistence {
 			/**
 			 * Guardando las clases de la inscripción
 			 */
-			for (int i = 0; i < a.getClases().size(); i++) {
+			for (int i = 0; i < a.getActividades().size(); i++) {
 				PreparedStatement x = con.prepareStatement("insert into " + PoolConnection.dbName + ".InscripcionActividades values (?,?)");
 				x.setInt(1, a.getNumero());
-				x.setInt(2, a.getClases().elementAt(i).getNumeroActividad());
+				x.setInt(2, a.getActividades().elementAt(i).getNumeroActividad());
 				x.execute();
 			}
 			
@@ -90,17 +90,16 @@ public class InscripcionNormalAbm extends InscripcionNormalPersistence {
 			Normal a = (Normal)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".InscripcionNormal " +
-					"set numero = ?," +
-					"set estado = ?)"
+					"set estado = ? where numero= ?"
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1, a.getNumero());
-			s.setBoolean(2,a.getEstado());
-			
+			s.setInt(1,		(a.getEstado())? 1 : 0);
+			s.setInt(2, 	a.getNumero());
 			s.execute();
+			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -112,28 +111,26 @@ public class InscripcionNormalAbm extends InscripcionNormalPersistence {
 		try {
 			Normal a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Inscripcion where numero = ?");
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".InscripcionNormal where numero = ?");
 			s.setInt(1, numero);
 			ResultSet result = s.executeQuery();
+			
 			while (result.next()) {
 				int num 		= result.getInt(1);
 				Boolean estado 	= result.getBoolean(2);
-				
-				Vector<Actividad> clases = null;
 
-				PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".InscripcionActividades where numero =" + numero);
+				PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".InscripcionActividades where numeroInscripcion =" + numero);
 				ResultSet res = x.executeQuery();
 				
 				/**
 				 * Obtenemos todas las actividades de la inscripción
 				 */
+				Vector<Actividad> actividades = new Vector<Actividad>();
 				while (res.next()) {
-					//int clase  = result.getInt(2);
-					
-					//clases = new Clase(numero, profesores, dias, horaInicio, horaFin)
+					actividades.add(ActividadAbm.getInstancia().buscarActividad(result.getInt(1)));
 				}
 				
-				a = new Normal(estado, num, clases);
+				a = new Normal(estado, num, actividades);
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);

@@ -3,15 +3,15 @@ package models;
 import java.util.Vector;
 
 public abstract class Inscripcion {
-	private boolean estado;
-	private int numero;
-	private Vector<Actividad> clases;
+	private boolean 			estado;
+	private int 				numero;
+	private Vector<Actividad> 	actividades;
 	
-	public Inscripcion(boolean estado, int numero, Vector<Actividad> clases) {
+	public Inscripcion(boolean estado, int numero, Vector<Actividad> actividades) {
 		super();
 		this.setEstado(estado);
 		this.setNumero(numero);
-		this.setClases(clases);
+		this.setActividades(actividades);
 	}
 	public boolean getEstado() {
 		return estado;
@@ -19,8 +19,8 @@ public abstract class Inscripcion {
 	public int getNumero() {
 		return numero;
 	}
-	public Vector<Actividad> getClases() {
-		return clases;
+	public Vector<Actividad> getActividades() {
+		return actividades;
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
@@ -28,8 +28,8 @@ public abstract class Inscripcion {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	public void setClases(Vector<Actividad> clases) {
-		this.clases = clases;
+	public void setActividades(Vector<Actividad> actividades) {
+		this.actividades = actividades;
 	}
 	
 	/**
