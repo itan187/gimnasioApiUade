@@ -22,7 +22,6 @@ import controllers.ActividadController;
 import persistence.DeporteAbm;
 import persistence.EmpleadoHorarioCompletoAbm;
 import persistence.EmpleadoHorarioPartAbm;
-import persistence.InscripcionNormalAbm;
 
 public class ActividadAlta extends javax.swing.JFrame {
 

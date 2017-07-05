@@ -281,9 +281,9 @@ public class Main extends JFrame {
 				jMenuActividadBaja.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-						/*ActividadBaja bajaDeActividad = new ActividadBaja(actividadController);
+						ActividadBaja bajaDeActividad = new ActividadBaja(actividadController);
 						bajaDeActividad.setVisible(true);
-						toFront();*/
+						toFront();
 					}
 				});
 				/**

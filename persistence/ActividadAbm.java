@@ -28,7 +28,11 @@ public class ActividadAbm extends ActividadPersistence {
 		try {
 			Actividad a = (Actividad)d;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".Actividad where numeroClase = ?");
+			PreparedStatement ss = con.prepareStatement("delete from " + PoolConnection.dbName + ".ActividadProfesores where numeroActividad = ?");
+			ss.setInt(1, a.getNumeroActividad());
+			ss.execute();
+			
+			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".Actividad where numeroActividad = ?");
 			s.setInt(1, a.getNumeroActividad());
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);

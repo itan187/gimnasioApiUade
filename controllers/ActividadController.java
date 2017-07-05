@@ -177,5 +177,13 @@ public class ActividadController {
 		this.actividades.add(a);
 		a.insert();
 	}
+	
+	public void bajaActividad (int numero) {
+		Actividad actividad = buscarActividad(numero);
+		if (actividad != null) {
+			actividades.remove(actividad);
+			actividad.eliminarActividad();
+		}		
+	}
 
 }
