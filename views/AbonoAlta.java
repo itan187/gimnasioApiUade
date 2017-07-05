@@ -3,11 +3,6 @@ package views;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,7 +24,6 @@ public class AbonoAlta extends javax.swing.JFrame {
 	private JTextField fieldNombre;
 	private JTextField fieldPrecio;
 	private JTextField fieldVigencia;
-	//private JFormattedTextField fieldVigencia;
 	
 	private JButton buttonAceptar;
 	

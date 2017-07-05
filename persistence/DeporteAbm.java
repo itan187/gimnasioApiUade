@@ -3,6 +3,7 @@ package persistence;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 import models.Deporte;
 
@@ -92,6 +93,25 @@ public class DeporteAbm extends DeportePersistence {
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Vector<String> listado() {
+		try {
+			Connection con = PoolConnection.getPoolConnection().getConnection();
+			PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".Deporte");
+			ResultSet res = x.executeQuery();
+			
+			Vector<String> listado = new Vector<String>();
+			while (res.next()) {
+				listado.add(res.getInt(1) + " - " + res.getString(2));
+			}
+			
+			PoolConnection.getPoolConnection().realeaseConnection(con);
+			return listado;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

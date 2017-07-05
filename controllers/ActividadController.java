@@ -2,9 +2,13 @@ package controllers;
 
 import java.util.Vector;
 
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
 import models.Actividad;
 import models.Cronograma;
 import models.Deporte;
+import models.Profesor;
 import persistence.ActividadAbm;
 import persistence.DeporteAbm;
 
@@ -134,6 +138,33 @@ public class ActividadController {
 			 */
 			deporte.actualizarDeporte(codigo, titulo, descripcion);
 		}
+	}
+	
+	/**
+	 * Alta Actividad
+	 * 
+	 * Para crear una nueva actividad, recibimos un número,
+	 * un descripción, deporte, duración, hora de inicio y día.
+	 * 
+	 * Una vez creado lo incorporamos a la colección.
+	 * 
+	 */
+	public void altaActividad (int numero, String descripcion, int deporte, int duracion, int dia, int horaDeInicio) {
+	
+		Vector<Profesor> profesores = new Vector<Profesor>();
+		
+		Actividad a = new Actividad(
+				numero, 
+				buscarDeporte(deporte), 
+				profesores, 
+				descripcion, 
+				duracion, 
+				dia, 
+				horaDeInicio
+			);
+
+		actividades.add(a);
+		a.insert();
 	}
 
 }

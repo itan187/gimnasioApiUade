@@ -41,21 +41,22 @@ public class ActividadAbm extends ActividadPersistence {
 	public void insert(Object o) {
 		try {
 			Actividad a = (Actividad)o;
+			System.out.println(a);
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("insert into "+ PoolConnection.dbName + ".Actividad values (?,?,?)");
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1, a.getNumeroActividad());
-			s.setInt(2, a.getDeporte().getCodigo());
-			s.setInt(3, a.getDuracion());
-			s.setInt(4, a.getLunes());
-			s.setInt(5, a.getMartes());
-			s.setInt(6, a.getMiercoles());
-			s.setInt(7, a.getJueves());
-			s.setInt(8, a.getViernes());
-			s.setInt(9, a.getSabado());
-			s.setInt(10, a.getDomingo());
+			s.setInt(1, 	a.getNumeroActividad());
+			s.setInt(2, 	a.getDeporte().getCodigo());
+			s.setInt(3, 	a.getDuracion());
+			s.setInt(4, 	a.getLunes());
+			s.setInt(5, 	a.getMartes());
+			s.setInt(6, 	a.getMiercoles());
+			s.setInt(7, 	a.getJueves());
+			s.setInt(8, 	a.getViernes());
+			s.setInt(9, 	a.getSabado());
+			s.setInt(10, 	a.getDomingo());
 			
 			s.execute();
 			
@@ -185,7 +186,7 @@ public class ActividadAbm extends ActividadPersistence {
 				
 				Deporte deporte = DeporteAbm.getInstancia().buscarDeporte(numeroDeporte);
 				
-				a = new Actividad(
+				/*a = new Actividad(
 						num, 
 						deporte, 
 						profesores,
@@ -198,7 +199,7 @@ public class ActividadAbm extends ActividadPersistence {
 						viernes,
 						sabado,
 						domingo
-					);
+					);*/
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
