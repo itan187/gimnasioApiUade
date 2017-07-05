@@ -2,12 +2,11 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -24,7 +23,7 @@ public class LiquidacionAlta extends javax.swing.JFrame {
 	
 	private JTextField fieldNumero;
 	private JTextField fieldAnio;
-	private JTextField fieldMes;
+	private JComboBox<String> fieldMes;
 	
 	private JButton buttonAceptar;
 	
@@ -63,7 +62,7 @@ public class LiquidacionAlta extends javax.swing.JFrame {
 				jLabelMes = new JLabel();
 				getContentPane().add(jLabelMes);
 				jLabelMes.setText("Mes:");
-				jLabelMes.setBounds(21, 102, 180, 28);
+				jLabelMes.setBounds(21, 122, 180, 28);
 				jLabelMes.setVisible(true);
 			}
 			
@@ -83,11 +82,12 @@ public class LiquidacionAlta extends javax.swing.JFrame {
 				fieldAnio.setVisible(true);
 			}
 			{
-				fieldMes = new JTextField();
+				ComboBoxModel<String> mesesModel = new DefaultComboBoxModel<String>(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"});
+				fieldMes = new JComboBox<String>();
 				getContentPane().add(fieldMes);
-				fieldMes.setBounds(200, 102, 120, 28);
+				fieldMes.setModel(mesesModel);
+				fieldMes.setBounds(200, 122, 120, 28);
 			}
-			
 			{
 				buttonAceptar = new JButton();
 				getContentPane().add(buttonAceptar);
@@ -98,12 +98,14 @@ public class LiquidacionAlta extends javax.swing.JFrame {
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
-						if (fieldNumero.getText().equals("") || fieldAnio.getText().equals("") || fieldMes.getText().equals("")) {
+						int mes = fieldMes.getSelectedIndex();
+						mes++;
+						if (fieldNumero.getText().equals("") || fieldAnio.getText().equals("")) {
 							String mensajeError = "¡Atención! Faltan completar campos y por ello no se puede agregar el abono.";
 						    JOptionPane.showMessageDialog(null, mensajeError);
 						} else {
-							if (!sistema.existeLiquidacion(Integer.parseInt(fieldAnio.getText()), Integer.parseInt(fieldMes.getText()))) {
-								sistema.altaLiquidacion(Integer.parseInt(fieldNumero.getText()), Integer.parseInt(fieldAnio.getText()), Integer.parseInt(fieldMes.getText()));
+							if (!sistema.existeLiquidacion(Integer.parseInt(fieldAnio.getText()), mes)) {
+								sistema.altaLiquidacion(Integer.parseInt(fieldNumero.getText()), Integer.parseInt(fieldAnio.getText()), mes);
 							} else {
 								String mensajeError = "¡Atención! La liquidación que usted quiere efectuar ya existe actualmente";
 							    JOptionPane.showMessageDialog(null, mensajeError);

@@ -8,7 +8,6 @@
  * 			Sabrina Cannuli,
  * 			Martin Carrera, 
  * 			Barbara Zapatero,
- * 			Yesica Moran
  * 
  ****************************************************/
 package app;
@@ -20,7 +19,6 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
 import controllers.*;
-import models.Liquidacion;
 import views.*;
 
 public class Main extends JFrame {
@@ -62,7 +60,6 @@ public class Main extends JFrame {
 	private JMenuItem jMenuInscripcionNormalModificar;
 	private JMenuItem jMenuInscripcionCorpoAlta;
 	private JMenuItem jMenuInscripcionCorpoModificar;
-	
 	
 	private JMenu jMenuLiquidacion;
 	
@@ -554,16 +551,21 @@ public class Main extends JFrame {
 				 * 						LIQUIDACION
 				 **************************************************************/
 				jMenuLiquidacion = new JMenu();
-				jMenuLiquidacion.add(jMenuLiquidacion);
+				jMenuBar.add(jMenuLiquidacion);
 				jMenuLiquidacion.setText("Liquidación");
-				jMenuLiquidacion.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) 
-					{
+				jMenuLiquidacion.setVisible(true);
+				jMenuLiquidacion.addMenuListener(new MenuListener() {
+					public void menuSelected(MenuEvent evt) {
 						LiquidacionAlta efectuarLiquidacion = new LiquidacionAlta(rrhhController);
 						efectuarLiquidacion.setVisible(true);
 						toFront();
 					}
+					public void menuDeselected(MenuEvent evt) {
+					}
+					public void menuCanceled(MenuEvent evt) {
+					}
 				});
+				
 				
 				/**************************************************************
 				 * 						SALIR
@@ -577,15 +579,13 @@ public class Main extends JFrame {
 						System.exit(0);
 					}
 					public void menuDeselected(MenuEvent evt) {
-							
 					}
 					public void menuCanceled(MenuEvent evt) {
-							
-						}
-					});
+					}
+				});
 				
 			pack();
-			setSize(600, 300);
+			setSize(800, 300);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

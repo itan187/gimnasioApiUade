@@ -331,7 +331,6 @@ public class RrhhController {
 	 * @param mes
 	 */
 	public void altaLiquidacion (int numero, int anio, int mes) {
-		
 		Liquidacion liq = new Liquidacion(numero, anio, mes);
 		liquidaciones.add(liq);
 		liq.insert();
