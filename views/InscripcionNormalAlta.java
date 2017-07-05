@@ -104,7 +104,7 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 				getContentPane().add(listAct);
 				listAct.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION );
 				scrollLista = new JScrollPane();
-				scrollLista.setBounds(200, 120,220, 80);
+				scrollLista.setBounds(200, 120, 220, 80);
 				scrollLista.setViewportView(listAct);
 				getContentPane().add(scrollLista);
 				listAct.setModel(listActModel);
@@ -121,10 +121,9 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 					public void actionPerformed(ActionEvent evt) 
 					{
 						String fEstado = (String)fieldEstado.getSelectedItem();
+						
 						List<String> fActividad = listAct.getSelectedValuesList();
-						
 						Vector<Integer> idActividad = new Vector<Integer>();
-						
 						for (String f: fActividad) {
 							String[] division = f.split(" - ");
 							idActividad.add(Integer.parseInt(division[0]));

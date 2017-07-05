@@ -41,9 +41,8 @@ public class ActividadAbm extends ActividadPersistence {
 	public void insert(Object o) {
 		try {
 			Actividad a = (Actividad)o;
-			System.out.println(a);
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("insert into "+ PoolConnection.dbName + ".Actividad values (?,?,?)");
+			PreparedStatement s = con.prepareStatement("insert into "+ PoolConnection.dbName + ".Actividad values (?,?,?,?,?,?)");
 			/**
 			 * Agregando los campos
 			 */
@@ -53,14 +52,12 @@ public class ActividadAbm extends ActividadPersistence {
 			s.setInt(4, 	a.getDuracion());
 			s.setInt(5, 	a.getDia());
 			s.setInt(6, 	a.getHoraDeInicio());
-			
 			s.execute();
-			
 			/**
-			 * Guardando la vinculación entre la clase y los profesores
+			 * Guardando la vinculación entre la actividad y los profesores
 			 */
 			for (Profesor p: a.getProfesores()) {
-				PreparedStatement sp = con.prepareStatement("insert into "+ PoolConnection.dbName + ".ActividadProfesor values (?,?)");
+				PreparedStatement sp = con.prepareStatement("insert into "+ PoolConnection.dbName + ".ActividadProfesores values (?,?)");
 				sp.setInt(1, a.getNumeroActividad());
 				sp.setInt(2, p.getDocumento());
 				sp.execute();
@@ -72,7 +69,6 @@ public class ActividadAbm extends ActividadPersistence {
 		{
 			e.printStackTrace();
 		}
-	
 	}
 
 	public Vector<Object> select(Object o) {

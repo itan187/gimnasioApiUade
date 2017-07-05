@@ -111,7 +111,6 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 				
 				a = new Particular(nombre, doc, mail, telefono, domicilio, escala, valor_hora, horas);
 			}
-			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
 		} catch (Exception e) {
@@ -139,6 +138,25 @@ public class EmpleadoHorarioPartAbm extends EmpleadoHorarioPartPersistence {
 			}
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return part;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Vector<String> listado() {
+		try {
+			Connection con = PoolConnection.getPoolConnection().getConnection();
+			PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".EmpleadoHorarioPartTime");
+			ResultSet res = x.executeQuery();
+			
+			Vector<String> listado = new Vector<String>();
+			while (res.next()) {
+				listado.add(res.getInt(1) + " - " + res.getString(2));
+			}
+			
+			PoolConnection.getPoolConnection().realeaseConnection(con);
+			return listado;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -8,9 +8,13 @@ import javax.swing.JTextField;
 import models.Actividad;
 import models.Cronograma;
 import models.Deporte;
+import models.HorarioCompleto;
+import models.Particular;
 import models.Profesor;
 import persistence.ActividadAbm;
 import persistence.DeporteAbm;
+import persistence.EmpleadoHorarioCompletoAbm;
+import persistence.EmpleadoHorarioPartAbm;
 
 public class ActividadController {
 	public Vector<Deporte> 			deportes;
@@ -144,15 +148,23 @@ public class ActividadController {
 	 * Alta Actividad
 	 * 
 	 * Para crear una nueva actividad, recibimos un número,
-	 * un descripción, deporte, duración, hora de inicio y día.
+	 * un descripción, deporte, id de profesores, duración, hora de inicio y día.
 	 * 
 	 * Una vez creado lo incorporamos a la colección.
 	 * 
 	 */
-	public void altaActividad (int numero, String descripcion, int deporte, int duracion, int dia, int horaDeInicio) {
+	public void altaActividad (int numero, String descripcion, int deporte, Vector<Integer> prof, int duracion, int dia, int horaDeInicio) {
 	
 		Vector<Profesor> profesores = new Vector<Profesor>();
-		
+	
+		for (int p: prof) {
+			HorarioCompleto profFull = EmpleadoHorarioCompletoAbm.getInstancia().buscarEmpleado(p);
+			if (profFull != null) profesores.add(profFull);
+			
+			Particular profPart = EmpleadoHorarioPartAbm.getInstancia().buscarEmpleado(p);
+			
+			if (profPart != null) profesores.add(profPart);
+		}
 		Actividad a = new Actividad(
 				numero, 
 				buscarDeporte(deporte), 

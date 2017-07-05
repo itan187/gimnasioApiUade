@@ -43,7 +43,6 @@ public class Actividad {
 	public void setHoraDeInicio(int horaDeInicio) {
 		this.horaDeInicio = horaDeInicio;
 	}
-
 	public String getDescription() {
 		return description;
 	}
