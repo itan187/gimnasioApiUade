@@ -121,8 +121,9 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 					public void actionPerformed(ActionEvent evt) 
 					{
 						String fEstado = (String)fieldEstado.getSelectedItem();
-						String act= listAct.getSelectedValue();
-						int act2=0;//para que no pinche!
+						String act = listAct.getSelectedValue();
+						System.out.println(act);
+						int act2 = 0;//para que no pinche!
 						if (fieldNumero.getText().equals("") || fEstado.equals("")) {
 							String mensajeError = "¡Atención! Faltan completar campos y por ello no se puede agregar la inscripción.";
 						    JOptionPane.showMessageDialog(null, mensajeError);
