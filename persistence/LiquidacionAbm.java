@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import models.Administrativo;
-import models.Empleado;
 import models.HorarioCompleto;
 import models.Liquidacion;
 import models.Particular;
@@ -52,11 +51,20 @@ public class LiquidacionAbm extends LiquidacionPersistence {
 			
 			Vector<HorarioCompleto> full = EmpleadoHorarioCompletoAbm.getInstancia().select();
 			
-			for (Administrativo ad : admin) {
+			for (HorarioCompleto f : full) {
 				PreparedStatement ss = con.prepareStatement("insert into " + PoolConnection.dbName + ".LiquidacionEmpleado values (?,?,?)");
 				ss.setInt(1, 		a.getNumero());
-				ss.setInt(2, 		ad.getDocumento());
-				ss.setFloat(3, 		ad.getCalcularSueldo());
+				ss.setInt(2, 		f.getDocumento());
+				ss.setFloat(3, 		f.getCalcularSueldo());
+			}
+			
+			Vector<Particular> part = EmpleadoHorarioPartAbm.getInstancia().select();
+			
+			for (Particular p : part) {
+				PreparedStatement ss = con.prepareStatement("insert into " + PoolConnection.dbName + ".LiquidacionEmpleado values (?,?,?)");
+				ss.setInt(1, 		a.getNumero());
+				ss.setInt(2, 		p.getDocumento());
+				ss.setFloat(3, 		p.getCalcularSueldo());
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);

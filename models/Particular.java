@@ -27,11 +27,10 @@ public class Particular extends Profesor {
 	/**
 	 * getCalcularSueldo
 	 * 
-	 * 
-	 * @return
+	 * @return float
 	 */
 	public float getCalcularSueldo () {
-		return 0;
+		return this.valorHora * this.horas;
 	}
 	
 	public void insert() {
