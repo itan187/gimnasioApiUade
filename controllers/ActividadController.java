@@ -18,7 +18,7 @@ import persistence.EmpleadoHorarioPartAbm;
 
 public class ActividadController {
 	public Vector<Deporte> 			deportes;
-	public static Vector<Actividad> actividades;
+	public Vector<Actividad> 		actividades;
 	public Vector<Cronograma> 		cronogramas;
 	
 	private static ActividadController instancia;
@@ -68,7 +68,7 @@ public class ActividadController {
 	 * @param numero
 	 * @return Actividad
 	 */
-	public static Actividad buscarActividad(int numero) {
+	public Actividad buscarActividad(int numero) {
 		
 		for (Actividad c : actividades) {
 			if (c.esClase(numero)) {
@@ -174,7 +174,7 @@ public class ActividadController {
 				horaDeInicio
 			);
 
-		actividades.add(a);
+		this.actividades.add(a);
 		a.insert();
 	}
 

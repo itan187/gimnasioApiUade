@@ -41,35 +41,4 @@ public class Utiles {
         return day;
     }
     
-    /**
-	 * Convertir String a Vector<Clase>
-	 * 
-	 * Convertimos un string de números separados por coma
-	 * a un Vector del tipo Clase
-	 * 
-	 * @param clases
-	 * @return Vector<Clase>
-	 */
-	public static Vector<Actividad> convertStringToClases (String clases) {
-		/**
-		 * Generamos un vector donde vamos alojar las clases del socio
-		 */
-		Vector<Actividad> cl = new Vector<>();
-		
-		/**
-		 * Separamos los números de las clases del socio, y luego
-		 * recorremos el vector para ir buscando la Clase para almacenarla
-		 * en un vector del tipo Clase
-		 */
-		String[] split = clases.split(", ");
-		
-		for (int i = 0; i < split.length; i++) {
-			Actividad clase = ActividadController.buscarActividad(Integer.parseInt(split[i]));
-			if (clase != null) {
-				cl.add(clase);
-			}
-		}
-		
-		return cl;
-	}
 }

@@ -430,11 +430,11 @@ public class SocioController {
 	 */
 	public void altaInscripcionCorpo (int numero, boolean estado, String clases, String empresa, Date vigencia) {
 		
-		Vector<Actividad> cl = Utiles.convertStringToClases(clases);
+		/*Vector<Actividad> cl = Utiles.convertStringToClases(clases);
 		
 		Corporativa inscripcionCorpo = new Corporativa(estado, numero, cl, empresa, vigencia);
 		inscripcionCorpo.insert();
-		inscripcionesCorpo.add(inscripcionCorpo);
+		inscripcionesCorpo.add(inscripcionCorpo);*/
 	}
 
 	/**
@@ -506,13 +506,14 @@ public class SocioController {
 	 */
 	public void modificarInscripcionCorporativo (int numero, boolean estado, String clases, String empresa, Date vigencia) {
 
-		Inscripcion inscripcion = buscarInscripcion (numero);
+		/*Inscripcion inscripcion = buscarInscripcion (numero);
 		
 		if (inscripcion != null) {
 			/**
 			 * Recorremos todos los abonos a fin de actualizar los datos
 			 * del mismo
 			 */
+			/*
 			for (Corporativa c : inscripcionesCorpo) {
 				if (c.getNumero() == numero) {
 					
@@ -523,12 +524,9 @@ public class SocioController {
 					if (c.getEmpresa() != empresa)			c.setEmpresa(empresa);
 					if (c.getVigencia() != vigencia)		c.setVigencia(vigencia);
 					
-					/**
-					 * Actualizamos la inscripción corporativa
-					 */
 					c.actualizarInscripcion();
 				}
 			}
-		}
+		}*/
 	}
 }
