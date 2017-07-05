@@ -1,18 +1,15 @@
 package models;
 
-import java.util.Date;
-import java.util.Vector;
+import persistence.LiquidacionAbm;
 
 public class Liquidacion {
 	private int 				anio;
 	private int 				mes;
-	private Vector<Empleado> 	empleados;
 	
-	public Liquidacion(int anio, int mes, Vector<Empleado> empleados) {
+	public Liquidacion(int anio, int mes) {
 		super();
 		this.setAnio(anio);
 		this.setMes(mes);
-		this.setEmpleados(empleados);
 	}
 	public int getAnio() {
 		return anio;
@@ -26,12 +23,6 @@ public class Liquidacion {
 	public void setMes(int mes) {
 		this.mes = mes;
 	}
-	public Vector<Empleado> getEmpleados() {
-		return empleados;
-	}
-	public void setEmpleados(Vector<Empleado> empleados) {
-		this.empleados = empleados;
-	}
 	
 	/**
 	 * Es Liquidacion
@@ -44,4 +35,7 @@ public class Liquidacion {
 		return (this.anio == anio && this.mes == mes);
 	}
 	
+  public void insert() {
+		LiquidacionAbm.getInstancia().insert(this);
+    }
 }

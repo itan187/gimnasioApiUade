@@ -56,47 +56,23 @@ public class LiquidacionAbm extends LiquidacionPersistence {
 		}
 	}
 	
-	public Liquidacion buscarLiquidacion (int anio, int mes) {
+	public boolean existeLiquidacion (int anio, int mes) {
 		try {
-			Liquidacion a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Liquidacion where anio = ? and mes = ?");
-			s.setInt(2, anio);
-			s.setInt(3, mes);
+			s.setInt(1, anio);
+			s.setInt(2, mes);
 			ResultSet result = s.executeQuery();
 			
-			Vector<Empleado> empleados = new Vector<Empleado>();
-			
 			while (result.next()) {
-				int num = result.getInt(1);
-				
-				/**
-				 * Buscar todas las liquidaciones de los empleados
-				 * a = new Liquidacion();
-				 */
-				
-				PreparedStatement ss = con.prepareStatement("select * from " + PoolConnection.dbName + ".LiquidacionEmpleado where numLiquidacion = ?");
-				s.setInt(1, num);
-				ResultSet res = ss.executeQuery();
-				
-				while (res.next()) {
-					Administrativo admin = EmpleadoAdminAbm.getInstancia().buscarEmpleado(res.getInt(2));
-					if (admin != null) empleados.add(admin);
-					
-					HorarioCompleto fulltime = EmpleadoHorarioCompletoAbm.getInstancia().buscarEmpleado(res.getInt(2));
-					if (fulltime != null) empleados.add(fulltime);
-					
-					Particular parttime = EmpleadoHorarioPartAbm.getInstancia().buscarEmpleado(res.getInt(2));
-					if (parttime != null) empleados.add(parttime);
-				}
+				return true;
 			}
-			a = new Liquidacion(anio, mes, empleados);
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
-			return a;
+			return false;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return false;
 	}
 }

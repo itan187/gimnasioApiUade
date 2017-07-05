@@ -87,7 +87,7 @@ public class LiquidacionAlta extends javax.swing.JFrame {
 							String mensajeError = "¡Atención! Faltan completar campos y por ello no se puede agregar el abono.";
 						    JOptionPane.showMessageDialog(null, mensajeError);
 						} else {
-							if (sistema.buscarLiquidacion(Integer.parseInt(fieldAnio.getText()), Integer.parseInt(fieldMes.getText())) == null) {
+							if (!sistema.existeLiquidacion(Integer.parseInt(fieldAnio.getText()), Integer.parseInt(fieldMes.getText()))) {
 								//sistema.altaLiquidacion();
 							}
 							//sistema.altaAbono(Integer.parseInt(fieldCodigo.getText()), fieldNombre.getText(), Float.parseFloat(fieldPrecio.getText()), df.parse(fieldVigencia.getText()));

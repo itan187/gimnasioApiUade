@@ -122,7 +122,7 @@ public class Main extends JFrame {
 					public void actionPerformed(ActionEvent evt)
 					{
 						if (socioController != null) {
-							SocioIngreso ingresoDeSocio= new SocioIngreso(socioController);
+							SocioIngreso ingresoDeSocio = new SocioIngreso(socioController);
 							ingresoDeSocio.setVisible(true);
 							toFront();
 						}

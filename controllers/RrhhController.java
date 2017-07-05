@@ -308,7 +308,7 @@ public class RrhhController {
 	}
 	
 	/**
-	 * Buscar Liquidacion
+	 * Existe Liquidacion
 	 * 
 	 * Buscamos la liquidacion a través del ano y mes.
 	 * Si la búsqueda me devuelve null significa que no existe liquidacion
@@ -316,21 +316,23 @@ public class RrhhController {
 	 * 
 	 * @param anio
 	 * @param mes
-	 * @return Liquidacion
+	 * @return boolean
 	 */
-	public Liquidacion buscarLiquidacion (int anio, int mes) {
+	public boolean existeLiquidacion (int anio, int mes) {
 		for (Liquidacion liq : liquidaciones) {
-			if (liq.esLiquidacion(anio, mes)) return liq;
+			if (liq.esLiquidacion(anio, mes)) return true;
 		}
-		Liquidacion liq = LiquidacionAbm.getInstancia().buscarLiquidacion(anio, mes);
-		if (liq != null) return liq;
-
-		return null;
+		return LiquidacionAbm.getInstancia().existeLiquidacion(anio, mes);
 	}
 	
+	/**
+	 * 
+	 * @param anio
+	 * @param mes
+	 */
 	public void altaLiquidacion (int anio, int mes) {
 		
-		Liquidacion liq = new Liquidacion(anio, mes, null);
+		Liquidacion liq = new Liquidacion(anio, mes);
 		liquidaciones.add(liq);
 		
 	}
