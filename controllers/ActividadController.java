@@ -162,7 +162,6 @@ public class ActividadController {
 			if (profFull != null) profesores.add(profFull);
 			
 			Particular profPart = EmpleadoHorarioPartAbm.getInstancia().buscarEmpleado(p);
-			
 			if (profPart != null) profesores.add(profPart);
 		}
 		Actividad a = new Actividad(
