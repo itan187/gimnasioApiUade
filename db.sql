@@ -91,14 +91,9 @@ CREATE TABLE Actividad (
 	numeroDeporte INTEGER,
 	descripcion VARCHAR(100),
 	duracion INTEGER,
-	lunes INTEGER,
-	martes INTEGER,
-	miercoles INTEGER,
-	jueves INTEGER,
-	viernes INTEGER,
-	sabado INTEGER,
-	domingo INTEGER,
-
+	dia INTEGER,
+	horario INTEGER,
+	horario int(4)
 	CONSTRAINT fk_numeroDeporte FOREIGN KEY (numeroDeporte) REFERENCES Deporte(codigo)
 );
 
