@@ -38,6 +38,11 @@ public class Main extends JFrame {
 	private JMenuItem jMenuDeporteBaja;
 	private JMenuItem jMenuDeporteModificar;
 	
+	private JMenu jMenuActividades;
+	private JMenuItem jMenuActividadAlta;
+	private JMenuItem jMenuActividadBaja;
+	private JMenuItem jMenuActividadModificar;
+	
 	private JMenu jMenuEmpleados;
 	private JMenuItem jMenuEmpleadoAdmAlta;
 	private JMenuItem jMenuEmpleadoProfCompletoAlta;
@@ -231,6 +236,68 @@ public class Main extends JFrame {
 						DeporteModificar modificarDeporte = new DeporteModificar(actividadController);
 						modificarDeporte.setVisible(true);
 						toFront();
+					}
+				});
+				
+				/**************************************************************
+				 * 						ACTIVIDADES
+				 * 1) Alta
+				 * 2) Baja
+				 * 3) Modificar
+				 **************************************************************/
+				jMenuActividades = new JMenu();
+				jMenuBar.add(jMenuActividades);
+				jMenuActividades.setText("Actividades");
+				jMenuActividades.setPreferredSize(new java.awt.Dimension(90, 21));
+				jMenuActividades.setVisible(true);
+				jMenuActividades.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+						{
+						}
+					});
+				/**
+				 * 1) Alta de actividad
+				 **/
+				jMenuActividadAlta = new JMenuItem();
+				jMenuActividades.add(jMenuActividadAlta);
+				jMenuActividadAlta.setText("Alta");
+				jMenuActividadAlta.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						if (actividadController != null) {
+							ActividadAlta altaDeActividad = new ActividadAlta(actividadController);
+							altaDeActividad.setVisible(true);
+							toFront();
+						}
+					}
+				});
+				
+				/**
+				 * 2) Baja de actividad
+				 */
+				jMenuActividadBaja = new JMenuItem();
+				jMenuActividades.add(jMenuActividadBaja);
+				jMenuActividadBaja.setText("Baja");
+				jMenuActividadBaja.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						/*ActividadBaja bajaDeActividad = new ActividadBaja(actividadController);
+						bajaDeActividad.setVisible(true);
+						toFront();*/
+					}
+				});
+				/**
+				 * 2) Modificar actividad
+				 */
+				jMenuActividadModificar = new JMenuItem();
+				jMenuActividades.add(jMenuActividadModificar);
+				jMenuActividadModificar.setText("Modificar");
+				jMenuActividadModificar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						/*ActividadModificar modificarActividad = new ActividadModificar(actividadController);
+						modificarActividad.setVisible(true);
+						toFront();*/
 					}
 				});
 				

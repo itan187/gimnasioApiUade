@@ -1,8 +1,5 @@
 package models;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Vector;
 
 import persistence.ActividadAbm;
@@ -27,44 +24,52 @@ public class Actividad {
 			Vector<Profesor> profesores,
 			String descripcion,
 			int duracion,
-			int lunes, 
-			int martes,  
-			int miercoles,
-			int jueves,
-			int viernes,
-			int sabado,
-			int domingo) {
+			int dia,
+			int horaDeInicio) {
 		super();
 		this.setNumeroActividad(numeroActividad);
 		this.setDeporte(deporte);
 		this.setProfesores(profesores);
 		this.setDescription(descripcion);
 		this.setDuracion(duracion);
-		this.setLunes(lunes);
-		this.setMartes(martes);
-		this.setMiercoles(miercoles);
-		this.setJueves(jueves);
-		this.setViernes(viernes);
-		this.setSabado(sabado);
-		this.setDomingo(domingo);
+		
+		switch (dia) {
+			case 1:
+				this.setLunes(horaDeInicio);
+				break;
+			case 2:
+				this.setMartes(horaDeInicio);
+				break;
+			case 3:
+				this.setMiercoles(horaDeInicio);
+				break;
+			case 4:
+				this.setJueves(horaDeInicio);
+				break;
+			case 5:
+				this.setViernes(horaDeInicio);
+				break;
+			case 6:
+				this.setSabado(horaDeInicio);
+				break;
+			case 7:
+				this.setDomingo(horaDeInicio);
+				break;
+		}
 	}
 	
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public int getDuracion() {
 		return duracion;
 	}
-
 	public void setDuracion(int duracion) {
 		this.duracion = duracion;
 	}
-
 	public Deporte getDeporte() {
 		return deporte;
 	}
@@ -138,10 +143,13 @@ public class Actividad {
 		return this.getNumeroActividad() == numero;
 	}
 	
-	public void eliminarClase() {
+	public void insert() {
+		ActividadAbm.getInstancia().insert(this);
+	}
+	public void eliminarActividad() {
 		ActividadAbm.getInstancia().delete(this);
 	}
-	public void actualizarClase() {
+	public void actualizarActividad() {
 		ActividadAbm.getInstancia().update(this);
 	}
 	
