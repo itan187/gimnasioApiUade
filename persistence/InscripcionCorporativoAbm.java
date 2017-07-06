@@ -126,7 +126,7 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 				String empresa	= result.getString(3);
 				Date vigencia	= result.getDate(4);
 
-				PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".InscripcionActividades where numero =" + numero);
+				PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".InscripcionActividades where numeroInscripcion =" + numero);
 				ResultSet res = x.executeQuery();
 				
 				/**

@@ -193,7 +193,7 @@ public class SocioAlta extends javax.swing.JFrame {
 				});
 			}
 			pack();
-			setSize(400, 350);
+			setSize(400, 400);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
