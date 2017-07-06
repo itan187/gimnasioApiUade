@@ -32,6 +32,7 @@ public class Main extends JFrame {
 	private JMenuItem jMenuSocioAlta;
 	private JMenuItem jMenuSocioBaja;
 	private JMenuItem jMenuSocioModificar;
+	private JMenuItem jMenuSocioCertificados;
 	
 	private JMenu jMenuDeportes;
 	private JMenuItem jMenuDeporteAlta;
@@ -57,6 +58,7 @@ public class Main extends JFrame {
 	private JMenuItem jMenuEmpleadoAdmModificar;
 	private JMenuItem jMenuEmpleadoProfCompletoModificar;
 	private JMenuItem jMenuEmpleadoProfPartTimeModificar;
+	private JMenuItem jMenuLiquidacion;
 	
 	private JMenu jMenuAbonos;
 	private JMenuItem jMenuAbonoAlta;
@@ -72,10 +74,7 @@ public class Main extends JFrame {
 	private JMenuItem jMenuInscripcionCorpoAlta;
 	private JMenuItem jMenuInscripcionCorpoModificar;
 	
-	private JMenu jMenuLiquidacion;
 	
-	private JMenu jMenuCertificados;
-	private JMenuItem jMenuCertificadosAlta;
 
 
 	private JMenu jMenuSalir;
@@ -183,6 +182,21 @@ public class Main extends JFrame {
 					{
 						SocioModificacion modificarSocio = new SocioModificacion(socioController);
 						modificarSocio.setVisible(true);
+						toFront();
+					}
+				});
+				
+				/**
+				 * Apto Médico
+				 */
+				jMenuSocioCertificados = new JMenuItem();
+				jMenuSocios.add(jMenuSocioCertificados);
+				jMenuSocioCertificados.setText("Apto Médico");
+				jMenuSocioCertificados.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						AltaCertificado ingresarCerti = new AltaCertificado(socioController);
+						ingresarCerti.setVisible(true);
 						toFront();
 					}
 				});
@@ -499,6 +513,22 @@ public class Main extends JFrame {
 					}
 				});
 				
+				/**
+				 * Liquidación de Sueldos
+				 **/
+				jMenuLiquidacion = new JMenuItem();
+				jMenuEmpleados.add(jMenuLiquidacion);
+				jMenuLiquidacion.setText("Liquidación");
+				jMenuLiquidacion.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						LiquidacionAlta efectuarLiquidacion = new LiquidacionAlta(rrhhController);
+						efectuarLiquidacion.setVisible(true);
+						toFront();
+					}
+				});
+				
+				
 				/**************************************************************
 				 * 						ABONOS
 				 * 1) Alta
@@ -680,43 +710,6 @@ public class Main extends JFrame {
 					}
 				});
 				
-				/**************************************************************
-				 * 						LIQUIDACION
-				 **************************************************************/
-				jMenuLiquidacion = new JMenu();
-				jMenuBar.add(jMenuLiquidacion);
-				jMenuLiquidacion.setText("Liquidación");
-				jMenuLiquidacion.setVisible(true);
-				jMenuLiquidacion.addMenuListener(new MenuListener() {
-					public void menuSelected(MenuEvent evt) {
-						LiquidacionAlta efectuarLiquidacion = new LiquidacionAlta(rrhhController);
-						efectuarLiquidacion.setVisible(true);
-						toFront();
-					}
-					public void menuDeselected(MenuEvent evt) {
-					}
-					public void menuCanceled(MenuEvent evt) {
-					}
-				});
-				/**************************************************************
-				 * 						CERTIFICADOS
-				 **************************************************************/
-				jMenuCertificados = new JMenu();
-				jMenuBar.add(jMenuCertificados);
-				jMenuCertificados.setText("Certificados Medicos");
-				
-				
-				jMenuCertificadosAlta = new JMenuItem();
-				jMenuCertificados.add(jMenuCertificadosAlta);
-				jMenuCertificadosAlta.setText("Alta");
-				jMenuCertificadosAlta.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) 
-					{
-						AltaCertificado ingresarCerti = new AltaCertificado(socioController);
-						ingresarCerti.setVisible(true);
-						toFront();
-					}
-				});
 				
 				/**************************************************************
 				 * 						SALIR
@@ -736,7 +729,7 @@ public class Main extends JFrame {
 				});
 				
 			pack();
-			setSize(800, 300);
+			setSize(750, 300);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

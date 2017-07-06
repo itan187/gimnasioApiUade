@@ -150,13 +150,13 @@ public class SocioAbm extends SocioPersistence {
 			ResultSet result = s.executeQuery();
 			
 			while (result.next()) {
-				int doc 			= result.getInt(1);
-				String nombre 		= result.getString(2);
-				String domicilio 	= result.getString(3);
-				String telefono 	= result.getString(4);
-				String email	 	= result.getString(5);
-				int abono 			= result.getInt(6);
-				boolean estado 		= (result.getInt(7) == 1) ? true : false;
+				int doc 				= result.getInt(1);
+				String nombre 			= result.getString(2);
+				String domicilio 		= result.getString(3);
+				String telefono 		= result.getString(4);
+				String email	 		= result.getString(5);
+				Integer abono 			= result.getInt(6);
+				boolean estado 			= (result.getInt(7) == 1) ? true : false;
 				
 				/**
 				 * Recorró buscando las inscripciones 
@@ -170,8 +170,10 @@ public class SocioAbm extends SocioPersistence {
 				
 				while (res.next()) {
 					int inscripcionNumero 	= res.getInt(2);
+					
 					boolean inscripcionEstado;
-					Vector<Actividad> inscripcionClases = new Vector<Actividad>();
+					
+					Vector<Actividad> inscripcionActividades = new Vector<Actividad>();
 					String inscripcionEmpresa;
 					Date inscripcionVigencia;
 					
@@ -180,21 +182,22 @@ public class SocioAbm extends SocioPersistence {
 					
 					if (i != null) {
 						inscripcionEstado = i.getEstado();
-						inscripcionClases = i.getActividades();
+						inscripcionActividades = i.getActividades();
 						
-						Normal inscripcion = new Normal(inscripcionEstado, inscripcionNumero, inscripcionClases);
+						//Normal inscripcion = new Normal(inscripcionEstado, inscripcionNumero, inscripcionActividades);
 						//inscripciones.add(inscripcion);
 						
 					} else if (in != null) {
 						inscripcionEstado = in.getEstado();
-						inscripcionClases = in.getActividades();
+						inscripcionActividades = in.getActividades();
 						inscripcionEmpresa = in.getEmpresa();
 						inscripcionVigencia = in.getVigencia();
 						
-						Corporativa inscripcion = new Corporativa(inscripcionEstado, inscripcionNumero, inscripcionClases, inscripcionEmpresa, inscripcionVigencia);
+						//Corporativa inscripcion = new Corporativa(inscripcionEstado, inscripcionNumero, inscripcionActividades, inscripcionEmpresa, inscripcionVigencia);
 						//inscripciones.add(inscripcion);
 					}
 					
+					//Inscripcion inscripcion = new Inscripcion(inscripcionEstado, inscripcionNumero, inscripcionActividades);
 				}
 				/**
 				 * Recorró los Aptos Médicos
