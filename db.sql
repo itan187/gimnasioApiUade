@@ -19,6 +19,7 @@ CREATE TABLE Socio (
 	telefono VARCHAR(100),
 	mail VARCHAR(100),
 	abono INTEGER,
+	inscripcion INTEGER,
 	estado BIT DEFAULT 1,
 	CONSTRAINT fk_abono FOREIGN KEY (abono) REFERENCES Abono(codigo)
 );

@@ -69,12 +69,12 @@ public class InscripcionNormalAbm extends InscripcionNormalPersistence {
 	public Vector<String> listado() {
 		try {
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".Actividad");
+			PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".InscripcionNormal");
 			ResultSet res = x.executeQuery();
 			
 			Vector<String> listado = new Vector<String>();
 			while (res.next()) {
-				listado.add(res.getInt(1) + " - " + res.getString(2));
+				listado.add(res.getInt(1) + " - " + "Normal");
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);

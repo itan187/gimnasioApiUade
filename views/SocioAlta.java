@@ -15,6 +15,8 @@ import javax.swing.WindowConstants;
 
 import controllers.SocioController;
 import persistence.AbonoAbm;
+import persistence.InscripcionCorporativoAbm;
+import persistence.InscripcionNormalAbm;
 
 public class SocioAlta extends javax.swing.JFrame {
 
@@ -25,6 +27,7 @@ public class SocioAlta extends javax.swing.JFrame {
 	private JLabel jLabelEmail;
 	private JLabel jLabelDocumento;
 	private JLabel jLabelAbono;
+	private JLabel jLabelInscripcion;
 	
 	private JTextField fieldNombre;
 	private JTextField fieldDomicilio;
@@ -36,7 +39,8 @@ public class SocioAlta extends javax.swing.JFrame {
 	Vector<String> listadoDeAbonos;
 	
 	private JComboBox<String> listadoInscripcion;
-	Vector<String> listadoDeInscripcion;
+	Vector<String> listadoDeInscripcionN;
+	Vector<String> listadoDeInscripcionC;
 	
 	private JButton buttonAceptar;
 	
@@ -98,6 +102,13 @@ public class SocioAlta extends javax.swing.JFrame {
 				jLabelAbono.setBounds(21, 240, 180, 28);
 				jLabelAbono.setVisible(true);
 			}
+			{
+				jLabelInscripcion = new JLabel();
+				getContentPane().add(jLabelInscripcion);
+				jLabelInscripcion.setText("Inscripción:");
+				jLabelInscripcion.setBounds(21, 280, 180, 28);
+				jLabelInscripcion.setVisible(true);
+			}
 			/**************************************************************
 			 *						FIELDS
 			**************************************************************/
@@ -135,19 +146,23 @@ public class SocioAlta extends javax.swing.JFrame {
 				listadoAbonos.setModel(abonoModel);
 				listadoAbonos.setBounds(200, 240, 120, 28);
 			}
-			/*{
-				listadoDeInscripcion = AbonoAbm.getInstancia().listado();
-				ComboBoxModel<String> inscripcionModel = new DefaultComboBoxModel<String>(listadoDeInscripcion);
+			{
+				listadoDeInscripcionN = InscripcionNormalAbm.getInstancia().listado();
+				listadoDeInscripcionC = InscripcionCorporativoAbm.getInstancia().listado();
+				Vector<String> listado = new Vector<String>(listadoDeInscripcionN);
+				listado.addAll(listadoDeInscripcionC);
+				//System.out.println(listado);
+				ComboBoxModel<String> inscripcionModel = new DefaultComboBoxModel<String>(listado);
 				listadoInscripcion = new JComboBox<String>();
-				getContentPane().add(listadoAbonos);
+				getContentPane().add(listadoInscripcion);
 				listadoInscripcion.setModel(inscripcionModel);
-				listadoInscripcion.setBounds(200, 240, 120, 28);
-			}*/
+				listadoInscripcion.setBounds(200, 280, 120, 28);
+			}
 			{
 				buttonAceptar = new JButton();
 				getContentPane().add(buttonAceptar);
 				buttonAceptar.setText("Aceptar");
-				buttonAceptar.setBounds(220, 300, 123, 28);
+				buttonAceptar.setBounds(220, 320, 123, 28);
 				buttonAceptar.setVisible(true);
 				buttonAceptar.addActionListener(new ActionListener()
 				{
@@ -155,6 +170,9 @@ public class SocioAlta extends javax.swing.JFrame {
 					{
 						String ab = (String)listadoAbonos.getSelectedItem();
 						String[] abono = ab.split(" - ");
+						
+						String ins = (String)listadoInscripcion.getSelectedItem();
+						String[] inscripcion = ins.split(" - ");
 						
 						if (fieldNombre.getText().equals("") || fieldDomicilio.getText().equals("") || fieldDocumento.getText().equals("") || fieldTelefono.getText().equals("") || fieldEmail.getText().equals("")) {
 							String mensajeError = "¡Atención! Faltan completar campos y por ello no se puede agregar el socio.";
@@ -166,6 +184,7 @@ public class SocioAlta extends javax.swing.JFrame {
 									fieldTelefono.getText(), 
 									fieldEmail.getText(), 
 									Integer.parseInt(abono[0]),
+									Integer.parseInt(inscripcion[0]),
 									Integer.parseInt(fieldDocumento.getText())
 								);
 						}
@@ -174,7 +193,7 @@ public class SocioAlta extends javax.swing.JFrame {
 				});
 			}
 			pack();
-			setSize(400, 350);
+			setSize(400, 400);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
