@@ -102,8 +102,7 @@ estado bit(1)
 				
 				
 				
-			}
-			}
+		
 			pack();
 			setSize(400, 300);
 		} catch (Exception e) {
