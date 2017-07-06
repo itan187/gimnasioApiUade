@@ -35,6 +35,9 @@ public class SocioAlta extends javax.swing.JFrame {
 	private JComboBox<String> listadoAbonos;
 	Vector<String> listadoDeAbonos;
 	
+	private JComboBox<String> listadoInscripcion;
+	Vector<String> listadoDeInscripcion;
+	
 	private JButton buttonAceptar;
 	
 	private SocioController sistema;
@@ -132,6 +135,14 @@ public class SocioAlta extends javax.swing.JFrame {
 				listadoAbonos.setModel(abonoModel);
 				listadoAbonos.setBounds(200, 240, 120, 28);
 			}
+			/*{
+				listadoDeInscripcion = AbonoAbm.getInstancia().listado();
+				ComboBoxModel<String> inscripcionModel = new DefaultComboBoxModel<String>(listadoDeInscripcion);
+				listadoInscripcion = new JComboBox<String>();
+				getContentPane().add(listadoAbonos);
+				listadoInscripcion.setModel(inscripcionModel);
+				listadoInscripcion.setBounds(200, 240, 120, 28);
+			}*/
 			{
 				buttonAceptar = new JButton();
 				getContentPane().add(buttonAceptar);
