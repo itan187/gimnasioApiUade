@@ -502,13 +502,13 @@ public class SocioController {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(fechaCreacion);
 		//Fecha Fin de Vigencia 1 año despues de ser entregado.
-		calendar.add(Calendar.YEAR, 1);
+		calendar.add(Calendar.MONTH, 12);
 		Date fechaFinVigencia= calendar.getTime();
 		
 		CertificadoMedico cm= new CertificadoMedico(numAptoMedico, fechaCreacion, fechaFinVigencia,  profesional,  observaciones,true);
 		Socio soc= buscarSocio(numSocio);
 		soc.getAptosMedicos().add(cm);
-		CertificadoMedico certi = CertificadoMedicoAbm.getInstancia().buscarCertificado(numAptoMedico);
+		//CertificadoMedico certi = CertificadoMedicoAbm.getInstancia().buscarCertificado(numAptoMedico);
 
 	}
 	/**

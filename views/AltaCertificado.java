@@ -100,7 +100,7 @@ estado bit(1)
 				
 				jLabelObs = new JLabel();
 				getContentPane().add(jLabelObs);
-				jLabelObs.setText("Fecha Entrega");
+				jLabelObs.setText("Observaciones");
 				jLabelObs.setBounds(21, 200, 180, 28);
 				jLabelObs.setVisible(true);
 
@@ -123,9 +123,9 @@ estado bit(1)
 							String mensajeError = " Faltan completar campos y por ello no se puede agregar asociar el Certificado.";
 						    JOptionPane.showMessageDialog(null, mensajeError);
 						} else {
-							Date fVigencia = Date.valueOf(jLabelFechaEntrega.getText());
-							
-							//sistema.altaCertificado(Integer.parseInt(fieldCodigo.getText()), fieldNombre.getText(), Float.parseFloat(fieldPrecio.getText()), fVigencia);
+							Date fVigencia = Date.valueOf(fieldFechaEntrega.getText());
+							sistema.altaCertificado(Integer.parseInt(fieldNroCerti.getText()), Integer.parseInt(fieldDocumento.getText()) ,fVigencia, fieldNombreMedico.getText(), fieldObs.getText());
+
 						}
 						setVisible(false);
 					}
