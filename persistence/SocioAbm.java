@@ -63,6 +63,11 @@ public class SocioAbm extends SocioPersistence {
 			 * Recorremos las inscripciones del socio y las vamos guardando en
 			 * SocioInscripciones
 			 */
+			PreparedStatement sx = con.prepareStatement("insert into "+ PoolConnection.dbName + ".SocioInscripcion values (?,?)");
+			
+			sx.setInt(1, a.getDocumento());
+			sx.setInt(2, a.getInscripcion().getNumero());
+			sx.execute();
 			/*
 			for (int i = 0; i < a.getInscripciones().size(); i++) {
 				PreparedStatement sx = con.prepareStatement("insert into "+ PoolConnection.dbName + ".SocioInscripcion values (?,?)");
