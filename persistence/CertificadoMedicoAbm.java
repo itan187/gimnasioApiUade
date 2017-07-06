@@ -39,7 +39,7 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 		try {
 			CertificadoMedico a = (CertificadoMedico)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("insert into " + PoolConnection.dbName + ".CertificadoMedico values (?,?,?,?,?,?)");
+			PreparedStatement s = con.prepareStatement("insert into " + PoolConnection.dbName + ".CertificadoMedico values (?,?,?,?,?,?,?)");
 			/**
 			 * Agregando los campos
 			 */
@@ -58,7 +58,6 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 		{
 			e.printStackTrace();
 		}
-	
 	}
 
 	public void update(Object o) {

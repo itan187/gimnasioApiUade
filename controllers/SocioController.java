@@ -38,6 +38,7 @@ public class SocioController {
 		this.abonos 				= new Vector<Abono>();
 		this.inscripcionesNormales 	= new Vector<Normal>();
 		this.inscripcionesCorpo 	= new Vector<Corporativa>();
+		this.aptosMedicos			= new Vector<CertificadoMedico>();
 	}
 	
 	/**
@@ -539,8 +540,6 @@ public class SocioController {
 		 */
 		calendar.add(Calendar.MONTH, 12);
 		Date fechaFinVigencia = calendar.getTime();
-		System.out.println("Fecha Creacion" + fechaCreacion);
-		System.out.println("Fecha Vigencia" + fechaFinVigencia);
 		
 		Socio soc = buscarSocio(numSocio);
 		
