@@ -12,12 +12,12 @@ public class Socio {
 	private String 						telefono;
 	private String 						email;
 	private Abono 						abono;
-	private Vector<Inscripcion> 		inscripciones;
+	private Inscripcion 				inscripcion;
 	private Vector<CertificadoMedico> 	aptosMedicos;
 	private boolean 					estado;
 	
 	public Socio(int documento, String nombre, String domicilio, String telefono, String email, Abono abono,
-			Vector<Inscripcion> inscripciones, Vector<CertificadoMedico> aptosMedicos, boolean estado) {
+			Inscripcion inscripcion, Vector<CertificadoMedico> aptosMedicos, boolean estado) {
 		super();
 		this.setDocumento(documento);
 		this.setNombre(nombre);
@@ -25,7 +25,7 @@ public class Socio {
 		this.setTelefono(telefono);
 		this.setEmail(email);
 		this.setAbono(abono);
-		this.setInscripciones(inscripciones);
+		this.setInscripcion(inscripcion);
 		this.setAptosMedicos(aptosMedicos);
 		this.setEstado(estado);
 	}
@@ -33,7 +33,6 @@ public class Socio {
 	public void insert() {
 		SocioAbm.getInstancia().insert(this);
 	}
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -55,8 +54,8 @@ public class Socio {
 	public boolean getEstado() {
 		return estado;
 	}
-	public Vector<Inscripcion> getInscripciones() {
-		return inscripciones;
+	public Inscripcion getInscripcion() {
+		return inscripcion;
 	}
 	public Vector<CertificadoMedico> getAptosMedicos() {
 		return aptosMedicos;
@@ -79,8 +78,8 @@ public class Socio {
 	public void setAbono(Abono abono) {
 		this.abono = abono;
 	}
-	public void setInscripciones(Vector<Inscripcion> inscripciones) {
-		this.inscripciones = inscripciones;
+	public void setInscripcion(Inscripcion inscripcion) {
+		this.inscripcion = inscripcion;
 	}
 	public void setAptosMedicos(Vector<CertificadoMedico> aptosMedicos) {
 		this.aptosMedicos = aptosMedicos;
@@ -143,7 +142,7 @@ public class Socio {
 		SocioAbm.getInstancia().delete(this);
 	}
 	public void actualizarSocio(int documento, String nombre, String domicilio, String telefono, String email, boolean estado) {
-		Socio s = new Socio(documento, nombre, domicilio, telefono, email, abono, inscripciones, aptosMedicos, estado);
+		Socio s = new Socio(documento, nombre, domicilio, telefono, email, abono, inscripcion, aptosMedicos, estado);
 		SocioAbm.getInstancia().update(s);
 	}
 	

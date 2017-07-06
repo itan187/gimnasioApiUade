@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import models.CertificadoMedico;
+import models.Abono;
 import models.Actividad;
 import models.Corporativa;
 import models.Inscripcion;
@@ -160,7 +161,7 @@ public class SocioAbm extends SocioPersistence {
 				si.setInt(1, documento);
 				ResultSet res = si.executeQuery();
 				
-				Vector<Inscripcion> inscripciones = new Vector<Inscripcion>();
+				//Vector<Inscripcion> inscripciones = new Vector<Inscripcion>();
 				
 				while (res.next()) {
 					int inscripcionNumero 	= res.getInt(2);
@@ -177,7 +178,7 @@ public class SocioAbm extends SocioPersistence {
 						inscripcionClases = i.getActividades();
 						
 						Normal inscripcion = new Normal(inscripcionEstado, inscripcionNumero, inscripcionClases);
-						inscripciones.add(inscripcion);
+						//inscripciones.add(inscripcion);
 						
 					} else if (in != null) {
 						inscripcionEstado = in.getEstado();
@@ -186,7 +187,7 @@ public class SocioAbm extends SocioPersistence {
 						inscripcionVigencia = in.getVigencia();
 						
 						Corporativa inscripcion = new Corporativa(inscripcionEstado, inscripcionNumero, inscripcionClases, inscripcionEmpresa, inscripcionVigencia);
-						inscripciones.add(inscripcion);
+						//inscripciones.add(inscripcion);
 					}
 					
 				}
@@ -216,10 +217,12 @@ public class SocioAbm extends SocioPersistence {
 							);
 						aptosMedicos.add(certificado);
 					}
+					
 				}
-				//Abono ab = AbonoAbm.getInstancia().buscarAbono(abono);
+				Abono ab = AbonoAbm.getInstancia().buscarAbono(abono);
 
-				a = new Socio(doc, nombre, domicilio, telefono, email, null, new Vector<Inscripcion>(	), new Vector<CertificadoMedico>(), estado);
+				//a = new Socio(doc, nombre, domicilio, telefono, email, ab, inscripcion, aptosMedicos, estado);
+				
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);

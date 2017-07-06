@@ -183,10 +183,10 @@ public class SocioController {
 	 * @return boolean
 	 */
 	public boolean habilitadoParaIngresar (int documento) {
-
+		
 		Socio socio = buscarSocio(documento);
 		if (socio != null && socio.conAptoMedioAlDia() && socio.conAbonoAlDia()) {
-			Vector<Inscripcion> inscripciones = socio.getInscripciones();
+			Vector<Inscripcion> inscripciones = null; //EN NULL PARA SEGUIR = socio.getInscripciones();
 			
 			/**
 			 *  Recorremos las inscripciones del socio
@@ -261,9 +261,29 @@ public class SocioController {
 	 * @param abono
 	 * @param documento
 	 */
-	public void altaSocio (String nombre, String domicilio, String telefono, String email, int ab, int documento) {
+	public void altaSocio (String nombre, String domicilio, String telefono, String email, int ab, int ins, int documento) {
 		Abono abono = AbonoAbm.getInstancia().buscarAbono(ab);
-		Socio s = new Socio(documento, nombre, domicilio, telefono, email, abono, new Vector<Inscripcion>(), new Vector<CertificadoMedico>(), true);
+		Inscripcion insNormal = InscripcionNormalAbm.getInstancia().buscarInscripcion(ins);
+		Inscripcion insCorpo = InscripcionCorporativoAbm.getInstancia().buscarInscripcion(ins);
+		
+		Inscripcion inscripcion;
+		if (insNormal != null) {
+			inscripcion = insNormal;
+		} else {
+			inscripcion = insCorpo;
+		}
+		
+		Socio s = new Socio(
+				documento, 
+				nombre, 
+				domicilio,
+				telefono, 
+				email, 
+				abono, 
+				inscripcion, 
+				new Vector<CertificadoMedico>(), 
+				true
+			);
 		socios.add(s);
 		s.insert();
 	}
@@ -501,7 +521,7 @@ public class SocioController {
 		//El sistema calcula la fecha de fin de vigencia
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(fechaCreacion);
-		//Fecha Fin de Vigencia 1 año despues de ser entregado.
+		//Fecha Fin de Vigencia 1 aï¿½o despues de ser entregado.
 		calendar.add(Calendar.YEAR, 1);
 		Date fechaFinVigencia= calendar.getTime();
 		

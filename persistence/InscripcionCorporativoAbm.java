@@ -68,7 +68,22 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 	
 	}
 
-	public Vector<Object> select(Object o) {
+	public Vector<String> listado() {
+		try {
+			Connection con = PoolConnection.getPoolConnection().getConnection();
+			PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".InscripcionCorporativa");
+			ResultSet res = x.executeQuery();
+			
+			Vector<String> listado = new Vector<String>();
+			while (res.next()) {
+				listado.add(res.getInt(1) + " - " + res.getString(3));
+			}
+			
+			PoolConnection.getPoolConnection().realeaseConnection(con);
+			return listado;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -107,26 +122,23 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 			s.setInt(1, numero);
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
-				int num 		= result.getInt(1);
 				Boolean estado 	= result.getBoolean(2);
 				String empresa	= result.getString(3);
 				Date vigencia	= result.getDate(4);
-				
-				Vector<Actividad> clases = null;
 
 				PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".InscripcionActividades where numero =" + numero);
 				ResultSet res = x.executeQuery();
 				
 				/**
-				 * Obtenemos todas las clases de la inscripción
+				 * Obtenemos todas las actividades de la inscripción
 				 */
+				Vector<Actividad> actividades = new Vector<Actividad>();
 				while (res.next()) {
-					//int clase  = result.getInt(2);
-					
-					//clases = new Clase(numero, profesores, dias, horaInicio, horaFin)
+					actividades.add(ActividadAbm.getInstancia().buscarActividad(result.getInt(1)));
 				}
 				
-				a = new  Corporativa(estado, num, clases, empresa, vigencia);
+				a = new Corporativa(estado, numero, actividades, empresa, vigencia);
+	
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
