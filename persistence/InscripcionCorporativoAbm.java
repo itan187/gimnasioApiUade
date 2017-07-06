@@ -118,7 +118,7 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 		try {
 			Corporativa a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".InscripcionCorporativo where numero = ?");
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".InscripcionCorporativa where numero = ?");
 			s.setInt(1, numero);
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
