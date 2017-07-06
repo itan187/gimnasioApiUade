@@ -45,10 +45,10 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1, a.getNumero());
+			s.setInt(1, 	a.getNumero());
 			s.setBoolean(2, a.getEstado());
-			s.setString(3, a.getEmpresa());
-			s.setDate(4, (Date) a.getVigencia());
+			s.setString(3, 	a.getEmpresa());
+			s.setDate(4, new java.sql.Date(a.getVigencia().getTime()));
 			s.execute();
 			
 			/**

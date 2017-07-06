@@ -418,7 +418,7 @@ public class SocioController {
 	 * Alta Inscripción Corporativo
 	 * 
 	 * Para crear una inscripción, recibimos los de la misma y vamos a
-	 * tener que hacer un recorrido para encontrar las clases a las que se
+	 * tener que hacer un recorrido para encontrar las actividades a las que se
 	 * quiere inscribir. Una vez realizado, incorporamos la inscripción
 	 * a nuestra colección.
 	 * 
@@ -428,13 +428,16 @@ public class SocioController {
 	 * @param empresa
 	 * @param vigencia
 	 */
-	public void altaInscripcionCorpo (int numero, boolean estado, String clases, String empresa, Date vigencia) {
+	public void altaInscripcionCorpo (int numero, boolean estado, Vector<Integer> a, String empresa, Date vigencia) {
 		
-		/*Vector<Actividad> cl = Utiles.convertStringToClases(clases);
-		
-		Corporativa inscripcionCorpo = new Corporativa(estado, numero, cl, empresa, vigencia);
-		inscripcionCorpo.insert();
-		inscripcionesCorpo.add(inscripcionCorpo);*/
+		Vector<Actividad> actividadesDelSocio = new Vector<Actividad>();
+		for (int act: a) {
+			Actividad actividad = ActividadAbm.getInstancia().buscarActividad(act);
+			actividadesDelSocio.add(actividad);
+		}
+		Corporativa c = new Corporativa(estado, numero, actividadesDelSocio, empresa, vigencia);
+		inscripcionesCorpo.add(c);
+		c.insert();
 	}
 
 	/**
