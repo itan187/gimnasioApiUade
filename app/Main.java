@@ -70,6 +70,10 @@ public class Main extends JFrame {
 	
 	private JMenu jMenuLiquidacion;
 	
+	private JMenu jMenuCertificados;
+	private JMenuItem jMenuCertificadosAlta;
+
+
 	private JMenu jMenuSalir;
 	
 	private SocioController socioController;
@@ -658,7 +662,25 @@ public class Main extends JFrame {
 					public void menuCanceled(MenuEvent evt) {
 					}
 				});
+				/**************************************************************
+				 * 						CERTIFICADOS
+				 **************************************************************/
+				jMenuCertificados = new JMenu();
+				jMenuBar.add(jMenuCertificados);
+				jMenuCertificados.setText("Certificados Medicos");
 				
+				
+				jMenuCertificadosAlta = new JMenuItem();
+				jMenuCertificados.add(jMenuCertificadosAlta);
+				jMenuCertificadosAlta.setText("Alta");
+				jMenuCertificadosAlta.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						AltaCertificado ingresarCerti = new AltaCertificado(socioController);
+						ingresarCerti.setVisible(true);
+						toFront();
+					}
+				});
 				
 				/**************************************************************
 				 * 						SALIR
@@ -678,7 +700,7 @@ public class Main extends JFrame {
 				});
 				
 			pack();
-			setSize(800, 300);
+			setSize(1000, 300);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
