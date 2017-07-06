@@ -6,14 +6,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
-import app.Utiles;
 import models.*;
 
 import persistence.AbonoAbm;
 import persistence.ActividadAbm;
 import persistence.InscripcionCorporativoAbm;
 import persistence.InscripcionNormalAbm;
-import persistence.LiquidacionAbm;
 import persistence.SocioAbm;
 
 public class SocioController {

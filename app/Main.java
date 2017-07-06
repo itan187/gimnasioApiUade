@@ -44,6 +44,10 @@ public class Main extends JFrame {
 	private JMenuItem jMenuActividadModificar;
 	
 	private JMenu jMenuEmpleados;
+	private JMenu jMenuEmpleadosAdmin;
+	private JMenu jMenuEmpleadosProfFull;
+	private JMenu jMenuEmpleadosProfPart;
+	
 	private JMenuItem jMenuEmpleadoAdmAlta;
 	private JMenuItem jMenuEmpleadoProfCompletoAlta;
 	private JMenuItem jMenuEmpleadoProfPartTimeAlta;
@@ -330,12 +334,22 @@ public class Main extends JFrame {
 						{
 						}
 					});
+				jMenuEmpleadosAdmin = new JMenu();
+				jMenuEmpleados.add(jMenuEmpleadosAdmin);
+				jMenuEmpleadosAdmin.setText("Administrativos");
+				jMenuEmpleadosAdmin.setPreferredSize(new java.awt.Dimension(190, 21));
+				jMenuEmpleadosAdmin.setVisible(true);
+				jMenuEmpleadosAdmin.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+						{
+						}
+					});
 				/**
 				 * 1) Alta de empleado administativo
 				 **/
 				jMenuEmpleadoAdmAlta = new JMenuItem();
-				jMenuEmpleados.add(jMenuEmpleadoAdmAlta);
-				jMenuEmpleadoAdmAlta.setText("Alta Administrativo");
+				jMenuEmpleadosAdmin.add(jMenuEmpleadoAdmAlta);
+				jMenuEmpleadoAdmAlta.setText("Alta");
 				jMenuEmpleadoAdmAlta.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -350,8 +364,8 @@ public class Main extends JFrame {
 				 * 2) Baja de empleado administrativo
 				 */
 				jMenuEmpleadoAdmBaja = new JMenuItem();
-				jMenuEmpleados.add(jMenuEmpleadoAdmBaja);
-				jMenuEmpleadoAdmBaja.setText("Baja Administrativo");
+				jMenuEmpleadosAdmin.add(jMenuEmpleadoAdmBaja);
+				jMenuEmpleadoAdmBaja.setText("Baja");
 				jMenuEmpleadoAdmBaja.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -364,8 +378,8 @@ public class Main extends JFrame {
 				 * 3) Modificar de empleado administrativo
 				 **/
 				jMenuEmpleadoAdmModificar = new JMenuItem();
-				jMenuEmpleados.add(jMenuEmpleadoAdmModificar);
-				jMenuEmpleadoAdmModificar.setText("Modificar Administrativo");
+				jMenuEmpleadosAdmin.add(jMenuEmpleadoAdmModificar);
+				jMenuEmpleadoAdmModificar.setText("Modificar");
 				jMenuEmpleadoAdmModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -374,12 +388,23 @@ public class Main extends JFrame {
 						toFront();
 					}
 				});
+				
+				jMenuEmpleadosProfFull = new JMenu();
+				jMenuEmpleados.add(jMenuEmpleadosProfFull);
+				jMenuEmpleadosProfFull.setText("Profesores Full Time");
+				jMenuEmpleadosProfFull.setPreferredSize(new java.awt.Dimension(190, 21));
+				jMenuEmpleadosProfFull.setVisible(true);
+				jMenuEmpleadosProfFull.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+						{
+						}
+					});
 				/**
 				 * 4) Alta de empleado profesor full time
 				 **/
 				jMenuEmpleadoProfCompletoAlta = new JMenuItem();
-				jMenuEmpleados.add(jMenuEmpleadoProfCompletoAlta);
-				jMenuEmpleadoProfCompletoAlta.setText("Alta Profesor Full-Time");
+				jMenuEmpleadosProfFull.add(jMenuEmpleadoProfCompletoAlta);
+				jMenuEmpleadoProfCompletoAlta.setText("Alta");
 				jMenuEmpleadoProfCompletoAlta.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -394,8 +419,8 @@ public class Main extends JFrame {
 				 * 5) Baja de empleado profesor full time
 				 */
 				jMenuEmpleadoProfCompletoBaja = new JMenuItem();
-				jMenuEmpleados.add(jMenuEmpleadoProfCompletoBaja);
-				jMenuEmpleadoProfCompletoBaja.setText("Baja Profesor Full-Time");
+				jMenuEmpleadosProfFull.add(jMenuEmpleadoProfCompletoBaja);
+				jMenuEmpleadoProfCompletoBaja.setText("Baja");
 				jMenuEmpleadoProfCompletoBaja.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -408,8 +433,8 @@ public class Main extends JFrame {
 				 * 6) Modificar de empleado profesor full time
 				 **/
 				jMenuEmpleadoProfCompletoModificar = new JMenuItem();
-				jMenuEmpleados.add(jMenuEmpleadoProfCompletoModificar);
-				jMenuEmpleadoProfCompletoModificar.setText("Modificar Prof Full Time");
+				jMenuEmpleadosProfFull.add(jMenuEmpleadoProfCompletoModificar);
+				jMenuEmpleadoProfCompletoModificar.setText("Modificar");
 				jMenuEmpleadoProfCompletoModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -418,12 +443,23 @@ public class Main extends JFrame {
 						toFront();
 					}
 				});
+				
+				jMenuEmpleadosProfPart = new JMenu();
+				jMenuEmpleados.add(jMenuEmpleadosProfPart);
+				jMenuEmpleadosProfPart.setText("Profesores Part-Time");
+				jMenuEmpleadosProfPart.setPreferredSize(new java.awt.Dimension(190, 21));
+				jMenuEmpleadosProfPart.setVisible(true);
+				jMenuEmpleadosProfPart.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+						{
+						}
+					});
 				/**
 				 * 7) Alta de empleado profesor part time
 				 **/
 				jMenuEmpleadoProfPartTimeAlta = new JMenuItem();
-				jMenuEmpleados.add(jMenuEmpleadoProfPartTimeAlta);
-				jMenuEmpleadoProfPartTimeAlta.setText("Alta Profesor Part-Time");
+				jMenuEmpleadosProfPart.add(jMenuEmpleadoProfPartTimeAlta);
+				jMenuEmpleadoProfPartTimeAlta.setText("Alta");
 				jMenuEmpleadoProfPartTimeAlta.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -438,8 +474,8 @@ public class Main extends JFrame {
 				 * 8) Baja de empleado profesor part time
 				 */
 				jMenuEmpleadoProfPartTimeBaja = new JMenuItem();
-				jMenuEmpleados.add(jMenuEmpleadoProfPartTimeBaja);
-				jMenuEmpleadoProfPartTimeBaja.setText("Baja Profesor Part-Time");
+				jMenuEmpleadosProfPart.add(jMenuEmpleadoProfPartTimeBaja);
+				jMenuEmpleadoProfPartTimeBaja.setText("Baja");
 				jMenuEmpleadoProfPartTimeBaja.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -452,8 +488,8 @@ public class Main extends JFrame {
 				 * 9) Modificar de empleado profesor part time
 				 **/
 				jMenuEmpleadoProfPartTimeModificar = new JMenuItem();
-				jMenuEmpleados.add(jMenuEmpleadoProfPartTimeModificar);
-				jMenuEmpleadoProfPartTimeModificar.setText("Modificar Prof Part Time");
+				jMenuEmpleadosProfPart.add(jMenuEmpleadoProfPartTimeModificar);
+				jMenuEmpleadoProfPartTimeModificar.setText("Modificar");
 				jMenuEmpleadoProfPartTimeModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
