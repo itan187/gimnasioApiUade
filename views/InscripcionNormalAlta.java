@@ -2,13 +2,11 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.BitSet;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -31,15 +29,12 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 	
 	private JTextField fieldNumero;
 	private JComboBox<String> fieldEstado;
-	/*private JComboBox<String> listAct;*/
-	private JList <String> listAct; //yo
-	private DefaultListModel modelo;//declaramos el Modelo
+	
+	private JList <String> listAct;
 	private JScrollPane scrollLista;
-	private JTextField fieldClases;
+	Vector<String> listActividades;
 	
 	private JButton buttonAceptar;
-	
-	Vector<String> listActividades;
 	
 	private SocioController sistema;
 
