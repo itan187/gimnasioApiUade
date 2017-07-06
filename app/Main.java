@@ -547,7 +547,7 @@ public class Main extends JFrame {
 				jMenuInscripcionesNormales = new JMenu();
 				jMenuInscripciones.add(jMenuInscripcionesNormales);
 				jMenuInscripcionesNormales.setText("Normales");
-				jMenuInscripcionesNormales.setPreferredSize(new java.awt.Dimension(430, 21));
+				jMenuInscripcionesNormales.setPreferredSize(new java.awt.Dimension(180, 21));
 				jMenuInscripcionesNormales.setVisible(true);
 				jMenuInscripcionesNormales.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
@@ -589,7 +589,7 @@ public class Main extends JFrame {
 				jMenuInscripcionesCorpo = new JMenu();
 				jMenuInscripciones.add(jMenuInscripcionesCorpo);
 				jMenuInscripcionesCorpo.setText("Corporativas");
-				jMenuInscripcionesCorpo.setPreferredSize(new java.awt.Dimension(140, 21));
+				jMenuInscripcionesCorpo.setPreferredSize(new java.awt.Dimension(180, 21));
 				jMenuInscripcionesCorpo.setVisible(true);
 				jMenuInscripcionesCorpo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
