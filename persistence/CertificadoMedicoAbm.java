@@ -45,8 +45,8 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 			 */
 			s.setInt(1, 		a.getNumAptoMedico());
 			s.setInt(2, 		a.getSocio().getDocumento());
-			s.setDate(3, 		(Date) a.getFechaCreacion());
-			s.setDate(4, 		(Date) a.getVencimiento());
+			s.setDate(3, 		new java.sql.Date(a.getFechaCreacion().getTime()));
+			s.setDate(4, 		new java.sql.Date(a.getVencimiento().getTime()));
 			s.setString(5, 		a.getProfesional());
 			s.setString(6, 		a.getObservaciones());
 			s.setInt(7, 		(a.getEstado()) ? 1 : 0);

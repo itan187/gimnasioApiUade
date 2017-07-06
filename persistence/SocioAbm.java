@@ -166,10 +166,10 @@ public class SocioAbm extends SocioPersistence {
 				si.setInt(1, documento);
 				ResultSet res = si.executeQuery();
 				
-				//Vector<Inscripcion> inscripciones = new Vector<Inscripcion>();
+				Inscripcion inscripcion = null;
 				
 				while (res.next()) {
-					int inscripcionNumero 	= res.getInt(2);
+					Integer inscripcionNumero 	= res.getInt(2);
 					
 					boolean inscripcionEstado;
 					
@@ -184,8 +184,7 @@ public class SocioAbm extends SocioPersistence {
 						inscripcionEstado = i.getEstado();
 						inscripcionActividades = i.getActividades();
 						
-						//Normal inscripcion = new Normal(inscripcionEstado, inscripcionNumero, inscripcionActividades);
-						//inscripciones.add(inscripcion);
+						inscripcion = new Normal(inscripcionEstado, inscripcionNumero, inscripcionActividades);
 						
 					} else if (in != null) {
 						inscripcionEstado = in.getEstado();
@@ -193,11 +192,9 @@ public class SocioAbm extends SocioPersistence {
 						inscripcionEmpresa = in.getEmpresa();
 						inscripcionVigencia = in.getVigencia();
 						
-						//Corporativa inscripcion = new Corporativa(inscripcionEstado, inscripcionNumero, inscripcionActividades, inscripcionEmpresa, inscripcionVigencia);
-						//inscripciones.add(inscripcion);
+						inscripcion = new Corporativa(inscripcionEstado, inscripcionNumero, inscripcionActividades, inscripcionEmpresa, inscripcionVigencia);
 					}
 					
-					//Inscripcion inscripcion = new Inscripcion(inscripcionEstado, inscripcionNumero, inscripcionActividades);
 				}
 				/**
 				 * Recorró los Aptos Médicos
@@ -230,7 +227,7 @@ public class SocioAbm extends SocioPersistence {
 				}
 				Abono ab = AbonoAbm.getInstancia().buscarAbono(abono);
 
-				//a = new Socio(doc, nombre, domicilio, telefono, email, ab, inscripcion, aptosMedicos, estado);
+				a = new Socio(doc, nombre, domicilio, telefono, email, ab, inscripcion, aptosMedicos, estado);
 				
 			}
 			
