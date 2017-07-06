@@ -60,6 +60,8 @@ public class Main extends JFrame {
 	private JMenuItem jMenuAbonoModificar;
 	
 	private JMenu jMenuInscripciones;
+	private JMenu jMenuInscripcionesNormales;
+	private JMenu jMenuInscripcionesCorpo;
 	private JMenuItem jMenuInscripcionNormalAlta;
 	private JMenuItem jMenuInscripcionBaja;
 	private JMenuItem jMenuInscripcionNormalModificar;
@@ -535,15 +537,26 @@ public class Main extends JFrame {
 				jMenuInscripciones.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 						{
-							
+						}
+					});
+				
+				jMenuInscripcionesNormales = new JMenu();
+				jMenuInscripciones.add(jMenuInscripcionesNormales);
+				jMenuInscripcionesNormales.setText("Normales");
+				jMenuInscripcionesNormales.setPreferredSize(new java.awt.Dimension(430, 21));
+				jMenuInscripcionesNormales.setVisible(true);
+				jMenuInscripcionesNormales.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+						{
+
 						}
 					});
 				/**
 				 * 1) Alta de inscripción normal
 				 **/
 				jMenuInscripcionNormalAlta = new JMenuItem();
-				jMenuInscripciones.add(jMenuInscripcionNormalAlta);
-				jMenuInscripcionNormalAlta.setText("Alta Normal");
+				jMenuInscripcionesNormales.add(jMenuInscripcionNormalAlta);
+				jMenuInscripcionNormalAlta.setText("Alta");
 				jMenuInscripcionNormalAlta.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -555,11 +568,37 @@ public class Main extends JFrame {
 					}
 				});
 				/**
-				 * 2) Alta de inscripción corporativa
+				 * Modificar Inscripción normal
+				 */
+				jMenuInscripcionNormalModificar = new JMenuItem();
+				jMenuInscripcionesNormales.add(jMenuInscripcionNormalModificar);
+				jMenuInscripcionNormalModificar.setText("Modificar");
+				jMenuInscripcionNormalModificar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						InscripcionNormalModificar modificarInscripcionNormal = new InscripcionNormalModificar(socioController);
+						modificarInscripcionNormal.setVisible(true);
+						toFront();
+					}
+				});
+				
+				jMenuInscripcionesCorpo = new JMenu();
+				jMenuInscripciones.add(jMenuInscripcionesCorpo);
+				jMenuInscripcionesCorpo.setText("Corporativas");
+				jMenuInscripcionesCorpo.setPreferredSize(new java.awt.Dimension(140, 21));
+				jMenuInscripcionesCorpo.setVisible(true);
+				jMenuInscripcionesCorpo.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+						{
+						}
+					});
+				
+				/**
+				 * Inscripción corporativa
 				 **/
 				jMenuInscripcionCorpoAlta = new JMenuItem();
-				jMenuInscripciones.add(jMenuInscripcionCorpoAlta);
-				jMenuInscripcionCorpoAlta.setText("Alta Corporativa");
+				jMenuInscripcionesCorpo.add(jMenuInscripcionCorpoAlta);
+				jMenuInscripcionCorpoAlta.setText("Alta");
 				jMenuInscripcionCorpoAlta.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -570,8 +609,24 @@ public class Main extends JFrame {
 						}
 					}
 				});
+				
 				/**
-				 * 3) Baja de inscripción (normal | corporativo)
+				 * Modificar inscripción corporativo
+				 */
+				jMenuInscripcionCorpoModificar = new JMenuItem();
+				jMenuInscripcionesCorpo.add(jMenuInscripcionCorpoModificar);
+				jMenuInscripcionCorpoModificar.setText("Modificar");
+				jMenuInscripcionCorpoModificar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						InscripcionCorpoModificar modificarInscripcionCorpo = new InscripcionCorpoModificar(socioController);
+						modificarInscripcionCorpo.setVisible(true);
+						toFront();
+					}
+				});
+				
+				/**
+				 * Baja de inscripción (normal | corporativo)
 				 */
 				jMenuInscripcionBaja = new JMenuItem();
 				jMenuInscripciones.add(jMenuInscripcionBaja);
@@ -584,35 +639,6 @@ public class Main extends JFrame {
 						toFront();
 					}
 				});
-				/**
-				 * 4) Modificar inscripción normal
-				 */
-				jMenuInscripcionNormalModificar = new JMenuItem();
-				jMenuInscripciones.add(jMenuInscripcionNormalModificar);
-				jMenuInscripcionNormalModificar.setText("Modificar Normal");
-				jMenuInscripcionNormalModificar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) 
-					{
-						InscripcionNormalModificar modificarInscripcionNormal = new InscripcionNormalModificar(socioController);
-						modificarInscripcionNormal.setVisible(true);
-						toFront();
-					}
-				});
-				/**
-				 * 5) Modificar inscripción corporativo
-				 */
-				jMenuInscripcionCorpoModificar = new JMenuItem();
-				jMenuInscripciones.add(jMenuInscripcionCorpoModificar);
-				jMenuInscripcionCorpoModificar.setText("Modificar Corporativo");
-				jMenuInscripcionCorpoModificar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) 
-					{
-						InscripcionCorpoModificar modificarInscripcionCorpo = new InscripcionCorpoModificar(socioController);
-						modificarInscripcionCorpo.setVisible(true);
-						toFront();
-					}
-				});
-				
 				
 				/**************************************************************
 				 * 						LIQUIDACION
