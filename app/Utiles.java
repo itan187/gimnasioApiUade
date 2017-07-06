@@ -1,10 +1,5 @@
 package app;
 
-import java.util.Vector;
-
-import controllers.*;
-import models.Actividad;
-
 public class Utiles {
 
     /**

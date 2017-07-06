@@ -14,7 +14,6 @@ public class AbonoBaja extends javax.swing.JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JLabel jLabelSearch;
-	private JLabel jLabelCodigo;
 	private JLabel jLabelNombre;
 	private JLabel jLabelPrecio;
 	private JLabel jLabelVigencia;
