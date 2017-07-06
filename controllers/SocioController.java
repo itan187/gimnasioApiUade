@@ -10,7 +10,7 @@ import models.*;
 
 import persistence.AbonoAbm;
 import persistence.ActividadAbm;
-import persistence.CertificadoMedicoAbm;
+
 import persistence.InscripcionCorporativoAbm;
 import persistence.InscripcionNormalAbm;
 import persistence.SocioAbm;
@@ -539,6 +539,8 @@ public class SocioController {
 		 */
 		calendar.add(Calendar.MONTH, 12);
 		Date fechaFinVigencia = calendar.getTime();
+		System.out.println("Fecha Creacion" + fechaCreacion);
+		System.out.println("Fecha Vigencia" + fechaFinVigencia);
 		
 		Socio soc = buscarSocio(numSocio);
 		

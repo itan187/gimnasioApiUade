@@ -174,13 +174,7 @@ public class InscripcionCorpoAlta extends javax.swing.JFrame {
 							}
 							
 							try {
-								//System.out.println("ACA" + fieldVigencia.getText());
-								//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-								//Date date = new Date();
-								//System.out.println(dateFormat.format(date));
-								 
 								Date df = new SimpleDateFormat("yyyy-MM-dd").parse(fieldVigencia.getText());
-								//System.out.println((java.sql.Date)df);
 								sistema.altaInscripcionCorpo(
 										Integer.parseInt(fieldNumero.getText()), 
 										e, 

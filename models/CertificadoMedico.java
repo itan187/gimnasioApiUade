@@ -2,7 +2,7 @@ package models;
 
 import java.util.Date;
 
-import persistence.SocioAbm;
+import persistence.CertificadoMedicoAbm;
 
 public class CertificadoMedico {
 	private Socio socio;
@@ -33,7 +33,6 @@ public class CertificadoMedico {
 	public int getNumAptoMedico() {
 		return numAptoMedico;
 	}
-	
 	public void setNumAptoMedico(int numAptoMedico) {
 		this.numAptoMedico = numAptoMedico;
 	}
@@ -67,15 +66,14 @@ public class CertificadoMedico {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	
 	public void insert() {
-		SocioAbm.getInstancia().insert(this);
+		CertificadoMedicoAbm.getInstancia().insert(this);
 	}
 	public void eliminarAptoMedico() {
-		SocioAbm.getInstancia().delete(this);
+		CertificadoMedicoAbm.getInstancia().delete(this);
 	}
 	public void actualizarAptoMedico() {
-		SocioAbm.getInstancia().update(this);
+		CertificadoMedicoAbm.getInstancia().update(this);
 	}
 	
 }

@@ -151,7 +151,6 @@ public class SocioAlta extends javax.swing.JFrame {
 				listadoDeInscripcionC = InscripcionCorporativoAbm.getInstancia().listado();
 				Vector<String> listado = new Vector<String>(listadoDeInscripcionN);
 				listado.addAll(listadoDeInscripcionC);
-				//System.out.println(listado);
 				ComboBoxModel<String> inscripcionModel = new DefaultComboBoxModel<String>(listado);
 				listadoInscripcion = new JComboBox<String>();
 				getContentPane().add(listadoInscripcion);
