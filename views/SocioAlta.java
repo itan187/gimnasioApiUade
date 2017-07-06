@@ -2,14 +2,19 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controllers.SocioController;
+import persistence.AbonoAbm;
 
 public class SocioAlta extends javax.swing.JFrame {
 
@@ -19,12 +24,16 @@ public class SocioAlta extends javax.swing.JFrame {
 	private JLabel jLabelTelefono;
 	private JLabel jLabelEmail;
 	private JLabel jLabelDocumento;
+	private JLabel jLabelAbono;
 	
 	private JTextField fieldNombre;
 	private JTextField fieldDomicilio;
 	private JTextField fieldTelefono;
 	private JTextField fieldEmail;
 	private JTextField fieldDocumento;	
+	
+	private JComboBox<String> listadoAbonos;
+	Vector<String> listadoDeAbonos;
 	
 	private JButton buttonAceptar;
 	
@@ -79,6 +88,13 @@ public class SocioAlta extends javax.swing.JFrame {
 				jLabelDocumento.setBounds(21, 200, 180, 28);
 				jLabelDocumento.setVisible(true);
 			}
+			{
+				jLabelAbono = new JLabel();
+				getContentPane().add(jLabelAbono);
+				jLabelAbono.setText("Abono:");
+				jLabelAbono.setBounds(21, 240, 180, 28);
+				jLabelAbono.setVisible(true);
+			}
 			/**************************************************************
 			 *						FIELDS
 			**************************************************************/
@@ -109,27 +125,45 @@ public class SocioAlta extends javax.swing.JFrame {
 				fieldDocumento.setBounds(200, 200, 120, 28);
 			}
 			{
+				listadoDeAbonos = AbonoAbm.getInstancia().listado();
+				ComboBoxModel<String> abonoModel = new DefaultComboBoxModel<String>(listadoDeAbonos);
+				listadoAbonos = new JComboBox<String>();
+				getContentPane().add(listadoAbonos);
+				listadoAbonos.setModel(abonoModel);
+				listadoAbonos.setBounds(200, 240, 120, 28);
+			}
+			{
 				buttonAceptar = new JButton();
 				getContentPane().add(buttonAceptar);
 				buttonAceptar.setText("Aceptar");
-				buttonAceptar.setBounds(220, 240, 123, 28);
+				buttonAceptar.setBounds(220, 300, 123, 28);
 				buttonAceptar.setVisible(true);
 				buttonAceptar.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt) 
 					{
+						String ab = (String)listadoAbonos.getSelectedItem();
+						String[] abono = ab.split(" - ");
+						
 						if (fieldNombre.getText().equals("") || fieldDomicilio.getText().equals("") || fieldDocumento.getText().equals("") || fieldTelefono.getText().equals("") || fieldEmail.getText().equals("")) {
 							String mensajeError = "¡Atención! Faltan completar campos y por ello no se puede agregar el socio.";
 						    JOptionPane.showMessageDialog(null, mensajeError);
 						} else {
-							sistema.altaSocio(fieldNombre.getText(), fieldDomicilio.getText(), fieldTelefono.getText(), fieldEmail.getText(), Integer.parseInt(fieldDocumento.getText()));
+							sistema.altaSocio(
+									fieldNombre.getText(), 
+									fieldDomicilio.getText(), 
+									fieldTelefono.getText(), 
+									fieldEmail.getText(), 
+									Integer.parseInt(abono[0]),
+									Integer.parseInt(fieldDocumento.getText())
+								);
 						}
 						setVisible(false);
 					}
 				});
 			}
 			pack();
-			setSize(400, 300);
+			setSize(400, 350);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

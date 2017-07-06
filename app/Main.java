@@ -700,7 +700,7 @@ public class Main extends JFrame {
 				});
 				
 			pack();
-			setSize(1000, 300);
+			setSize(800, 300);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

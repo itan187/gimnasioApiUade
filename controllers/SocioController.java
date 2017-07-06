@@ -258,12 +258,14 @@ public class SocioController {
 	 * @param domicilio
 	 * @param telefono
 	 * @param email
+	 * @param abono
 	 * @param documento
 	 */
-	public void altaSocio (String nombre, String domicilio, String telefono, String email, int documento) {
-		Socio s = new Socio(documento, nombre, domicilio, telefono, email, null, new Vector<Inscripcion>(), new Vector<CertificadoMedico>(), true);
-		s.insert();
+	public void altaSocio (String nombre, String domicilio, String telefono, String email, int ab, int documento) {
+		Abono abono = AbonoAbm.getInstancia().buscarAbono(ab);
+		Socio s = new Socio(documento, nombre, domicilio, telefono, email, abono, new Vector<Inscripcion>(), new Vector<CertificadoMedico>(), true);
 		socios.add(s);
+		s.insert();
 	}
 	
 	/**

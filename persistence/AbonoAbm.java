@@ -9,12 +9,7 @@ import java.util.Vector;
 import models.Abono;
 
 public class AbonoAbm extends AbonoPersistence {
-	private String nombreTabla;
 	private static AbonoAbm instancia;
-	
-	private AbonoAbm() {
-		this.nombreTabla = PoolConnection.dbName + ".Abonos";
-	}
 	
 	public static AbonoAbm getInstancia() {
 		if (instancia == null) {
@@ -60,10 +55,6 @@ public class AbonoAbm extends AbonoPersistence {
 	
 	}
 
-	public Vector<Object> select(Object o) {
-		return null;
-	}
-
 	public void update(Object o) {
 		try {
 			Abono a = (Abono)o;
@@ -107,6 +98,25 @@ public class AbonoAbm extends AbonoPersistence {
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return a;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Vector<String> listado() {
+		try {
+			Connection con = PoolConnection.getPoolConnection().getConnection();
+			PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".Abono");
+			ResultSet res = x.executeQuery();
+			
+			Vector<String> listado = new Vector<String>();
+			while (res.next()) {
+				listado.add(res.getInt(1) + " - " + res.getString(2));
+			}
+			
+			PoolConnection.getPoolConnection().realeaseConnection(con);
+			return listado;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
