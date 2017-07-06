@@ -521,13 +521,8 @@ public class SocioController {
 		//El sistema calcula la fecha de fin de vigencia
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(fechaCreacion);
-<<<<<<< HEAD
 		//Fecha Fin de Vigencia 1 año despues de ser entregado.
 		calendar.add(Calendar.MONTH, 12);
-=======
-		//Fecha Fin de Vigencia 1 aï¿½o despues de ser entregado.
-		calendar.add(Calendar.YEAR, 1);
->>>>>>> 55ee02ff2c480c1b57fc86f0b9d1dfb3ebae4434
 		Date fechaFinVigencia= calendar.getTime();
 		
 		CertificadoMedico cm= new CertificadoMedico(numAptoMedico, fechaCreacion, fechaFinVigencia,  profesional,  observaciones,true);
