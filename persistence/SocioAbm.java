@@ -217,6 +217,7 @@ public class SocioAbm extends SocioPersistence {
 					if (cert != null) {
 						CertificadoMedico certificado = new CertificadoMedico(
 								aptoNumero, 
+								cert.getSocio(),
 								cert.getFechaCreacion(), 
 								cert.getVencimiento(), 
 								cert.getProfesional(), 

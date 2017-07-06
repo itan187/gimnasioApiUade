@@ -16,12 +16,12 @@ import persistence.InscripcionNormalAbm;
 import persistence.SocioAbm;
 
 public class SocioController {
-	public Vector<Socio> 			socios;
-	public Vector<Abono> 			abonos;
-	public Vector<Normal> 			inscripcionesNormales;
-	public Vector<Corporativa> 		inscripcionesCorpo;
-	public Vector<Ingreso> 			ingresos;
-	public Vector<Liquidacion>		liquidaciones;
+	public Vector<Socio> 				socios;
+	public Vector<Abono> 				abonos;
+	public Vector<Normal> 				inscripcionesNormales;
+	public Vector<Corporativa> 			inscripcionesCorpo;
+	public Vector<Ingreso> 				ingresos;
+	public Vector<Liquidacion>			liquidaciones;
 	public Vector<CertificadoMedico> 	aptosMedicos;
 	
 	private static SocioController instancia;
@@ -517,18 +517,34 @@ public class SocioController {
 			inscripcion.actualizarInscripcion(new Normal(estado, numero, act));
 		}
 	}
+	/**
+	 * Alta certificado médico
+	 * 
+	 * @param numAptoMedico
+	 * @param numSocio
+	 * @param fechaCreacion
+	 * @param profesional
+	 * @param observaciones
+	 */
 	public void altaCertificado (int numAptoMedico, int numSocio, Date fechaCreacion, String profesional, String observaciones) {
-		//El sistema calcula la fecha de fin de vigencia
+		/**
+		 * El sistema calcula la fecha de fin de vigencia
+		 */
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(fechaCreacion);
-		//Fecha Fin de Vigencia 1 a�o despues de ser entregado.
-		calendar.add(Calendar.MONTH, 12);
-		Date fechaFinVigencia= calendar.getTime();
 		
-		CertificadoMedico cm= new CertificadoMedico(numAptoMedico, fechaCreacion, fechaFinVigencia,  profesional,  observaciones,true);
-		Socio soc= buscarSocio(numSocio);
-		soc.getAptosMedicos().add(cm);
-		//CertificadoMedico certi = CertificadoMedicoAbm.getInstancia().buscarCertificado(numAptoMedico);
+		/**
+		 * Fecha Fin de vigencia 1 anio después de ser entregado.
+		 * 
+		 */
+		calendar.add(Calendar.MONTH, 12);
+		Date fechaFinVigencia = calendar.getTime();
+		
+		Socio soc = buscarSocio(numSocio);
+		
+		CertificadoMedico cm = new CertificadoMedico(numAptoMedico, soc, fechaCreacion, fechaFinVigencia,  profesional,  observaciones, true);
+		aptosMedicos.add(cm);
+		cm.insert();
 
 	}
 	/**

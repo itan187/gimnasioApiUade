@@ -30,9 +30,6 @@ public class Socio {
 		this.setEstado(estado);
 	}
 
-	public void insert() {
-		SocioAbm.getInstancia().insert(this);
-	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -138,6 +135,9 @@ public class Socio {
 		return (this.abono != null && this.abono.abonoVigente());
 	}
 
+	public void insert() {
+		SocioAbm.getInstancia().insert(this);
+	}
 	public void eliminarSocio() {
 		SocioAbm.getInstancia().delete(this);
 	}

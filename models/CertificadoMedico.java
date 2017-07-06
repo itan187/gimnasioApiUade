@@ -2,7 +2,10 @@ package models;
 
 import java.util.Date;
 
+import persistence.SocioAbm;
+
 public class CertificadoMedico {
+	private Socio socio;
 	private int numAptoMedico;
 	private Date fechaCreacion;
 	private Date vencimiento;
@@ -10,9 +13,10 @@ public class CertificadoMedico {
 	private String observaciones;
 	private boolean estado;
 	
-	public CertificadoMedico(int numAptoMedico, Date fechaCreacion, Date vencimiento, String profesional, String observaciones,
+	public CertificadoMedico(int numAptoMedico, Socio socio, Date fechaCreacion, Date vencimiento, String profesional, String observaciones,
 			boolean estado) {
 		super();
+		this.setSocio(socio);
 		this.setNumAptoMedico(numAptoMedico);
 		this.setFechaCreacion(fechaCreacion);
 		this.setVencimiento(vencimiento);
@@ -20,10 +24,16 @@ public class CertificadoMedico {
 		this.setObservaciones(observaciones);
 		this.setEstado(estado);
 	}
-	
+	public Socio getSocio() {
+		return socio;
+	}
+	public void setSocio(Socio socio) {
+		this.socio = socio;
+	}
 	public int getNumAptoMedico() {
 		return numAptoMedico;
 	}
+	
 	public void setNumAptoMedico(int numAptoMedico) {
 		this.numAptoMedico = numAptoMedico;
 	}
@@ -56,6 +66,16 @@ public class CertificadoMedico {
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+	
+	public void insert() {
+		SocioAbm.getInstancia().insert(this);
+	}
+	public void eliminarAptoMedico() {
+		SocioAbm.getInstancia().delete(this);
+	}
+	public void actualizarAptoMedico() {
+		SocioAbm.getInstancia().update(this);
 	}
 	
 }

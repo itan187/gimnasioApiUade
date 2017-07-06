@@ -4,10 +4,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Vector;
 
 import models.CertificadoMedico;
-
+import models.Socio;
 
 public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 	private static CertificadoMedicoAbm instancia;
@@ -26,7 +25,7 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 		try {
 			CertificadoMedico a = (CertificadoMedico)d;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".CertificadoMedico where numero = ?");
+			PreparedStatement s = con.prepareStatement("delete from " + PoolConnection.dbName + ".CertificadoMedico where numAptoMedico = ?");
 			s.setInt(1, a.getNumAptoMedico());
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -45,11 +44,12 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 			 * Agregando los campos
 			 */
 			s.setInt(1, 		a.getNumAptoMedico());
-			s.setDate(2, 		(Date) a.getFechaCreacion());
-			s.setDate(3, 		(Date) a.getVencimiento());
-			s.setString(4, 		a.getProfesional());
-			s.setString(5, 		a.getObservaciones());
-			s.setBoolean(6, 	a.getEstado());
+			s.setInt(2, 		a.getSocio().getDocumento());
+			s.setDate(3, 		(Date) a.getFechaCreacion());
+			s.setDate(4, 		(Date) a.getVencimiento());
+			s.setString(5, 		a.getProfesional());
+			s.setString(6, 		a.getObservaciones());
+			s.setInt(7, 		(a.getEstado()) ? 1 : 0);
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -61,32 +61,29 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 	
 	}
 
-	public Vector<Object> select(Object o) {
-		return null;
-	}
-
 	public void update(Object o) {
 		try {
 			CertificadoMedico a = (CertificadoMedico)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".CertificadoMedico " +
-					"set numAptoMedico = ?," +
-					"set fechaCreacion = ?," +
-					"set vencimiento =?," +
-					"set profesional =?," +
-					"set observaciones =?," +
-					"set estado =?)"
+					"set numSocio =?," +
+					"fechaCreacion = ?," +
+					"vencimiento =?," +
+					"profesional =?," +
+					"observaciones =?," +
+					"estado =? where numAptoMedico = ?"
 			);
 
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1, 		a.getNumAptoMedico());
+			s.setInt(1, 		a.getSocio().getDocumento());
 			s.setDate(2, 		(Date) a.getFechaCreacion());
 			s.setDate(3, 		(Date) a.getVencimiento());
 			s.setString(4, 		a.getProfesional());
 			s.setString(5, 		a.getObservaciones());
-			s.setBoolean(6, 	a.getEstado());
+			s.setInt(6, 		(a.getEstado()) ? 1 : 0);
+			s.setInt(7, 		a.getNumAptoMedico());
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -100,17 +97,20 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 		try {
 			CertificadoMedico a = null;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
-			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".CertificadoMedico where numero = ?");
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".CertificadoMedico where numAptoMedico = ?");
 			s.setInt(1, numero);
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
-				Date fechaCreacion 		= result.getDate(2);
-				Date vencimiento 		= result.getDate(3);
-				String profesional 		= result.getString(4);
-				String observaciones 	= result.getString(5);
-				boolean estado			= result.getBoolean(6);
+				int numSocio			= result.getInt(2);
+				Date fechaCreacion 		= result.getDate(3);
+				Date vencimiento 		= result.getDate(4);
+				String profesional 		= result.getString(5);
+				String observaciones 	= result.getString(6);
+				boolean estado			= result.getBoolean(7);
 				
-				a = new CertificadoMedico(numero, fechaCreacion, vencimiento, profesional, observaciones, estado);
+				Socio socio = SocioAbm.getInstancia().buscarSocio(numSocio);
+				
+				a = new CertificadoMedico(numero, socio, fechaCreacion, vencimiento, profesional, observaciones, estado);
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
