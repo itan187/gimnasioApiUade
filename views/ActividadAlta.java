@@ -158,7 +158,7 @@ private static final long serialVersionUID = 1L;
 				fieldDuracion.setBounds(200, 162, 120, 28);
 			}
 			{
-				ComboBoxModel<String> diasModel = new DefaultComboBoxModel<String>(new String[] {"Lunes", "Martes", "Miércoles", "Jueves", "Mayo", "Viernes", "Sábado", "Domingo"});
+				ComboBoxModel<String> diasModel = new DefaultComboBoxModel<String>(new String[] {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"});
 				fieldDia = new JComboBox<String>();
 				getContentPane().add(fieldDia);
 				fieldDia.setModel(diasModel);

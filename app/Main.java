@@ -321,9 +321,9 @@ public class Main extends JFrame {
 				jMenuActividadModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-						/*ActividadModificar modificarActividad = new ActividadModificar(actividadController);
+						ActividadModificar modificarActividad = new ActividadModificar(actividadController);
 						modificarActividad.setVisible(true);
-						toFront();*/
+						toFront();
 					}
 				});
 				
