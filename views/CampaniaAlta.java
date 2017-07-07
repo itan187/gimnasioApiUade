@@ -110,7 +110,7 @@ public class CampaniaAlta extends javax.swing.JFrame {
 				fieldAsunto.setVisible(true);
 			}
 			{
-				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				fieldFechaDeEnvio = new JFormattedTextField(dateFormat);
 				getContentPane().add(fieldFechaDeEnvio);
 				fieldFechaDeEnvio.setBounds(200, 120, 120, 28);
@@ -162,7 +162,7 @@ public class CampaniaAlta extends javax.swing.JFrame {
 							}
 							
 							try {
-								Date df = new SimpleDateFormat("yyyy-MM-dd H:i:s").parse(fieldFechaDeEnvio.getText());
+								Date df = new SimpleDateFormat("yyyy-MM-dd").parse(fieldFechaDeEnvio.getText());
 								/*sistema.altaInscripcionCorpo(
 										Integer.parseInt(fieldNumero.getText()), 
 										e, 

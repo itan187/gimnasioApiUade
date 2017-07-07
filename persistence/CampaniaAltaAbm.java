@@ -23,10 +23,10 @@ public class CampaniaAltaAbm extends CampaniaAltaPersistence {
 			/**
 			 * Agregando los campos
 			 */
-			s.setInt(1,			a.getCodigo());
-			s.setString(2, 		a.getNombre());
-			s.setFloat(3,		a.getPrecio());
-			s.setDate(4, 		new java.sql.Date(a.getVigencia().getTime()));
+			s.setInt(1,			a.getNumeroCampania());
+			s.setString(2, 		a.getAsunto());
+			s.setDate(3,		new java.sql.Date(a.getFechaDeEnvio().getTime()));
+			s.setInt(4, 		(a.getEstado()) ? 1 : 0);
 			
 			s.execute();
 			PoolConnection.getPoolConnection().realeaseConnection(con);

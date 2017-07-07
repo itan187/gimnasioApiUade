@@ -4,27 +4,35 @@ import java.util.Date;
 import java.util.Vector;
 
 public class Campania {
-	private String asunto;
-	private Vector<String> emails;
-	private Date fechaDeEnvio;
-	private Vector<String> filtros;
-	private boolean estado;
+	private int 				numeroCampania;
+	private String 				asunto;
+	private Vector<Socio> 		socios;
+	private Date 				fechaDeEnvio;
+	private Vector<Actividad> 	actividades;
+	private boolean 			estado;
 	
-	public Campania (String asunto, Vector<String> emails, Date fechaDeEnvio, Vector<String> filtros, boolean estado) {
+	public Campania (int numeroCampania, String asunto, Vector<Socio> socios, Date fechaDeEnvio, Vector<Actividad> actividades, boolean estado) {
 		super();
+		this.setNumeroCampania(numeroCampania);
 		this.setAsunto(asunto);
-		this.setEmails(emails);
+		this.setSocios(socios);
 		this.setFechaDeEnvio(fechaDeEnvio);
-		this.setFiltros(filtros);
+		this.setActividades(actividades);
 		this.setEstado(estado);
 	}
-	public Vector<String> getFiltros() {
-		return filtros;
+	public int getNumeroCampania() {
+		return this.numeroCampania;
 	}
-	public void setFiltros(Vector<String> filtros) {
-		this.filtros = filtros;
+	public void setNumeroCampania (int numeroCampania) {
+		this.numeroCampania = numeroCampania;
 	}
-	public boolean isEstado() {
+	public Vector<Actividad> getActividad() {
+		return actividades;
+	}
+	public void setActividades(Vector<Actividad> actividades) {
+		this.actividades = actividades;
+	}
+	public boolean getEstado() {
 		return estado;
 	}
 	public void setEstado(boolean estado) {
@@ -36,11 +44,11 @@ public class Campania {
 	public void setAsunto(String asunto) {
 		this.asunto = asunto;
 	}
-	public Vector<String> getEmails() {
-		return emails;
+	public Vector<Socio> getSocio() {
+		return socios;
 	}
-	public void setEmails(Vector<String> emails) {
-		this.emails = emails;
+	public void setSocios(Vector<Socio> socios) {
+		this.socios = socios;
 	}
 	public Date getFechaDeEnvio() {
 		return fechaDeEnvio;
