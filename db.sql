@@ -137,3 +137,27 @@ CREATE TABLE LiquidacionEmpleado (
 	importe DECIMAL(10,2)
 	CONSTRAINT fk_numLiquidacion FOREIGN KEY (numLiquidacion) REFERENCES Liquidacion(numeroLiquidacion)
 );
+
+-- campania
+CREATE TABLE Campania(
+	numCampania INTEGER NOT NULL PRIMARY KEY,
+	asunto VARCHAR(100),
+	fechaDeEnvio DATETIME,
+	estado BIT
+);
+
+CREATE TABLE CampaniaSocio(
+	numeroCampania INTEGER NOT NULL,
+	numeroSocio INTEGER NOT NULL,
+	CONSTRAINT fk_campania_socio_campania_id FOREIGN KEY (numeroCampania) REFERENCES Campania(numCampania),
+	CONSTRAINT fk_campania_socio_socio_id FOREIGN KEY (numeroSocio) REFERENCES Socio(documento)
+);
+
+-- campanias filtro
+CREATE TABLE CampaniaFiltro(
+	numeroCampania INTEGER NOT NULL,
+	numActividad INTEGER NOT NULL,
+	CONSTRAINT fk_campania_filtro_campania_id FOREIGN KEY (numeroCampania) REFERENCES Campania(numCampania),
+	CONSTRAINT fk_campania_filtro_num_actividad FOREIGN KEY (numActividad) REFERENCES Actividad(numeroActividad)
+);
+
