@@ -31,7 +31,7 @@ public class Cronograma extends javax.swing.JFrame {
 			{
 				TableModel tableModel = new DefaultTableModel(
 								new String[][] { { "One", "Two" }, { "Three", "Four" } },
-								new String[] { "","LUN","MAR","MIE","JUE","VIE","SAB","DOM" });
+								new String[] { "Hora","LUNES","MARTES","MIERCOLES","JUEVES","VIERNES","SABADO","DOMINGO" });
 				
 				table = new JTable();
 				jScrollPane.setViewportView(table);
@@ -42,7 +42,13 @@ public class Cronograma extends javax.swing.JFrame {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
 				
-				int[] dias = new int[] {1,2,3,4,5,6,7};
+				/**
+				 * Días de la semana
+				 */
+				int[] dias 	= new int[] {1,2,3,4,5,6,7};
+				/**
+				 * Horario en el que el Gimnasio esta abierto
+				 */
 				int[] horas = new int[] {8,9,10,11,12,13,14,15,16,17,18,19,20};
 				
 				for(int hora: horas) {

@@ -199,7 +199,7 @@ public class ActividadAbm extends ActividadPersistence {
 			
 			while (res.next()) {
 				Deporte deporte = DeporteAbm.getInstancia().buscarDeporte(res.getInt(3));
-				actividades.add(res.getInt(1) + "- " + res.getString(2) + " | " + deporte.getTitulo());
+				actividades.add(res.getInt(1) + "- " + res.getString(2) + " (" + deporte.getTitulo() + ")");
 			}
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 			return actividades;
