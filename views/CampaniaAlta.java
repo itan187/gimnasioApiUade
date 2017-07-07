@@ -96,7 +96,7 @@ public class CampaniaAlta extends javax.swing.JFrame {
 				jLabelEstado = new JLabel();
 				getContentPane().add(jLabelEstado);
 				jLabelEstado.setText("Estado:");
-				jLabelEstado.setBounds(21, 200, 180, 28);
+				jLabelEstado.setBounds(21, 250, 180, 28);
 				jLabelEstado.setVisible(true);
 			}
 			
@@ -132,20 +132,20 @@ public class CampaniaAlta extends javax.swing.JFrame {
 				scrollLista.setViewportView(listAct);
 				getContentPane().add(scrollLista);
 				listAct.setModel(listActModel);
-				listAct.setBounds(200, 160, 120, 28);
+				listAct.setBounds(200, 160, 150, 28);
 			}
 			{
 				ComboBoxModel<String> estadoModel = new DefaultComboBoxModel<String>(new String[] {"Activo", "Desactivo"});
 				fieldEstado = new JComboBox<String>();
 				getContentPane().add(fieldEstado);
 				fieldEstado.setModel(estadoModel);
-				fieldEstado.setBounds(200, 200, 120, 28);
+				fieldEstado.setBounds(200, 250, 120, 28);
 			}
 			{
 				buttonAceptar = new JButton();
 				getContentPane().add(buttonAceptar);
-				buttonAceptar.setText("Aceptar");
-				buttonAceptar.setBounds(220, 280, 123, 28);
+				buttonAceptar.setText("Generar");
+				buttonAceptar.setBounds(200, 280, 123, 28);
 				buttonAceptar.setVisible(true);
 				buttonAceptar.addActionListener(new ActionListener()
 				{
@@ -196,7 +196,7 @@ public class CampaniaAlta extends javax.swing.JFrame {
 			}
 			
 			pack();
-			setSize(400, 300);
+			setSize(450, 400);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

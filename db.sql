@@ -149,6 +149,7 @@ CREATE TABLE Campania(
 CREATE TABLE CampaniaSocio(
 	numeroCampania INTEGER NOT NULL,
 	numeroSocio INTEGER NOT NULL,
+	email VARCHAR(200) NOT NULL,
 	CONSTRAINT fk_campania_socio_campania_id FOREIGN KEY (numeroCampania) REFERENCES Campania(numCampania),
 	CONSTRAINT fk_campania_socio_socio_id FOREIGN KEY (numeroSocio) REFERENCES Socio(documento)
 );

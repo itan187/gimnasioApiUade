@@ -2,10 +2,10 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import models.Actividad;
 import models.Campania;
-import models.Socio;
 
 public class CampaniaAltaAbm extends CampaniaAltaPersistence {
 	private static CampaniaAltaAbm instancia;
@@ -31,19 +31,28 @@ public class CampaniaAltaAbm extends CampaniaAltaPersistence {
 			s.setInt(4, 		(a.getEstado()) ? 1 : 0);
 			s.execute();
 			
-			/*
-			for (Socio socio: a.getSocio()) {
-				PreparedStatement ss = con.prepareStatement("insert into " + PoolConnection.dbName + ".CampaniaSocio values (?,?)");
-				ss.setInt(1,			a.getNumeroCampania());
-				ss.setInt(2,			socio.getDocumento());
-				ss.execute();
-			}
-			*/
 			for (Actividad actividades: a.getActividades()) {
-				PreparedStatement sss = con.prepareStatement("insert into " + PoolConnection.dbName + ".CampaniaFiltro values (?,?)");
-				sss.setInt(1,			a.getNumeroCampania());
-				sss.setInt(2,			actividades.getNumeroActividad());
-				sss.execute();
+				PreparedStatement ss = con.prepareStatement("insert into " + PoolConnection.dbName + ".CampaniaFiltro values (?,?)");
+				ss.setInt(1,			a.getNumeroCampania());
+				ss.setInt(2,			actividades.getNumeroActividad());
+				ss.execute();
+				
+				PreparedStatement x = con.prepareStatement("select * from " + PoolConnection.dbName + ".InscripcionActividades where numeroActividad =" + actividades.getNumeroActividad());
+				ResultSet res = x.executeQuery();
+				
+				while (res.next()) {
+					
+					PreparedStatement xx = con.prepareStatement("select * from " + PoolConnection.dbName + ".SocioInscripcion where inscripcionNumero =" + res.getInt(1));
+					ResultSet result = xx.executeQuery();
+					
+					while (result.next()) {
+						PreparedStatement sss = con.prepareStatement("insert into " + PoolConnection.dbName + ".CampaniaSocio values (?,?,?)");
+						sss.setInt(1,			a.getNumeroCampania());
+						sss.setInt(2,			result.getInt(1));
+						sss.setString(3, 		SocioAbm.getInstancia().buscarSocio(result.getInt(1)).getEmail());
+						sss.execute();
+					}
+				}
 			}
 			
 			PoolConnection.getPoolConnection().realeaseConnection(con);
