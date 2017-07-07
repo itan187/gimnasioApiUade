@@ -75,18 +75,21 @@ public class Main extends JFrame {
 	private JMenuItem jMenuInscripcionCorpoModificar;
 	
 	private JMenuItem jMenuCronograma;
+	private JMenuItem jMenuNotificacion;
 
 	private JMenu jMenuSalir;
 	
 	private SocioController socioController;
 	private ActividadController actividadController;
 	private RrhhController rrhhController;
+	private CampaniaController campaniaController;
 	
 	public Main() {
 		super();
 		socioController 		= SocioController.getInstancia();
 		actividadController 	= ActividadController.getInstancia();
 		rrhhController 			= RrhhController.getInstancia();
+		campaniaController		= CampaniaController.getInstancia();
 		initGUI();
 	}
 	
@@ -721,6 +724,21 @@ public class Main extends JFrame {
 					{
 						Cronograma cronograma = new Cronograma();
 						cronograma.setVisible(true);
+						toFront();
+					}
+				});
+				
+				/**************************************************************
+				 * 						NOTIFICACIONES
+				 **************************************************************/
+				jMenuNotificacion = new JMenuItem();
+				jMenuBar.add(jMenuNotificacion);
+				jMenuNotificacion.setText("Notificaciones");
+				jMenuNotificacion.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						CampaniaAlta notificacion = new CampaniaAlta(campaniaController);
+						notificacion.setVisible(true);
 						toFront();
 					}
 				});
