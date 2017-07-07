@@ -75,6 +75,7 @@ public class Main extends JFrame {
 	private JMenuItem jMenuInscripcionCorpoModificar;
 	
 	private JMenuItem jMenuCronograma;
+	private JMenuItem jMenuConsultaProxClase;	
 	private JMenuItem jMenuNotificacion;
 
 	private JMenu jMenuSalir;
@@ -202,7 +203,18 @@ public class Main extends JFrame {
 						toFront();
 					}
 				});
-				
+				/*proximas Clases*/ 
+				jMenuConsultaProxClase = new JMenuItem();
+				jMenuSocios.add(jMenuConsultaProxClase);
+				jMenuConsultaProxClase.setText("Apto Médico");
+				jMenuConsultaProxClase.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						ConsultaProximasClases proxClases= new ConsultaProximasClases();
+						ConsultaProximasClases.setVisible(true);
+						toFront();
+					}
+				});
 				/**************************************************************
 				 * 						DEPORTES
 				 * 1) Alta
