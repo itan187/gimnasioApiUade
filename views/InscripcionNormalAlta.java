@@ -18,7 +18,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.WindowConstants;
 
 import controllers.SocioController;
-import persistence.InscripcionNormalAbm;
+import persistence.ActividadAbm;
 
 public class InscripcionNormalAlta extends javax.swing.JFrame {
 
@@ -93,7 +93,7 @@ public class InscripcionNormalAlta extends javax.swing.JFrame {
 				fieldEstado.setBounds(200, 80, 120, 28);
 			}
 			{
-				listActividades = InscripcionNormalAbm.getInstancia().listado();
+				listActividades = ActividadAbm.getInstancia().listado();
 				ComboBoxModel<String> listActModel = new DefaultComboBoxModel<String>(listActividades);
 				listAct = new JList<String>();
 				getContentPane().add(listAct);

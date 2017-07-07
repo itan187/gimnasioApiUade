@@ -69,10 +69,10 @@ public class Main extends JFrame {
 	private JMenu jMenuInscripcionesNormales;
 	private JMenu jMenuInscripcionesCorpo;
 	private JMenuItem jMenuInscripcionNormalAlta;
-	private JMenuItem jMenuInscripcionBaja;
-	private JMenuItem jMenuInscripcionNormalModificar;
+	//private JMenuItem jMenuInscripcionBaja;
+	//private JMenuItem jMenuInscripcionNormalModificar;
 	private JMenuItem jMenuInscripcionCorpoAlta;
-	private JMenuItem jMenuInscripcionCorpoModificar;
+	//private JMenuItem jMenuInscripcionCorpoModificar;
 	
 	private JMenuItem jMenuCronograma;
 	private JMenuItem jMenuNotificacion;
