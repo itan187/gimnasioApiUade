@@ -24,7 +24,6 @@ import javax.swing.WindowConstants;
 
 import controllers.CampaniaController;
 import persistence.ActividadAbm;
-import persistence.InscripcionNormalAbm;
 
 public class CampaniaAlta extends javax.swing.JFrame {
 	
@@ -34,11 +33,12 @@ public class CampaniaAlta extends javax.swing.JFrame {
 	private JLabel jLabelAsunto;
 	private JLabel jLabelFechaDeEnvio;
 	private JLabel jLabelActividades;
+	private JLabel jLabelEstado;
 	
 	private JTextField fieldNumero;
 	private JTextField fieldAsunto;
 	private JTextField fieldFechaDeEnvio;
-
+	
 	private JComboBox<String> fieldEstado;
 	
 	private JList <String> listAct;
@@ -92,7 +92,13 @@ public class CampaniaAlta extends javax.swing.JFrame {
 				jLabelActividades.setBounds(21, 160, 180, 28);
 				jLabelActividades.setVisible(true);
 			}
-			
+			{
+				jLabelEstado = new JLabel();
+				getContentPane().add(jLabelEstado);
+				jLabelEstado.setText("Estado:");
+				jLabelEstado.setBounds(21, 200, 180, 28);
+				jLabelEstado.setVisible(true);
+			}
 			
 			/**************************************************************
 			 *						FIELDS
@@ -129,6 +135,13 @@ public class CampaniaAlta extends javax.swing.JFrame {
 				listAct.setBounds(200, 160, 120, 28);
 			}
 			{
+				ComboBoxModel<String> estadoModel = new DefaultComboBoxModel<String>(new String[] {"Activo", "Desactivo"});
+				fieldEstado = new JComboBox<String>();
+				getContentPane().add(fieldEstado);
+				fieldEstado.setModel(estadoModel);
+				fieldEstado.setBounds(200, 200, 120, 28);
+			}
+			{
 				buttonAceptar = new JButton();
 				getContentPane().add(buttonAceptar);
 				buttonAceptar.setText("Aceptar");
@@ -163,13 +176,14 @@ public class CampaniaAlta extends javax.swing.JFrame {
 							
 							try {
 								Date df = new SimpleDateFormat("yyyy-MM-dd").parse(fieldFechaDeEnvio.getText());
-								/*sistema.altaInscripcionCorpo(
+								
+								sistema.altaCampania(
 										Integer.parseInt(fieldNumero.getText()), 
-										e, 
+										fieldAsunto.getText(), 
+										df, 
 										idActividad, 
-										fieldEmpresa.getText(), 
-										df
-										);*/
+										e
+									);
 							} catch (NumberFormatException e1) {
 								e1.printStackTrace();
 							} catch (ParseException e1) {

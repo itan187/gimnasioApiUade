@@ -1,8 +1,12 @@
 package controllers;
 
+import java.util.Date;
 import java.util.Vector;
 
+import models.Actividad;
 import models.Campania;
+
+import persistence.ActividadAbm;
 
 public class CampaniaController {
 	public Vector<Campania>	campanias;
@@ -20,5 +24,15 @@ public class CampaniaController {
 		this.campanias = new Vector<Campania>();
 	}
 	
-	
+	public void altaCampania (int numero, String asunto, Date fechaDeEnvio, Vector<Integer> a, boolean estado) {
+		
+		Vector<Actividad> actividades = new Vector<Actividad>();
+		for (int actividad: a) {
+			Actividad act = ActividadAbm.getInstancia().buscarActividad(actividad);
+			actividades.add(act);
+		}
+		Campania campania = new Campania(numero, asunto, fechaDeEnvio, actividades, estado);
+		campanias.add(campania);
+		campania.insert();
+	}
 }
