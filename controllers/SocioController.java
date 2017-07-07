@@ -189,18 +189,16 @@ public class SocioController {
 		
 		if (socio != null && socio.conAptoMedioAlDia() && socio.conAbonoAlDia()) {
 			Inscripcion inscripciones = socio.getInscripcion();
-			
-			System.out.println("ACA"+inscripciones.getActividades());
-			
+			System.out.println(inscripciones.getNumero());
 			if (inscripciones.getEstado()) {
 				Vector<Actividad> actividades = inscripciones.getActividades();
-				/** Recorremos las clases de dicha inscripcion **/
 
+				/** Recorremos las clases de dicha inscripcion **/
 				for (Actividad a : actividades) {
+					
 					/** Días que esta la clase **/
 					LocalDate diaActual = LocalDate.now();
-					System.out.println(diaActual.getDayOfWeek().getValue());
-					
+
 					if (diaActual.getDayOfWeek().getValue() == a.getDia()) {
 						
 						Calendar cal = Calendar.getInstance();

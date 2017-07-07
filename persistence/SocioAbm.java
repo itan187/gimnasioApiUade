@@ -181,16 +181,16 @@ public class SocioAbm extends SocioPersistence {
 					Corporativa in = InscripcionCorporativoAbm.getInstancia().buscarInscripcion(inscripcionNumero);
 					
 					if (i != null) {
-						inscripcionEstado = i.getEstado();
-						inscripcionActividades = i.getActividades();
+						inscripcionEstado 		= i.getEstado();
+						inscripcionActividades 	= i.getActividades();
 						
 						inscripcion = new Normal(inscripcionEstado, inscripcionNumero, inscripcionActividades);
 						
 					} else if (in != null) {
-						inscripcionEstado = in.getEstado();
-						inscripcionActividades = in.getActividades();
-						inscripcionEmpresa = in.getEmpresa();
-						inscripcionVigencia = in.getVigencia();
+						inscripcionEstado 		= in.getEstado();
+						inscripcionActividades 	= in.getActividades();
+						inscripcionEmpresa		= in.getEmpresa();
+						inscripcionVigencia 	= in.getVigencia();
 						
 						inscripcion = new Corporativa(inscripcionEstado, inscripcionNumero, inscripcionActividades, inscripcionEmpresa, inscripcionVigencia);
 					}

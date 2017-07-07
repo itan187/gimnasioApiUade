@@ -134,7 +134,7 @@ public class InscripcionCorporativoAbm extends InscripcionCorporativoPersistence
 				 */
 				Vector<Actividad> actividades = new Vector<Actividad>();
 				while (res.next()) {
-					actividades.add(ActividadAbm.getInstancia().buscarActividad(result.getInt(2)));
+					actividades.add(ActividadAbm.getInstancia().buscarActividad(res.getInt(2)));
 				}
 				
 				a = new Corporativa(estado, numero, actividades, empresa, vigencia);

@@ -127,7 +127,7 @@ public class InscripcionNormalAbm extends InscripcionNormalPersistence {
 				 */
 				Vector<Actividad> actividades = new Vector<Actividad>();
 				while (res.next()) {
-					actividades.add(ActividadAbm.getInstancia().buscarActividad(result.getInt(2)));
+					actividades.add(ActividadAbm.getInstancia().buscarActividad(res.getInt(2)));
 				}
 				
 				a = new Normal(estado, num, actividades);
