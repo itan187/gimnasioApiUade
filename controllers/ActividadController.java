@@ -51,8 +51,10 @@ public class ActividadController {
 			}
 		}
 		Deporte d = DeporteAbm.getInstancia().buscarDeporte(codigo);
-		if (d != null) return d;
-		
+		if (d != null) {
+			deportes.add(d);
+			return d;
+		}
 		return null;
 	}
 	
@@ -74,6 +76,7 @@ public class ActividadController {
 		}
 		Actividad c = ActividadAbm.getInstancia().buscarActividad(numero);
 		if (c != null) {
+			actividades.add(c);
 			return c;
 		}
 		return null;
@@ -183,4 +186,33 @@ public class ActividadController {
 		}		
 	}
 
+	public void modificarActividad(int codigo, int deporte, Vector<Integer> profesoresTexts, String descripcion, int duracion, int dia, int horaDeInicio) {
+		Actividad actividad = buscarActividad(codigo);
+		Vector<Profesor> profesores = new Vector<Profesor>();
+
+		for (Integer profesor : profesoresTexts) {
+			profesores.add(RrhhController.getInstancia().buscarEmpleadoPartTime(profesor));
+			profesores.add(RrhhController.getInstancia().buscarEmpleadoFullTime(profesor));
+		}
+		if (actividad != null) {
+
+			for (Actividad a : actividades) {
+				if (a.getNumeroActividad() == codigo) {
+					if (a.getDeporte().getCodigo() != deporte) 	a.setDeporte(buscarDeporte(deporte));
+					if (a.getDescription() != descripcion) 		a.setDescription(descripcion);
+					if (a.getDuracion() != duracion)			a.setDuracion(duracion);
+					if (a.getDia() != dia)						a.setDia(dia);
+					if (a.getHoraDeInicio() != horaDeInicio)	a.setHoraDeInicio(horaDeInicio);
+
+					// No comparo los profesores, directamente actualizo
+					a.setProfesores(profesores);
+				}
+			}
+
+			/**
+			 * Modificamos el deporte en la base de datos
+			 */
+			actividad.actualizarActividad();
+		}
+	}
 }

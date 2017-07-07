@@ -84,8 +84,8 @@ public class ActividadAbm extends ActividadPersistence {
 			Actividad a = (Actividad)o;
 			Connection con = PoolConnection.getPoolConnection().getConnection();
 			PreparedStatement s = con.prepareStatement("update " + PoolConnection.dbName + ".Actividad " +
-					"set description = ?," +
-					"deporte = ?," +
+					"set descripcion = ?," +
+					"numeroDeporte = ?," +
 					"duracion = ?," +
 					"dia = ?," +
 					"horario = ? where numeroActividad = ?"

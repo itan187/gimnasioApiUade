@@ -127,6 +127,24 @@ public class ActividadModificar extends javax.swing.JFrame {
                     public void actionPerformed(ActionEvent evt)
                     {
                         try {
+                            String deporteText = (String) listadoDeporte.getSelectedItem();
+                            String[] deporteArray = deporteText.split(" - ");
+                            int deporte = Integer.parseInt(deporteArray[0]);
+                            Vector<String> profesoresTexts = new Vector<String>();
+                            Vector<Integer> profesores = new Vector<Integer>();
+                            for (String profesor : profesoresTexts) {
+                                String[] profe = profesor.split(" - ");
+                                profesores.add(Integer.parseInt(profe[0]));
+                            }
+                            sistema.modificarActividad(
+                                Integer.parseInt(fieldCodigoBuscar.getText()),
+                                deporte,
+                                profesores,
+                                fieldDescripcion.getText(),
+                                Integer.parseInt(fieldDuracion.getText()),
+                                fieldDia.getSelectedIndex() + 1,
+                                Integer.parseInt(fieldHorarioDeInicio.getText())
+                            );
 //                            sistema.modificar(Integer.parseInt(fieldCodigoBuscar.getText()), fieldNombre.getText(), Float.parseFloat(fieldPrecio.getText()), df.parse(fieldVigencia.getText()));
 //                            sistema.modificarDeporte(Integer.parseInt(fieldCodigoBuscar.getText()), );
                         } catch (Exception e) {
