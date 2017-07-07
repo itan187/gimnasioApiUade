@@ -5,7 +5,7 @@ import java.util.Vector;
 import persistence.ActividadAbm;
 
 public class Actividad {
-	private int numeroActividad;
+	private int 				numeroActividad;
 	private Deporte				deporte;
 	private Vector<Profesor> 	profesores;
 	private String				description;

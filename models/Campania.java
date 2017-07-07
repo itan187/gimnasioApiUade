@@ -50,20 +50,7 @@ public class Campania {
 	public void setFechaDeEnvio(Date fechaDeEnvio) {
 		this.fechaDeEnvio = fechaDeEnvio;
 	}
-	
-	/**
-	 * getEmailSocios
-	 * 
-	 * 
-	 * 
-	 * @return
-	 */
-	public Vector<String> getEmailSocios() {
-		Vector<String> emailSocios = new Vector<String>();
 		
-		return emailSocios;
-	}
-	
 	public void insert() {
 		CampaniaAltaAbm.getInstancia().insert(this);
     }

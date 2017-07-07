@@ -274,7 +274,7 @@ public class Main extends JFrame {
 				jMenuActividades = new JMenu();
 				jMenuBar.add(jMenuActividades);
 				jMenuActividades.setText("Actividades");
-				jMenuActividades.setPreferredSize(new java.awt.Dimension(90, 21));
+				jMenuActividades.setPreferredSize(new java.awt.Dimension(110, 21));
 				jMenuActividades.setVisible(true);
 				jMenuActividades.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
@@ -719,6 +719,8 @@ public class Main extends JFrame {
 				jMenuCronograma = new JMenuItem();
 				jMenuBar.add(jMenuCronograma);
 				jMenuCronograma.setText("Cronograma");
+				jMenuCronograma.setPreferredSize(new java.awt.Dimension(125, 21));
+				jMenuCronograma.setVisible(true);
 				jMenuCronograma.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -728,12 +730,15 @@ public class Main extends JFrame {
 					}
 				});
 				
+				
 				/**************************************************************
 				 * 						NOTIFICACIONES
 				 **************************************************************/
 				jMenuNotificacion = new JMenuItem();
 				jMenuBar.add(jMenuNotificacion);
 				jMenuNotificacion.setText("Notificaciones");
+				jMenuNotificacion.setPreferredSize(new java.awt.Dimension(135, 21));
+				jMenuNotificacion.setVisible(true);
 				jMenuNotificacion.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -742,6 +747,7 @@ public class Main extends JFrame {
 						toFront();
 					}
 				});
+				
 				
 				/**************************************************************
 				 * 						SALIR
