@@ -326,6 +326,7 @@ public class RrhhController {
 	}
 	
 	/**
+	 * Alta liquidacón
 	 * 
 	 * @param anio
 	 * @param mes
