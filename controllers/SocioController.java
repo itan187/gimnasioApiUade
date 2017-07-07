@@ -186,23 +186,27 @@ public class SocioController {
 	public boolean habilitadoParaIngresar (int documento) {
 		
 		Socio socio = buscarSocio(documento);
+		
 		if (socio != null && socio.conAptoMedioAlDia() && socio.conAbonoAlDia()) {
-			Inscripcion inscripciones = socio.getInscripcion(); //EN NULL PARA SEGUIR = socio.getInscripciones();
+			Inscripcion inscripciones = socio.getInscripcion();
+			
+			System.out.println("ACA"+inscripciones.getActividades());
 			
 			if (inscripciones.getEstado()) {
 				Vector<Actividad> actividades = inscripciones.getActividades();
-				
 				/** Recorremos las clases de dicha inscripcion **/
 
 				for (Actividad a : actividades) {
 					/** Días que esta la clase **/
 					LocalDate diaActual = LocalDate.now();
+					System.out.println(diaActual.getDayOfWeek().getValue());
+					
 					if (diaActual.getDayOfWeek().getValue() == a.getDia()) {
 						
 						Calendar cal = Calendar.getInstance();
 
 						String time = new SimpleDateFormat("HHmm").format(cal.getTime());
-						
+						System.out.println(time);
 						if (Integer.parseInt(time) == a.getHoraDeInicio() 
 								|| Integer.parseInt(time) < a.getHoraDeInicio() + 15 
 								|| Integer.parseInt(time) > a.getHoraDeInicio() + 15

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 import models.CertificadoMedico;
 import models.Socio;
@@ -120,4 +121,31 @@ public class CertificadoMedicoAbm extends CertificadoMedicoPersistence {
 		return null;
 	}
 
+	public Vector<CertificadoMedico> certificadosDeUnSocio(int numSocio) {
+		try {
+			Connection con = PoolConnection.getPoolConnection().getConnection();
+			PreparedStatement x = con.prepareStatement("Select * from " + PoolConnection.dbName + ".CertificadoMedico where numSocio = " + numSocio);
+			ResultSet res = x.executeQuery();
+			
+			Vector<CertificadoMedico> listado = new Vector<CertificadoMedico>();
+			while (res.next()) {
+				listado.add(new CertificadoMedico(
+						res.getInt(1), 
+						SocioAbm.getInstancia().buscarSocio(numSocio),
+						res.getDate(3), 
+						res.getDate(4),
+						res.getString(5), 
+						res.getString(6), 
+						((res.getInt(7) == 1) ? true : false)
+						)
+					);
+			}
+			
+			PoolConnection.getPoolConnection().realeaseConnection(con);
+			return listado;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

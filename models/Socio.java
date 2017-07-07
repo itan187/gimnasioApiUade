@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 import java.util.Vector;
 
+import persistence.CertificadoMedicoAbm;
 import persistence.SocioAbm;
 
 public class Socio {
@@ -114,9 +115,10 @@ public class Socio {
 	public boolean conAptoMedioAlDia() {
 		Date hoy = new Date();
 		boolean retVal = false;
+		Vector<CertificadoMedico> cm = CertificadoMedicoAbm.getInstancia().certificadosDeUnSocio(this.getDocumento());
 		
-		for (CertificadoMedico cm : aptosMedicos) {
-			if (cm.getEstado() && cm.getVencimiento().before(hoy)) {
+		for (CertificadoMedico c : cm) {
+			if (c.getEstado() && !c.getVencimiento().before(hoy)) {
 				retVal = true;
 			}
 		}

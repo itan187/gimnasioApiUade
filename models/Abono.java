@@ -71,7 +71,7 @@ public class Abono {
 		 *  ya que lo comparamos con la fecha actual y es
 		 *  anterior.
 		 */
-		return this.getVigencia().before(hoy);
+		return !this.getVigencia().before(hoy);
 	}
 	
 	public void eliminarAbono() {
