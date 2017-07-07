@@ -203,18 +203,18 @@ public class Main extends JFrame {
 						toFront();
 					}
 				});
-				/*proximas Clases*/ 
+				/*proximas Clases
 				jMenuConsultaProxClase = new JMenuItem();
 				jMenuSocios.add(jMenuConsultaProxClase);
-				jMenuConsultaProxClase.setText("Apto Médico");
+				jMenuConsultaProxClase.setText("Consultar proximas clases");
 				jMenuConsultaProxClase.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
 						ConsultaProximasClases proxClases= new ConsultaProximasClases();
-						ConsultaProximasClases.setVisible(true);
+						//ConsultaProximasClases.setVisible(true);
 						toFront();
 					}
-				});
+				});*/ 
 				/**************************************************************
 				 * 						DEPORTES
 				 * 1) Alta
