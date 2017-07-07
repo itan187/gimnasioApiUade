@@ -189,7 +189,6 @@ public class SocioController {
 		
 		if (socio != null && socio.conAptoMedioAlDia() && socio.conAbonoAlDia()) {
 			Inscripcion inscripciones = socio.getInscripcion();
-			System.out.println(inscripciones.getNumero());
 			if (inscripciones.getEstado()) {
 				Vector<Actividad> actividades = inscripciones.getActividades();
 
@@ -204,7 +203,6 @@ public class SocioController {
 						Calendar cal = Calendar.getInstance();
 
 						String time = new SimpleDateFormat("HHmm").format(cal.getTime());
-						System.out.println(time);
 						if (Integer.parseInt(time) == a.getHoraDeInicio() 
 								|| Integer.parseInt(time) < a.getHoraDeInicio() + 15 
 								|| Integer.parseInt(time) > a.getHoraDeInicio() + 15

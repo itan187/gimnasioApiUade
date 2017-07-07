@@ -75,7 +75,6 @@ public class Main extends JFrame {
 	private JMenuItem jMenuInscripcionCorpoModificar;
 	
 	private JMenuItem jMenuCronograma;
-	private JMenuItem jMenuConsultaProxClase;	
 	private JMenuItem jMenuNotificacion;
 
 	private JMenu jMenuSalir;
@@ -203,18 +202,7 @@ public class Main extends JFrame {
 						toFront();
 					}
 				});
-				/*proximas Clases
-				jMenuConsultaProxClase = new JMenuItem();
-				jMenuSocios.add(jMenuConsultaProxClase);
-				jMenuConsultaProxClase.setText("Consultar proximas clases");
-				jMenuConsultaProxClase.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) 
-					{
-						ConsultaProximasClases proxClases= new ConsultaProximasClases();
-						//ConsultaProximasClases.setVisible(true);
-						toFront();
-					}
-				});*/ 
+				
 				/**************************************************************
 				 * 						DEPORTES
 				 * 1) Alta
@@ -333,9 +321,9 @@ public class Main extends JFrame {
 				jMenuActividadModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-						ActividadModificar modificarActividad = new ActividadModificar(actividadController);
+						/*ActividadModificar modificarActividad = new ActividadModificar(actividadController);
 						modificarActividad.setVisible(true);
-						toFront();
+						toFront();*/
 					}
 				});
 				
@@ -654,6 +642,7 @@ public class Main extends JFrame {
 				/**
 				 * Modificar Inscripción normal
 				 */
+				/*
 				jMenuInscripcionNormalModificar = new JMenuItem();
 				jMenuInscripcionesNormales.add(jMenuInscripcionNormalModificar);
 				jMenuInscripcionNormalModificar.setText("Modificar");
@@ -664,7 +653,7 @@ public class Main extends JFrame {
 						modificarInscripcionNormal.setVisible(true);
 						toFront();
 					}
-				});
+				});*/
 				
 				jMenuInscripcionesCorpo = new JMenu();
 				jMenuInscripciones.add(jMenuInscripcionesCorpo);
@@ -697,6 +686,7 @@ public class Main extends JFrame {
 				/**
 				 * Modificar inscripción corporativo
 				 */
+				/*
 				jMenuInscripcionCorpoModificar = new JMenuItem();
 				jMenuInscripcionesCorpo.add(jMenuInscripcionCorpoModificar);
 				jMenuInscripcionCorpoModificar.setText("Modificar");
@@ -707,11 +697,12 @@ public class Main extends JFrame {
 						modificarInscripcionCorpo.setVisible(true);
 						toFront();
 					}
-				});
+				});*/
 				
 				/**
 				 * Baja de inscripción (normal | corporativo)
 				 */
+				/*
 				jMenuInscripcionBaja = new JMenuItem();
 				jMenuInscripciones.add(jMenuInscripcionBaja);
 				jMenuInscripcionBaja.setText("Baja");
@@ -722,7 +713,7 @@ public class Main extends JFrame {
 						bajaInscripcionNormal.setVisible(true);
 						toFront();
 					}
-				});
+				});*/
 				
 				
 				/**************************************************************
