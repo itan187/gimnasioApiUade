@@ -191,8 +191,14 @@ public class ActividadController {
 		Vector<Profesor> profesores = new Vector<Profesor>();
 
 		for (Integer profesor : profesoresTexts) {
-			profesores.add(RrhhController.getInstancia().buscarEmpleadoPartTime(profesor));
-			profesores.add(RrhhController.getInstancia().buscarEmpleadoFullTime(profesor));
+			Profesor pPart = RrhhController.getInstancia().buscarEmpleadoPartTime(profesor);
+			Profesor pFullTime = RrhhController.getInstancia().buscarEmpleadoFullTime(profesor);
+			if (pPart != null) {
+				profesores.add(pPart);
+			}
+			if (pFullTime != null) {
+				profesores.add(pFullTime);
+			}
 		}
 		if (actividad != null) {
 

@@ -3,6 +3,7 @@ package persistence;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import models.Actividad;
@@ -61,10 +62,7 @@ public class ActividadAbm extends ActividadPersistence {
 			 * Guardando la vinculación entre la actividad y los profesores
 			 */
 			for (Profesor p: a.getProfesores()) {
-				PreparedStatement sp = con.prepareStatement("insert into "+ PoolConnection.dbName + ".ActividadProfesores values (?,?)");
-				sp.setInt(1, a.getNumeroActividad());
-				sp.setInt(2, p.getDocumento());
-				sp.execute();
+				insertProfesor(con, a.getNumeroActividad(), p.getDocumento());
 			}
 						
 			PoolConnection.getPoolConnection().realeaseConnection(con);
@@ -100,13 +98,34 @@ public class ActividadAbm extends ActividadPersistence {
 			s.setInt(4, 	a.getDia());
 			s.setInt(5, 	a.getHoraDeInicio());
 			s.setInt(6, 	a.getNumeroActividad());
-			
+
 			s.execute();
+
+			/**
+			 * Elimino vinculacion entre actividad y profesores
+			 */
+			s = con.prepareStatement("delete from " + PoolConnection.dbName + ".ActividadProfesores where numeroActividad = ?");
+			s.setInt(1, a.getNumeroActividad());
+			s.execute();
+
+			/**
+			 * Guardando la vinculación entre la actividad y los profesores
+			 */
+			for (Profesor p: a.getProfesores()) {
+				insertProfesor(con, a.getNumeroActividad(), p.getDocumento());
+			}
 			PoolConnection.getPoolConnection().realeaseConnection(con);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void insertProfesor(Connection con, int actividad, int profesor) throws SQLException {
+		PreparedStatement sp = con.prepareStatement("insert into "+ PoolConnection.dbName + ".ActividadProfesores values (?,?)");
+		sp.setInt(1, actividad);
+		sp.setInt(2, profesor);
+		sp.execute();
 	}
 	
 	public Actividad buscarActividad(int numeroActividad) {
