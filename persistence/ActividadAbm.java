@@ -179,12 +179,34 @@ public class ActividadAbm extends ActividadPersistence {
 					);
 			}
 			
-			PoolConnection.getPoolConnection().realeaseConnection(con);
+			
 			return a;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+	
+	public Vector<String> listarActividad (int dia, int horario) {
+		try {
+			Connection con = PoolConnection.getPoolConnection().getConnection();
+			PreparedStatement s = con.prepareStatement("select * from " + PoolConnection.dbName + ".Actividad where dia = ? and horario = ?");
+			s.setInt(1, dia);
+			s.setInt(2, horario);
+			ResultSet res = s.executeQuery();
+			
+			Vector<String> actividades = new Vector<String>();
+			
+			while (res.next()) {
+				Deporte deporte = DeporteAbm.getInstancia().buscarDeporte(res.getInt(3));
+				actividades.add(res.getInt(1) + "- " + res.getString(2) + " | " + deporte.getTitulo());
+			}
+			PoolConnection.getPoolConnection().realeaseConnection(con);
+			return actividades;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	} 
 	
 }

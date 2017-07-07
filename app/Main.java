@@ -74,8 +74,7 @@ public class Main extends JFrame {
 	private JMenuItem jMenuInscripcionCorpoAlta;
 	private JMenuItem jMenuInscripcionCorpoModificar;
 	
-	
-
+	private JMenuItem jMenuCronograma;
 
 	private JMenu jMenuSalir;
 	
@@ -710,6 +709,21 @@ public class Main extends JFrame {
 					}
 				});
 				
+				
+				/**************************************************************
+				 * 						CRONOGRAMA
+				 **************************************************************/
+				jMenuCronograma = new JMenuItem();
+				jMenuBar.add(jMenuCronograma);
+				jMenuCronograma.setText("Cronograma");
+				jMenuCronograma.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) 
+					{
+						Cronograma cronograma = new Cronograma();
+						cronograma.setVisible(true);
+						toFront();
+					}
+				});
 				
 				/**************************************************************
 				 * 						SALIR
