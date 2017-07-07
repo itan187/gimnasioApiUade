@@ -1,7 +1,7 @@
 package controllers;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
@@ -187,63 +187,33 @@ public class SocioController {
 		
 		Socio socio = buscarSocio(documento);
 		if (socio != null && socio.conAptoMedioAlDia() && socio.conAbonoAlDia()) {
-			Vector<Inscripcion> inscripciones = null; //EN NULL PARA SEGUIR = socio.getInscripciones();
+			Inscripcion inscripciones = socio.getInscripcion(); //EN NULL PARA SEGUIR = socio.getInscripciones();
 			
-			/**
-			 *  Recorremos las inscripciones del socio
-			 */
-			for (Inscripcion i : inscripciones) {
-				/** Si la inscripción esta activa **/
+			if (inscripciones.getEstado()) {
+				Vector<Actividad> actividades = inscripciones.getActividades();
+				
+				/** Recorremos las clases de dicha inscripcion **/
 
-				if (i.getEstado()) {
-					Vector<Actividad> actividades = i.getActividades();
-					/** Recorremos las clases de dicha inscripcion **/
-
-					for (Actividad a : actividades) {
-						/** Días que esta la clase **/
-						int horaInicioActividad = -1;
+				for (Actividad a : actividades) {
+					/** Días que esta la clase **/
+					LocalDate diaActual = LocalDate.now();
+					if (diaActual.getDayOfWeek().getValue() == a.getDia()) {
 						
+						Calendar cal = Calendar.getInstance();
 
-						Calendar c = Calendar.getInstance();
-						/*
-						switch (c.get(Calendar.DAY_OF_WEEK)) {
-						   case Calendar.MONDAY:
-							   horaInicioActividad = a.getLunes();
-							   break;
-						   case Calendar.TUESDAY:
-							   horaInicioActividad = a.getMartes();
-							   break;
-						   case Calendar.WEDNESDAY:
-							   horaInicioActividad = a.getMiercoles();
-							   break;
-						   case Calendar.THURSDAY:
-							   horaInicioActividad = a.getJueves();
-							   break;
-						   case Calendar.FRIDAY:
-							   horaInicioActividad = a.getViernes();
-							   break;
-						   case Calendar.SATURDAY:
-							   horaInicioActividad = a.getSabado();
-							   break;
-						   case Calendar.SUNDAY:
-							   horaInicioActividad = a.getDomingo();
-							   break;
-						}*/
+						String time = new SimpleDateFormat("HHmm").format(cal.getTime());
 						
-						if (horaInicioActividad <= 0) {
-							return false;
-						} else {
-							DateFormat horaDelMomento = new SimpleDateFormat("HHmm");
-							int horaDelMomentoInt = Integer.parseInt(horaDelMomento.toString());
-
-							int horaActAnt = horaInicioActividad - 15;
-							int horaActDesp = horaInicioActividad + 15;
-							
-							return ((horaActAnt < horaDelMomentoInt) && (horaActDesp > horaDelMomentoInt));
+						if (Integer.parseInt(time) == a.getHoraDeInicio() 
+								|| Integer.parseInt(time) < a.getHoraDeInicio() + 15 
+								|| Integer.parseInt(time) > a.getHoraDeInicio() + 15
+							) {
+							return true;
 						}
+
 					}
 				}
 			}
+			
 		}
 		return false;
 	}
